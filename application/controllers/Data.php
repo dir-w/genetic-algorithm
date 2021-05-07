@@ -12,6 +12,8 @@ class Data extends CI_Controller
         $this->load->library('form_validation');
     }
 
+    // jam
+
     public function jam()
     {
         $data['title'] = 'Master Jam';
@@ -24,6 +26,22 @@ class Data extends CI_Controller
             $this->load->view('templates/footer');
         
     }
+
+    public function addjam()
+    {
+        // $data['title'] = 'Master Jam';
+        // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+ 
+        //     $this->load->view('templates/header', $data);
+        //     $this->load->view('templates/sidebar', $data);
+        //     $this->load->view('templates/topbar', $data);
+        //     $this->load->view('jam/index', $data);
+        //     $this->load->view('templates/footer');
+        
+    }
+
+
+
 
     public function jamList()
     {
