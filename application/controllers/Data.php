@@ -39,7 +39,7 @@ class Data extends CI_Controller
             $this->load->view('templates/topbar', $data);
             $this->load->view('jam/index', $data);
             $this->load->view('templates/footer');
-        } else {
+        } else { 
             
              $insertdata = [
                         'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
