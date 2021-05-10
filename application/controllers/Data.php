@@ -17,20 +17,77 @@ class Data extends CI_Controller
     public function jam()
     {
         $data['title'] = 'Master Jam';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
  
+        //     $this->load->view('templates/header', $data);
+        //     $this->load->view('templates/sidebar', $data);
+        //     $this->load->view('templates/topbar', $data);
+        //     $this->load->view('jam/index', $data);
+        //     $this->load->view('templates/footer');
+
+        // $data['title'] = 'Master Jam';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->form_validation->set_rules('range_jam1', 'Range Jam', 'required');
+        $this->form_validation->set_rules('range_jam2', 'Range Jam', 'required');
+
+        if ($this->form_validation->run() ==  false)
+        {
+            // redirect('data/jam');
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('jam/index', $data);
             $this->load->view('templates/footer');
+        } else {
+            
+             $insertdata = [
+                        'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
+                         ];
+
+                        // var_dump($data);
+                        //  die; 
+            $this->Data_model->addjamitem($insertdata);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+                        redirect('data/jam');
+        }
+
+
         
     }
 
-    public function addjam()
+    public function jamfsdf()
     {
         // $data['title'] = 'Master Jam';
-        // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->form_validation->set_rules('range1', 'Please Input');
+        $this->form_validation->set_rules('range2', 'Please Input');
+
+        if ($this->form_validation->run() == false)
+        {
+            // redirect('data/jam');
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('jam/index', $data);
+            $this->load->view('templates/footer');
+        } else {
+
+            $insertdata = [
+                        'range_jam' => htmlspecialchars($range1)
+                         ];
+                         
+
+            
+
+        }
+
+        
+
+        $this->Data_model->addjamitem($insertdata);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+                        redirect('data/jam');
  
         //     $this->load->view('templates/header', $data);
         //     $this->load->view('templates/sidebar', $data);

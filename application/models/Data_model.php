@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Data_model extends CI_Model
 {
 
-	
+	// crud jam
 
 	// json_encode(value)
 
@@ -88,6 +88,11 @@ class Data_model extends CI_Model
     );
 
     return $response;
+}
+
+public function addjamitem($insertdata)
+{
+    $this->db->insert('jam', $insertdata);
 }
 
 public function getHariMaster($postData=null)
