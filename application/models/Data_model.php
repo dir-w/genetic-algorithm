@@ -95,6 +95,7 @@ public function addjamitem($insertdata)
     $this->db->insert('jam', $insertdata);
 }
 
+
 public function getHariMaster($postData=null)
 {
     $response = array();

@@ -56,7 +56,7 @@ class Data extends CI_Controller
         
     }
 
-    public function jamfsdf()
+    public function jamdelete()
     {
         // $data['title'] = 'Master Jam';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
