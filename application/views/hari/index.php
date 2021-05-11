@@ -10,8 +10,10 @@
  
  		<div class="card">
 		  <div class="card-header">
-		  	<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Tambah</a>
-		  	
+		  	<!-- <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Tambah</a> -->
+		  	<a class="btn btn-outline-danger" href="#"  data-toggle="tooltip" data-placement="bottom" title="Delete" onclick="return confirm('Are you sure want to delete?...Year : ');">
+                          <span class="far fa-trash-alt"></span>
+                        </a>
 		    
 		  </div>
 		  <div class="card-body">

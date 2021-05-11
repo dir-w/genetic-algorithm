@@ -14,6 +14,11 @@
 
 
        </div>
+       <div class="row">
+                <div class="col-lg">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
        <div class="card-body">
           <div class="table-responsive">
               <table id="jamTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
@@ -143,3 +148,35 @@
         </div>
     </div>
 </div> 
+
+<!--MODAL HAPUS-->
+        <div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="hapusjamModalLabel">Hapus</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+                    <form class="form-horizontal">
+                    <div class="modal-body">
+                                           
+                            <input type="test" name="kode" id="textkode" value="">
+                            <div class="alert alert-warning"><p>Apakah Anda yakin mau memhapus barang ini?</p></div>
+                                         
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button class="btn_hapus btn btn-danger" id="btn_hapus">Hapus</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--END MODAL HAPUS-->
+
+
+        

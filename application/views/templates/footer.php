@@ -128,7 +128,32 @@
         });
     </script> -->
     
+<script type="text/javascript">
+  //GET HAPUS jamTable
+        $('#jamTable').on('click','.item_hapus',function(){
+            var kode=$(this).attr('data');
+            $('#ModalHapus').modal('show');
+            $('[name="kode"]').val(kode);
+        });
 
+        //Hapus Barang
+        $('#btn_hapus').on('click',function(){
+            var kode=$('#textkode').val();
+            $.ajax({
+            type : "POST",
+            url  : "jamdelete",
+            dataType : "JSON",
+                    data : {kode: kode},
+                    success: function(data){
+                            $('#ModalHapus').modal('hide');
+                            window.location.assign("<?php echo base_url();?>data/jam");
+                    }
+                });
+                return false;
+            }); 
+
+
+</script>
 
 
 

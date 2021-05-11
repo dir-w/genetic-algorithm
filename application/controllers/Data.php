@@ -17,8 +17,9 @@ class Data extends CI_Controller
     public function jam()
     {
         $data['title'] = 'Master Jam';
+        
         // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
+
         //     $this->load->view('templates/header', $data);
         //     $this->load->view('templates/sidebar', $data);
         //     $this->load->view('templates/topbar', $data);
@@ -40,274 +41,242 @@ class Data extends CI_Controller
             $this->load->view('jam/index', $data);
             $this->load->view('templates/footer');
         } else { 
-            
-             $insertdata = [
-                        'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
-                         ];
+
+           $insertdata = [
+            'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
+        ];
 
                         // var_dump($data);
                         //  die; 
-            $this->Data_model->addjamitem($insertdata);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-                        redirect('data/jam');
-        }
-
-
-        
-    }
-
-    public function jamdelete()
-    {
-        // $data['title'] = 'Master Jam';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->form_validation->set_rules('range1', 'Please Input');
-        $this->form_validation->set_rules('range2', 'Please Input');
-
-        if ($this->form_validation->run() == false)
-        {
-            // redirect('data/jam');
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('jam/index', $data);
-            $this->load->view('templates/footer');
-        } else {
-
-            $insertdata = [
-                        'range_jam' => htmlspecialchars($range1)
-                         ];
-                         
-
-            
-
-        }
-
-        
-
         $this->Data_model->addjamitem($insertdata);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-                        redirect('data/jam');
- 
-        //     $this->load->view('templates/header', $data);
-        //     $this->load->view('templates/sidebar', $data);
-        //     $this->load->view('templates/topbar', $data);
-        //     $this->load->view('jam/index', $data);
-        //     $this->load->view('templates/footer');
-        
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/jam');
     }
 
 
 
+}
 
-    public function jamList()
-    {
+public function jamdelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->delljam($kode);
+   echo json_encode($data); 
+   // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Your data has been delete..</div>');
+   // redirect('data/jam');
+}
+
+
+
+
+public function jamList()
+{
     	// POST data dari view
-    	$postData = $this->input->post();
+   $postData = $this->input->post();
 
     	// get data dari model
-    	$data = $this->Data_model->getMaster($postData);
+   $data = $this->Data_model->getMaster($postData);
 
-    	echo json_encode($data);
-    	
+   echo json_encode($data);
 
-    }
 
-    public function hari()
-    {
-        $data['title'] = 'Master Hari';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('hari/index', $data);
-            $this->load->view('templates/footer');
-        
-    }
+}
 
-    public function hariList()
-    {
+public function hari()
+{
+    $data['title'] = 'Master Hari';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('hari/index', $data);
+    $this->load->view('templates/footer');
+
+}
+
+public function hariList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getHariMaster($postData);
-        
-        echo json_encode($data);
-        
+    $data = $this->Data_model->getHariMaster($postData);
 
-    }
+    echo json_encode($data);
 
-    public function t_akademik()
-    {
-        $data['title'] = 'Master Tahun Akademik';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('ta/index', $data);
-            $this->load->view('templates/footer');
-        
-    }
 
-    public function taList()
-    {
+}
+
+public function t_akademik()
+{
+    $data['title'] = 'Master Tahun Akademik';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('ta/index', $data);
+    $this->load->view('templates/footer');
+
+}
+
+public function taList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getTAMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getTAMaster($postData);
 
-    public function dosen()
-    {
-        $data['title'] = 'Master Dosen';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('dosen/index', $data);
-            $this->load->view('templates/footer');
-    }
+    echo json_encode($data);
+}
 
-     public function dosenList()
-    {
+public function dosen()
+{
+    $data['title'] = 'Master Dosen';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('dosen/index', $data);
+    $this->load->view('templates/footer');
+}
+
+public function dosenList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getDosenMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getDosenMaster($postData);
 
-    public function ruangan()
-    {
-        $data['title'] = 'Master Ruangan';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('ruangan/index', $data);
-            $this->load->view('templates/footer');
-    }
+    echo json_encode($data);
+}
 
-    public function ruangList()
-    {
+public function ruangan()
+{
+    $data['title'] = 'Master Ruangan';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('ruangan/index', $data);
+    $this->load->view('templates/footer');
+}
+
+public function ruangList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getRuangMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getRuangMaster($postData);
 
-    public function jenisruangan()
-    {
-        $data['title'] = 'Master Jenis Ruangan';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('ruangan/jenis_ruangan', $data);
-            $this->load->view('templates/footer');
-    }
+    echo json_encode($data);
+}
 
-    public function jenisruangList()
-    {
+public function jenisruangan()
+{
+    $data['title'] = 'Master Jenis Ruangan';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('ruangan/jenis_ruangan', $data);
+    $this->load->view('templates/footer');
+}
+
+public function jenisruangList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getJenisRuangMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getJenisRuangMaster($postData);
 
-    public function typematkul()
-    {
-        $data['title'] = 'Master Type Matakuliah';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('typemapel/index', $data);
-            $this->load->view('templates/footer');
-    }
+    echo json_encode($data);
+}
 
-    public function typeList()
-    {
+public function typematkul()
+{
+    $data['title'] = 'Master Type Matakuliah';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('typemapel/index', $data);
+    $this->load->view('templates/footer');
+}
+
+public function typeList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getTypeMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getTypeMaster($postData);
 
-    public function matkul()
-    {
-        $data['title'] = 'Master Matakuliah';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('matakuliah/index', $data);
-            $this->load->view('templates/footer');
-    }
+    echo json_encode($data);
+}
 
-    public function matkulList()
-    {
+public function matkul()
+{
+    $data['title'] = 'Master Matakuliah';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('matakuliah/index', $data);
+    $this->load->view('templates/footer');
+}
+
+public function matkulList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getMatkulMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getMatkulMaster($postData);
 
-    public function kelmatkul()
-    {
-        $data['title'] = 'Master Kelompok Matakuliah';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
- 
-        
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('matakuliah/kelompok_matakuliah', $data);
-            $this->load->view('templates/footer');
-    }
+    echo json_encode($data);
+}
 
-    public function kelmatkulList()
-    {
+public function kelmatkul()
+{
+    $data['title'] = 'Master Kelompok Matakuliah';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('matakuliah/kelompok_matakuliah', $data);
+    $this->load->view('templates/footer');
+}
+
+public function kelmatkulList()
+{
         // POST data dari view
-        $postData = $this->input->post();
+    $postData = $this->input->post();
 
         // get data dari model
-        $data = $this->Data_model->getKelMatkulMaster($postData);
-        
-        echo json_encode($data);
-    }
+    $data = $this->Data_model->getKelMatkulMaster($postData);
+
+    echo json_encode($data);
+}
 
 
 

@@ -11,6 +11,8 @@ class Data_model extends CI_Model
 
 	// json_encode(value)
 
+  
+
 	public function getMaster($postData=null)
 	{
 		$response = array();
@@ -60,16 +62,25 @@ class Data_model extends CI_Model
 
         $data[] = array( 
          "no"=>$no++,
+         "kode"=>$record->kode,
          "range_jam"=>$record->range_jam,
-           // "sks"=>$record->sks,
-           // "sesi"=>$record->sesi,
+           
          
          
          "Aksi" => "
-         <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-         <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-         <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='ModalHapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+            
          "
+         
+         // <a href='javascript:;' class='badge badge-danger item_hapus' data-toggle='tooltip' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+
+         // <a class="btn btn-outline-danger" href="#"  data-toggle="tooltip" data-placement="bottom" title="Delete" onclick="return confirm('Are you sure want to delete?...Year : ');"><span class="far fa-trash-alt"></span></a>
+
+         // <a href='jamdelete/$record->kode' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+         
+
+         // <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+         // <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
            //  <a class='btn badge-primary btn-sm tPrt' data-toggle='modal' data-target='#formModal' href='wel/wel/$record->PatientID' data-id='$record->PatientID' data-id='$record->PatientID'>Test</a></div>
            // <a href='wel/detail/$record->PatientID' class='badge badge-primary'>Detail</a>
            // <a href='wel/pdf2/$record->PatientID' class='badge badge-warning'>GS-RI</a>
@@ -93,6 +104,13 @@ class Data_model extends CI_Model
 public function addjamitem($insertdata)
 {
     $this->db->insert('jam', $insertdata);
+}
+
+public function delljam($kode)
+{
+    // $this->db->delete('jam', ['kode' => $kode]);
+    $hasil=$this->db->query("DELETE FROM jam WHERE kode='$kode'");
+        return $hasil;
 }
 
 

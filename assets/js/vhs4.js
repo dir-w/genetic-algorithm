@@ -1,7 +1,8 @@
 
 
 $(document).ready(function(){
-	$('#hariTable').DataTable ({
+  
+	$('#hariTable').DataTable({
         'processing' : true,
         'serverSide' : true,
         'serverMethod' : 'post',
@@ -21,7 +22,7 @@ $(document).ready(function(){
        ]
    });
 
- $('#jamTable').DataTable ({
+ $('#jamTable').DataTable({
     'processing' : true,
     'serverSide' : true,
     'serverMethod' : 'post',
