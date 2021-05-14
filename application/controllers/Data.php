@@ -62,7 +62,7 @@ public function jamdelete()
    $kode=$this->input->post('kode');
    $data=$this->Data_model->delljam($kode);
    echo json_encode($data); 
-   // $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Your data has been delete..</div>');
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
    // redirect('data/jam');
 }
 

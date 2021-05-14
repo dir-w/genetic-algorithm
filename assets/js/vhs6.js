@@ -1,8 +1,52 @@
 
-
 $(document).ready(function(){
-  
-	$('#hariTable').DataTable({
+
+// jam
+ $('#jamTable').DataTable({
+    'processing' : true,
+    'serverSide' : true,
+    'serverMethod' : 'post',
+    'ajax' : {
+        
+        type : "POST",
+        url:"jamList"
+
+    },
+    'columns' : [
+    { data: null,"sortable": false, render: function (data, type, row, meta){
+       return meta.row + meta.settings._iDisplayStart + 1;
+   }   },
+   { data: 'range_jam' },
+
+                { data : 'Aksi'},
+                ]
+            }); 
+
+ $('#jamTable').on('click','.item_hapus',function(){
+            var kode=$(this).attr('data');
+            $('#ModalHapus').modal('show');
+            $('[name="kode"]').val(kode);
+        });
+
+        //Hapus Barang
+        $('#btn_hapus').on('click',function(){
+            var kode=$('#textkode').val();
+            $.ajax({
+            type : "POST",
+            url  : "jamdelete",
+            dataType : "JSON",
+                    data : {kode: kode},
+                    success: function(data){
+                            $('#ModalHapus').modal('hide');
+                            window.location.assign('jam');
+                    }
+                });
+                return false;
+            }); 
+
+// end jam
+
+ $('#hariTable').DataTable({
         'processing' : true,
         'serverSide' : true,
         'serverMethod' : 'post',
@@ -21,28 +65,6 @@ $(document).ready(function(){
        { data : 'Aksi'},
        ]
    });
-
- $('#jamTable').DataTable({
-    'processing' : true,
-    'serverSide' : true,
-    'serverMethod' : 'post',
-    'ajax' : {
-        
-        type : "POST",
-        url:"jamList"
-
-    },
-    'columns' : [
-    { data: null,"sortable": false, render: function (data, type, row, meta){
-       return meta.row + meta.settings._iDisplayStart + 1;
-   }   },
-   { data: 'range_jam' },
-                // { data : 'sks' },
-                // { data : 'sesi' },
-                
-                { data : 'Aksi'},
-                ]
-            }); 
 
  $('#taTable').DataTable ({
     'processing' : true,
