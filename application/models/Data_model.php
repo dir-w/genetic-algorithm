@@ -18,8 +18,8 @@ class Data_model extends CI_Model
 		$response = array();
 
      ## Read value
-       $draw = $postData['draw'];
-       $start = $postData['start'];
+     $draw = $postData['draw'];
+     $start = $postData['start'];
      $rowperpage = $postData['length']; // Rows display per page
      $columnIndex = $postData['order'][0]['column']; // Column index
      $columnName = $postData['columns'][$columnIndex]['data']; // Column name
@@ -61,23 +61,19 @@ class Data_model extends CI_Model
     foreach($records as $record ){
 
         $data[] = array( 
-         "no"=>$no++,
-         "kode"=>$record->kode,
-         "range_jam"=>$record->range_jam,
+           "no"=>$no++,
+           "kode"=>$record->kode,
+           "range_jam"=>$record->range_jam,
            
-         
-         
-         "Aksi" => "
-            <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='ModalHapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-            
-         "
-         
-         // <a href='javascript:;' class='badge badge-danger item_hapus' data-toggle='tooltip' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-
-         // <a class="btn btn-outline-danger" href="#"  data-toggle="tooltip" data-placement="bottom" title="Delete" onclick="return confirm('Are you sure want to delete?...Year : ');"><span class="far fa-trash-alt"></span></a>
-
-         // <a href='jamdelete/$record->kode' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-         
+           
+           
+           "Aksi" => "
+           <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='ModalHapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+           <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='ModalEdit' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
+           "
+           
+           
+           
 
          // <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
          // <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
@@ -86,7 +82,7 @@ class Data_model extends CI_Model
            // <a href='wel/pdf2/$record->PatientID' class='badge badge-warning'>GS-RI</a>
            // <a href='wel/pdf3/$record->PatientID' class='badge badge-success'>SP-RI</a>
            // <a href='wel/pdf4/$record->PatientID' class='badge badge-primary'>GS-RJ</a>
-     ); 
+       ); 
         
     }
 
@@ -110,9 +106,23 @@ public function delljam($kode)
 {
     // $this->db->delete('jam', ['kode' => $kode]);
     $hasil=$this->db->query("DELETE FROM jam WHERE kode='$kode'");
-        return $hasil;
+    return $hasil;
 }
 
+public function getJambyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM jam WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'range_jam' => $data->range_jam,
+                
+            );
+        }
+    }
+    return $hasil;
+    
+}
 
 public function getHariMaster($postData=null)
 {
@@ -162,16 +172,16 @@ public function getHariMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-         "no"=>$no++,
-         "nama"=>$record->nama,
-         
-         
-         "Aksi" => "
-         <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-         <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-         <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-         "
-     ); 
+           "no"=>$no++,
+           "nama"=>$record->nama,
+           
+           
+           "Aksi" => "
+           <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+           <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+           <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+           "
+       ); 
         
     }
 
@@ -235,16 +245,16 @@ public function getTAMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-         "no"=>$no++,
-         "tahun"=>$record->tahun,
-         
-         
-         "Aksi" => "
-         <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-         <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-         <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-         "
-     ); 
+           "no"=>$no++,
+           "tahun"=>$record->tahun,
+           
+           
+           "Aksi" => "
+           <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+           <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+           <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+           "
+       ); 
         
     }
 
@@ -297,38 +307,38 @@ public function getDosenMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   $this->db->limit($rowperpage, $start);
-   $this->db->select('guru.*', 'status_dosen.kode as kd', 'status_dosen.status');
-   $this->db->from('guru');
-   $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
-   $records = $this->db->get()->result();
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ $this->db->limit($rowperpage, $start);
+ $this->db->select('guru.*', 'status_dosen.kode as kd', 'status_dosen.status');
+ $this->db->from('guru');
+ $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
+ $records = $this->db->get()->result();
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "nip"=>$record->nip,
-     "nama"=>$record->nama,
-     "alamat"=>$record->alamat,
-     "telp"=>$record->telp,
-     "status_dosen"=> $record->status,
+       "no"=>$no++,
+       "nip"=>$record->nip,
+       "nama"=>$record->nama,
+       "alamat"=>$record->alamat,
+       "telp"=>$record->telp,
+       "status_dosen"=> $record->status,
            // "status_dosen"=> if ($record->status_dosen == "1") {"11"} else {"22"
              # code...
            // },
-     
+       
            // $record->status_dosen,           
-     
-     "Aksi" => "
-     <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-     <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-     <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-     "
- ); 
+       
+       "Aksi" => "
+       <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+       <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+       <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+       "
+   ); 
     
 }
 
@@ -381,35 +391,35 @@ public function getRuangMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   $this->db->limit($rowperpage, $start);
-   $this->db->select('ruang.*', 'jenis_ruang');
-   $this->db->from('ruang');
-   $this->db->join('jenis_ruang', 'ruang.id_jenis=jenis_ruang.idj');
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ $this->db->limit($rowperpage, $start);
+ $this->db->select('ruang.*', 'jenis_ruang');
+ $this->db->from('ruang');
+ $this->db->join('jenis_ruang', 'ruang.id_jenis=jenis_ruang.idj');
      // $this->db->join('jurusan', 'prodi.kode_jurusan=jurusan.kode');
-   $records = $this->db->get()->result();
+ $records = $this->db->get()->result();
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "id_ruang"=>$record->id_ruang,
-     "nama"=>$record->nama,
-     "kapasitas"=>$record->kapasitas,
-     "type"=>$record->type,
-     "id_jenis"=>$record->nama_jenis,
-     
-     
-     "Aksi" => "
-     <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-     <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-     <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-     "
- ); 
+       "no"=>$no++,
+       "id_ruang"=>$record->id_ruang,
+       "nama"=>$record->nama,
+       "kapasitas"=>$record->kapasitas,
+       "type"=>$record->type,
+       "id_jenis"=>$record->nama_jenis,
+       
+       
+       "Aksi" => "
+       <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+       <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+       <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+       "
+   ); 
     
 }
 
@@ -462,29 +472,29 @@ public function getJenisRuangMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ 
      // $this->db->join('jurusan', 'prodi.kode_jurusan=jurusan.kode');
-   $records = $this->db->get('jenis_ruang')->result();
+ $records = $this->db->get('jenis_ruang')->result();
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "nama_jenis"=>$record->nama_jenis,
-     "ket_jenis"=>$record->ket_jenis,
-     
-     
-     "Aksi" => "
-     <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-     <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-     <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-     "
- ); 
+       "no"=>$no++,
+       "nama_jenis"=>$record->nama_jenis,
+       "ket_jenis"=>$record->ket_jenis,
+       
+       
+       "Aksi" => "
+       <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+       <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+       <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+       "
+   ); 
     
 }
 
@@ -537,32 +547,32 @@ public function getTypeMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   $this->db->limit($rowperpage, $start);
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ $this->db->limit($rowperpage, $start);
      // $this->db->select('matapelajaran.*', 'prodi.kode as kprod', 'prodi.nama_prodi', 'jurusan.kode as kjus', 'jurusan.nama_jurusan');
      // $this->db->from('matapelajaran');
      // $this->db->join('prodi', 'matapelajaran.kode_prodi=prodi.kode');
      // $this->db->join('jurusan', 'prodi.kode_jurusan=jurusan.kode');
-   $records = $this->db->get('typepelajaran')->result();
+ $records = $this->db->get('typepelajaran')->result();
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "keterangan"=>$record->keterangan,
-     
-     
-     
-     "Aksi" => "
-     <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-     <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-     <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-     "
- ); 
+       "no"=>$no++,
+       "keterangan"=>$record->keterangan,
+       
+       
+       
+       "Aksi" => "
+       <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+       <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+       <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+       "
+   ); 
     
 }
 
@@ -615,41 +625,41 @@ public function getMatkulMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   $this->db->limit($rowperpage, $start);
-   $this->db->select('matapelajaran.*');
-   $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*');
-   $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idt', "left");
-   $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ $this->db->limit($rowperpage, $start);
+ $this->db->select('matapelajaran.*');
+ $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*');
+ $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idt', "left");
+ $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
      // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk', "left");
-   $records = $this->db->get()->result();
+ $records = $this->db->get()->result();
 
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "nama_kelompok_mk"=>$record->nama_kelompok_mk,
-     "nama_kode"=>$record->nama_kode,
-     "nama"=>$record->nama,
-     
-     "keterangan"=>$record->keterangan,
-     "jenis"=>$record->jenis,
-     "semester"=>$record->semester,
-     
-     
-     
-     
-     "Aksi" => "
-     <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-     <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-     <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-     "
- ); 
+       "no"=>$no++,
+       "nama_kelompok_mk"=>$record->nama_kelompok_mk,
+       "nama_kode"=>$record->nama_kode,
+       "nama"=>$record->nama,
+       
+       "keterangan"=>$record->keterangan,
+       "jenis"=>$record->jenis,
+       "semester"=>$record->semester,
+       
+       
+       
+       
+       "Aksi" => "
+       <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+       <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+       <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+       "
+   ); 
     
 }
 
@@ -702,37 +712,37 @@ public function getKelMatkulMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   $this->db->limit($rowperpage, $start);
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ $this->db->limit($rowperpage, $start);
      // $this->db->select('*');
      // $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*');
      // $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idt', "left");
      // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
      // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk', "left");
-   $records = $this->db->get('kelompokmk')->result();
+ $records = $this->db->get('kelompokmk')->result();
 
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "nama_kelompok_mk"=>$record->nama_kelompok_mk,
-     "ket_kelompok"=>$record->ket_kelompok,
-     
-     
-     
-     
-     
-     "Aksi" => "
-     <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-     <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-     <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
-     "
- ); 
+       "no"=>$no++,
+       "nama_kelompok_mk"=>$record->nama_kelompok_mk,
+       "ket_kelompok"=>$record->ket_kelompok,
+       
+       
+       
+       
+       
+       "Aksi" => "
+       <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+       <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
+       <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+       "
+   ); 
     
 }
 

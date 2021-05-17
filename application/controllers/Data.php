@@ -42,7 +42,7 @@ class Data extends CI_Controller
             $this->load->view('templates/footer');
         } else { 
 
-           $insertdata = [
+         $insertdata = [
             'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
         ];
 
@@ -59,25 +59,33 @@ class Data extends CI_Controller
 
 public function jamdelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->delljam($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->delljam($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
    // redirect('data/jam');
 }
 
+public function jamgetEdit($kode='')
+{
+    $kode=$this->input->post('kode');
+    
+    $data=$this->Data_model->getJambyKode($kode);
+    echo json_encode($data);
+    
+}
 
 
 
 public function jamList()
 {
     	// POST data dari view
-   $postData = $this->input->post();
+ $postData = $this->input->post();
 
     	// get data dari model
-   $data = $this->Data_model->getMaster($postData);
+ $data = $this->Data_model->getMaster($postData);
 
-   echo json_encode($data);
+ echo json_encode($data);
 
 
 }
