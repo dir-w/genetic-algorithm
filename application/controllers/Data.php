@@ -143,6 +143,22 @@ public function haridelete()
    // redirect('data/jam');
 }
 
+public function harigetEdit($kode='')
+{
+    $kode=$this->input->post('kode');
+    
+    $data=$this->Data_model->getHaribyKode($kode);
+    echo json_encode($data);
+    
+}
+
+
+
+
+
+
+// end hari
+
 public function t_akademik()
 {
     $data['title'] = 'Master Tahun Akademik';

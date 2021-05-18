@@ -178,7 +178,7 @@ public function getHariMaster($postData=null)
 
            "Aksi" => "
            <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='ModalHapusHari' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-           <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='ModalEdit' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
+           <a href='javascript:void(0)' class='badge badge-warning tampilModaledithari' data-toggle='ModalEditHari' data-target='#ModalEditHari' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
            "
        ); 
         
@@ -205,6 +205,22 @@ public function dellhari($kode)
 {
     $hasil=$this->db->query("DELETE FROM hari WHERE kode='$kode'");
     return $hasil;
+}
+
+public function getharibyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM hari WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama' => $data->nama,
+                'id_hari'=>$data->id_hari
+                
+            );
+        }
+    }
+    return $hasil;
+    
 }
 
 

@@ -145,8 +145,29 @@ $(function(){
           });
           return false;
         }); 
-
 });
+
+//GET UPDATE
+  $(function(){
+    $('#hariTable').on('click','.tampilModaledithari', function(){
+      const id = $(this).data('id');
+      // console.log(id);
+
+      $.ajax({
+        url:"harigetEdit",
+        data: {kode : id},
+        method: 'POST',
+        dataType: 'JSON',
+        success: function(data) {
+          $('#kode').val(id);
+          $('#nhari').val(data.nama);
+          $('#id_hari').val(data.id_hari);
+          
+          $('#ModalEditHari').modal('show');
+        }
+      });
+    });
+  });
 
 
 

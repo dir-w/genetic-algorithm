@@ -86,7 +86,7 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="text" name="kode" id="kode" value="" readonly="">
+                    <input type="hidden" name="kode" id="kode" value="" readonly="">
                     <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
                     
                 </div>
@@ -103,31 +103,32 @@
 
 <!-- modal edit data -->
 
-<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditHari" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditjamModalLabel">EDIT</h5>
+                    <h5 class="modal-title text-danger" id="EdithariModalLabel">EDIT HARI</h5>
                     
                 </div>
                 <form class="form-horizontal">
                     <div class="modal-body">
                         <div class="form-group">
-                            <!-- <label for="range">Kode</label>                    -->
-                            <input type="hidden" class="form-control" name="kode" id="kode" required="required" readonly="" >
+                                               
+                            <input type="hidden" class="form-control" name="kodeh" id="kodeh" required="required" readonly="" >
                         </div>
 
                         <div class="form-group">
-                            <label for="range">Range Jam</label>
+                            <label for="hari">Hari</label>
                             <div class="row">
+
                                 <div class="col">
-                                    <input type="text" class="form-control" name="range_jamm" id="range_jamm" required="required">
+                                    <input type="text" class="form-control" name="nhari" id="nhari" required="required">
                                 </div>
-                                -
-                                <div class="col">
-                                    <input type="text" class="form-control" name="range_jammm" id="range_jammm" required="required">
+                                <div class="col-2">
+                                    <input type="text" class="form-control" name="id_hari" id="id_hari" required="required" readonly="" visible>
                                 </div>
+                                
                             </div>
                         </div>
                         
