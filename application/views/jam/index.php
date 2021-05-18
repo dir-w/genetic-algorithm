@@ -10,11 +10,11 @@
 
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Tambah</a>
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Tambah</a>
 
 
-       </div>
-       <div class="row">
+     </div>
+     <div class="row">
         <div class="col-lg">
             <?= $this->session->flashdata('message'); ?>
         </div>
@@ -69,7 +69,7 @@
                 <div class="modal-body">
                     <label class="form-label">Range Jam</label>
                     <div class="row">
-                        
+
                         <div class="col">
                             <!-- SELECT / COMBO BOX -->
                             <div class="form-group">
@@ -83,18 +83,18 @@
                         <div class="col">
                             <div class="form-group">
 
-                             <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
-                         </div>
-                     </div>
+                               <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
+                           </div>
+                       </div>
 
-                 </div>
-
-
+                   </div>
 
 
 
-             </div>
-             <div class="modal-footer">
+
+
+               </div>
+               <div class="modal-footer">
                 <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn btn btn-outline-success">Add</button>
             </div>
@@ -118,7 +118,7 @@
             </div>
             <form class="form-horizontal">
                 <div class="modal-body">
-                   
+
                     <input type="hidden" name="kode" id="textkode" value="" readonly="">
                     <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
                     
@@ -150,18 +150,18 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <!-- <label for="range">Kode</label>                    -->
-                            <input type="hidden" class="form-control" name="koder" id="koder" required="required" readonly="" >
+                            <input type="text" class="form-control" name="kode" id="kode" required="required"  >
                         </div>
 
                         <div class="form-group">
                             <label for="range">Range Jam</label>
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control" name="range_jam" id="range_jam" required="required">
+                                    <input type="text" class="form-control" name="range_jamm" id="range_jamm" required="required">
                                 </div>
                                 -
                                 <div class="col">
-                                    <input type="text" class="form-control" name="range_jamm" id="range_jamm" required="required">
+                                    <input type="text" class="form-control" name="range_jammm" id="range_jammm" required="required">
                                 </div>
                             </div>
                         </div>

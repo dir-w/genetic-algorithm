@@ -90,6 +90,16 @@ public function jamList()
 
 }
 
+public function editJam()
+{
+    $kode = $this->input->post('kode');
+    $range_jam = $this->input->post('range_jam');
+    $data = $this->Data_model->saveeditjam($kode,$range_jam);
+    echo json_encode($data);
+}
+
+// end jam
+
 public function hari()
 {
     $data['title'] = 'Master Hari';

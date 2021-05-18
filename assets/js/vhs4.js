@@ -55,13 +55,40 @@ $('#jamTable').on('click','.item_hapus',function(){
         method: 'POST',
         dataType: 'JSON',
         success: function(data) {
-          $('[name="koder"]').val(id);
-          $('#range_jam').val(data.range_jam.substring(0,5));
-          $('#range_jamm').val(data.range_jam.substring(6,11));
+          $('#kode').val(id);
+          $('#range_jamm').val(data.range_jam.substring(0,5));
+          $('#range_jammm').val(data.range_jam.substring(6,11));
           // console.log(data.range_jam.substring(0,5));
           $('#ModalEdit').modal('show');
         }
       });
+    });
+  });
+
+  // edit save
+  $(function(){
+    $('#btn_edit').on('click', function(){
+      var kode =$('#kode').val();
+      var r1 =$('#range_jamm').val();
+      var r2 =$('#range_jammm').val();
+      var range_jam = r1 + "-" + r2;
+      $.ajax({
+        method : 'POST',
+        url : 'editJam',
+        dataType : 'JSON',
+        data : {kode:kode, range_jam:range_jam},
+
+        success: function(data){
+          // console.log(data);
+          $('#koder').val("");
+          $('#range_jam').val("");
+          $('#range_jamm').val("");
+          $('#ModalEdit').modal('hide');
+          // window.location.assign('jam');
+        }
+      });
+      // alert(kode);
+      // console.log(range);
     });
   });
   

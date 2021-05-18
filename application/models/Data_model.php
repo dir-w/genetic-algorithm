@@ -124,6 +124,15 @@ public function getJambyKode($kode)
     
 }
 
+public function saveeditjam($kode,$range_jam)
+{
+    $hasil=$this->db->query("UPDATE jam SET range_jam='$range_jam' WHERE kode='$kode'");
+        return $hasil;
+}
+
+
+// end jam
+
 public function getHariMaster($postData=null)
 {
     $response = array();
