@@ -10,11 +10,11 @@
 
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Tambah</a>
 
 
-     </div>
-     <div class="row">
+       </div>
+       <div class="row">
         <div class="col-lg">
             <?= $this->session->flashdata('message'); ?>
         </div>
@@ -83,18 +83,18 @@
                         <div class="col">
                             <div class="form-group">
 
-                               <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
-                           </div>
-                       </div>
+                             <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
+                         </div>
+                     </div>
 
-                   </div>
-
-
+                 </div>
 
 
 
-               </div>
-               <div class="modal-footer">
+
+
+             </div>
+             <div class="modal-footer">
                 <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn btn btn-outline-success">Add</button>
             </div>
@@ -150,7 +150,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <!-- <label for="range">Kode</label>                    -->
-                            <input type="text" class="form-control" name="kode" id="kode" required="required"  >
+                            <input type="hidden" class="form-control" name="kode" id="kode" required="required" readonly="" >
                         </div>
 
                         <div class="form-group">
