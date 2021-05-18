@@ -101,4 +101,46 @@
 </div>
 <!--END MODAL HAPUS-->
 
+<!-- modal edit data -->
 
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EditjamModalLabel">EDIT</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="hidden" class="form-control" name="kode" id="kode" required="required" readonly="" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="range">Range Jam</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="range_jamm" id="range_jamm" required="required">
+                                </div>
+                                -
+                                <div class="col">
+                                    <input type="text" class="form-control" name="range_jammm" id="range_jammm" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_edit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->
