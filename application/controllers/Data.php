@@ -96,6 +96,7 @@ public function editJam()
     $range_jam = $this->input->post('range_jam');
     $data = $this->Data_model->saveeditjam($kode,$range_jam);
     echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
 }
 
 // end jam
