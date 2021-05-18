@@ -9,6 +9,7 @@ class Data extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Data_model');
+        $this->load->model('Nomor_model');
         $this->load->library('form_validation');
     }
 
@@ -18,15 +19,7 @@ class Data extends CI_Controller
     {
         $data['title'] = 'Master Jam';
         
-        // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        //     $this->load->view('templates/header', $data);
-        //     $this->load->view('templates/sidebar', $data);
-        //     $this->load->view('templates/topbar', $data);
-        //     $this->load->view('jam/index', $data);
-        //     $this->load->view('templates/footer');
-
-        // $data['title'] = 'Master Jam';
+       
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('range_jam1', 'Range Jam', 'required');
@@ -34,7 +27,7 @@ class Data extends CI_Controller
 
         if ($this->form_validation->run() ==  false)
         {
-            // redirect('data/jam');
+           
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -76,7 +69,6 @@ public function jamgetEdit($kode='')
 }
 
 
-
 public function jamList()
 {
     	// POST data dari view
@@ -86,7 +78,6 @@ public function jamList()
    $data = $this->Data_model->getMaster($postData);
 
    echo json_encode($data);
-
 
 }
 
@@ -104,14 +95,31 @@ public function hari()
 {
     $data['title'] = 'Master Hari';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $this->form_validation->set_rules('hari', 'Hari', 'required');
 
+    if ($this->form_validation->run() ==  false)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('hari/index', $data);
+        $this->load->view('templates/footer');
 
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('hari/index', $data);
-    $this->load->view('templates/footer');
+    } else {
 
+        $idh = $this->Nomor_model->getNohari();
+
+        $insertdatahari = [
+            'nama' => $this->input->post('hari'),
+            'id_hari' => $idh
+        ];
+
+                        // var_dump($data);
+                        //  die; 
+        $this->Data_model->addhari($insertdatahari);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/hari');
+    }   
 }
 
 public function hariList()
@@ -124,13 +132,23 @@ public function hariList()
 
     echo json_encode($data);
 
+}
 
+public function haridelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellhari($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   // redirect('data/jam');
 }
 
 public function t_akademik()
 {
     $data['title'] = 'Master Tahun Akademik';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
 
 
     $this->load->view('templates/header', $data);

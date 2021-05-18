@@ -1,7 +1,4 @@
 
-
-
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -10,7 +7,7 @@
 
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Add</a>
 
 
        </div>
@@ -61,9 +58,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-danger" id="newMenuModalLabel">Add Jam</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
+                
             </div>
             <form action="<?= base_url('data/jam'); ?>" method="post">
                 <div class="modal-body">
@@ -89,10 +84,6 @@
 
                  </div>
 
-
-
-
-
              </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -102,7 +93,7 @@
     </div>
 </div>
 </div> 
-
+<!--END MODAL Add-->
 
 
 <!--MODAL HAPUS-->
