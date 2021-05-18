@@ -56,7 +56,9 @@ $('#jamTable').on('click','.item_hapus',function(){
         dataType: 'JSON',
         success: function(data) {
           $('[name="koder"]').val(id);
-          $('#range_jam').val(data.range_jam);
+          $('#range_jam').val(data.range_jam.substring(0,5));
+          $('#range_jamm').val(data.range_jam.substring(6,11));
+          // console.log(data.range_jam.substring(0,5));
           $('#ModalEdit').modal('show');
         }
       });
