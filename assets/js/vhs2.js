@@ -118,7 +118,7 @@ $('#hariTable').DataTable({
  ]
 });
 
-// get data hapus jam
+// get data hapus hari
 $(function(){
   
   $('#hariTable').on('click','.item_hapus',function(){
@@ -128,11 +128,11 @@ $(function(){
   });
 
 });
-//Hapus jam
+//Hapus hari
 $(function(){
 
         $('#btn_hapus').on('click',function(){
-          var kode=$('#kode').val();
+          var kode=$('#tkode').val();
           $.ajax({
             type : "POST",
             url  : "haridelete",
@@ -166,6 +166,34 @@ $(function(){
           $('#ModalEditHari').modal('show');
         }
       });
+    });
+  });
+
+  // edit save
+  $(function(){
+    $('#btn_edit').on('click', function(){
+      var kode =$('#kode').val();
+      var nama =$('#nhari').val();
+      var id_hari =$('#id_hari').val();
+      
+      $.ajax({
+        method : 'POST',
+        url : 'editHari',
+        dataType : 'JSON',
+        data : {kode:kode, nama:nama, id_hari:id_hari},
+
+        success: function(data){
+          // console.log(data);
+          $('#kode').val("");
+          $('#nhari').val("");
+          $('#nama').val("");
+          $('#id_hari').val("");
+          $('#ModalEditHari').modal('hide');
+          // window.location.assign('jam');
+        }
+      });
+      // alert(kode);
+      // console.log(range);
     });
   });
 

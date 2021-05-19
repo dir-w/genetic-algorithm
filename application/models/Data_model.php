@@ -223,6 +223,12 @@ public function getharibyKode($kode)
     
 }
 
+public function saveedithari($kode,$nama,$id_hari)
+{
+    $hasil=$this->db->query("UPDATE hari SET nama='$nama' WHERE kode='$kode'");
+    return $hasil;
+}
+
 
 // end hari
 

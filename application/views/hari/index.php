@@ -86,7 +86,7 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="hidden" name="kode" id="kode" value="" readonly="">
+                    <input type="hidden" name="kode" id="tkode" value="" readonly="">
                     <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
                     
                 </div>
@@ -115,7 +115,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                                                
-                            <input type="hidden" class="form-control" name="kodeh" id="kodeh" required="required" readonly="" >
+                            <input type="text" class="form-control" name="kode" id="kode" required="required" readonly="" >
                         </div>
 
                         <div class="form-group">

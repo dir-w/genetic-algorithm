@@ -152,6 +152,18 @@ public function harigetEdit($kode='')
     
 }
 
+public function editHari()
+{
+    $kode = $this->input->post('kodeh');
+    $nama = $this->input->post('nhari');
+    $id_hari = $this->input->post('id_hari');
+    $as = $kode + $nama + $id_hari;
+
+    $data = $this->Data_model->saveedithari($kode,$nama,$id_hari);
+    echo json_encode($data);
+    
+}
+
 
 
 
