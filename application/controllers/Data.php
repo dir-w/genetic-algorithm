@@ -143,6 +143,7 @@ public function haridelete()
    // redirect('data/jam');
 }
 
+
 public function harigetEdit($kode='')
 {
     $kode=$this->input->post('kode');
@@ -154,22 +155,18 @@ public function harigetEdit($kode='')
 
 public function editHari()
 {
-    $kode = $this->input->post('kodeh');
-    $nama = $this->input->post('nhari');
-    $id_hari = $this->input->post('id_hari');
-    $as = $kode + $nama + $id_hari;
+    $kode = $this->input->post('kode');
+    $nama = $this->input->post('nama');
+    
 
-    $data = $this->Data_model->saveedithari($kode,$nama,$id_hari);
+    $data = $this->Data_model->saveedithari($kode,$nama);
     echo json_encode($data);
     
 }
 
-
-
-
-
-
 // end hari
+
+
 
 public function t_akademik()
 {

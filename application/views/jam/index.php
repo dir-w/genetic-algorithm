@@ -57,7 +57,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newMenuModalLabel">Add Jam</h5>
+                <h5 class="modal-title text-danger" id="newMenuModalLabel">ADD MASTER JAM</h5>
                 
             </div>
             <form action="<?= base_url('data/jam'); ?>" method="post">
@@ -102,7 +102,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="hapusjamModalLabel">WARNING</h5>
+                    <h5 class="modal-title text-danger" id="hapusjamModalLabel">WARNING MASTER JAM</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> -->
@@ -134,7 +134,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditjamModalLabel">EDIT</h5>
+                    <h5 class="modal-title text-danger" id="EditjamModalLabel">EDIT MASTER JAM</h5>
                     
                 </div>
                 <form class="form-horizontal">

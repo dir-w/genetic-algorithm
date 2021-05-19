@@ -123,6 +123,7 @@ $(function(){
   
   $('#hariTable').on('click','.item_hapus',function(){
       var kode=$(this).attr('data');
+      // console.log(kode);
       $('#ModalHapusHari').modal('show');
       $('#kode').val(kode);
   });
@@ -131,14 +132,15 @@ $(function(){
 //Hapus hari
 $(function(){
 
-        $('#btn_hapus').on('click',function(){
-          var kode=$('#tkode').val();
+        $('#btn_hapushari').on('click',function(){
+          var kode=$('#kode').val();
           $.ajax({
             type : "POST",
             url  : "haridelete",
             dataType : "JSON",
             data : {kode: kode},
             success: function(data){
+              console.log(data);
               $('#ModalHapusHari').modal('hide');
               window.location.assign('hari');
             }
@@ -148,31 +150,44 @@ $(function(){
 });
 
 //GET UPDATE
+
+// $(function(){
+  
+//   $('#hariTable').on('click','.item_edit',function(){
+//       var kode=$(this).attr('data');
+//       // console.log(kode);
+//       $('#ModalHapusHari').modal('show');
+//       // $('#kode').val(kode);
+//   });
+// });
+
+
+
   $(function(){
-    $('#hariTable').on('click','.tampilModaledithari', function(){
+    $('#hariTable').on('click','.edit_hari', function(){
       const id = $(this).data('id');
       // console.log(id);
-
-      $.ajax({
+        $.ajax({
         url:"harigetEdit",
         data: {kode : id},
         method: 'POST',
         dataType: 'JSON',
         success: function(data) {
-          $('#kode').val(id);
+          $('#ekode').val(id);
           $('#nhari').val(data.nama);
           $('#id_hari').val(data.id_hari);
-          
           $('#ModalEditHari').modal('show');
         }
       });
+   
+    
     });
   });
 
   // edit save
   $(function(){
-    $('#btn_edit').on('click', function(){
-      var kode =$('#kode').val();
+    $('#btn_edithari').on('click', function(){
+      var kode =$('#ekode').val();
       var nama =$('#nhari').val();
       var id_hari =$('#id_hari').val();
       
@@ -180,20 +195,19 @@ $(function(){
         method : 'POST',
         url : 'editHari',
         dataType : 'JSON',
-        data : {kode:kode, nama:nama, id_hari:id_hari},
+        data : {kode:kode, nama:nama},
 
         success: function(data){
-          // console.log(data);
-          $('#kode').val("");
+          console.log(data);
+          $('#ekode').val("");
           $('#nhari').val("");
-          $('#nama').val("");
+          
           $('#id_hari').val("");
           $('#ModalEditHari').modal('hide');
           // window.location.assign('jam');
         }
       });
-      // alert(kode);
-      // console.log(range);
+      
     });
   });
 

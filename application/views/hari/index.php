@@ -46,7 +46,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newMenuModalLabel">Add Hari</h5>
+                <h5 class="modal-title text-danger" id="newMenuModalLabel">ADD MASTER HARI</h5>
                 
             </div>
             <form action="<?= base_url('data/hari'); ?>" method="post">
@@ -80,19 +80,19 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="hapushariModalLabel">WARNING</h5>
+                    <h5 class="modal-title text-danger" id="hapushariModalLabel">WARNING MASTER HARI</h5>
                 
             </div>
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="hidden" name="kode" id="tkode" value="" readonly="">
+                    <input type="hidden" name="kode" id="kode" value="" readonly="">
                     <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                    <button class="btn_hapus btn btn-danger" id="btn_hapus">Delete</button>
+                    <button class="btn_hapus btn btn-danger" id="btn_hapushari">Delete</button>
                 </div>
             </form>
         </div>
@@ -108,14 +108,14 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EdithariModalLabel">EDIT HARI</h5>
+                    <h5 class="modal-title text-danger" id="EdithariModalLabel">EDIT MASTER HARI</h5>
                     
                 </div>
                 <form class="form-horizontal">
                     <div class="modal-body">
                         <div class="form-group">
                                                
-                            <input type="text" class="form-control" name="kode" id="kode" required="required" readonly="" >
+                            <input type="text" class="form-control" name="ekode" id="ekode" required="required" readonly="" >
                         </div>
 
                         <div class="form-group">
@@ -137,7 +137,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                        <button class="btn_edit btn btn-danger" id="btn_edit">Save</button>
+                        <button class="btn_edit btn btn-danger" id="btn_edithari">Save</button>
                     </div>
                 </form>
             </div>
