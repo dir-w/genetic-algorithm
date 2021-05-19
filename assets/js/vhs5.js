@@ -153,13 +153,7 @@ $(function(){
 
 // $(function(){
   
-//   $('#hariTable').on('click','.item_edit',function(){
-//       var kode=$(this).attr('data');
-//       // console.log(kode);
-//       $('#ModalHapusHari').modal('show');
-//       // $('#kode').val(kode);
-//   });
-// });
+
 
 
 
