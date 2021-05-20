@@ -235,6 +235,9 @@ public function saveedithari($kode,$nama)
 
 // end hari
 
+
+// start tahun ajaran
+
 public function getTAMaster($postData=null)
 {
     $response = array();
@@ -306,6 +309,15 @@ public function getTAMaster($postData=null)
 
     return $response;
 }
+
+public function addta($insertdataTA)
+{
+    $this->db->insert('tahun_akademik', $insertdataTA);
+}
+
+
+
+
 
 public function getDosenMaster($postData=null)
 {

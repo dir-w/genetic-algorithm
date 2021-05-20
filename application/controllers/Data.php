@@ -169,11 +169,13 @@ public function editHari()
 
 // tahun Akademik
 
-public function t_akademik()
+public function takademik()
 {
     $data['title'] = 'Master Tahun Akademik';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+    $this->form_validation->set_rules('ta1', 'Tahun Ajaran', 'required');
+    $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
     if ($this->form_validation->run() ==  false)
     {
      $this->load->view('templates/header', $data);
@@ -181,13 +183,17 @@ public function t_akademik()
      $this->load->view('templates/topbar', $data);
      $this->load->view('ta/index', $data);
      $this->load->view('templates/footer');
-    } else {
-        $insertdataTA = [
-        ];
-    }
-    $this->Data_model->addTA($insertdataTA);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-        redirect('data/t_akademik');
+ } else {
+    $insertdataTA = [
+        'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
+    ];
+
+    $this->Data_model->addta($insertdataTA);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+    redirect('data/takademik');
+}
+
+
 
 }
 
