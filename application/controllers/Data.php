@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Data extends CI_Controller
 {
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
         is_logged_in();
@@ -27,7 +27,7 @@ class Data extends CI_Controller
 
         if ($this->form_validation->run() ==  false)
         {
-         
+
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -35,7 +35,7 @@ class Data extends CI_Controller
             $this->load->view('templates/footer');
         } else { 
 
-         $insertdata = [
+           $insertdata = [
             'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
         ];
 
@@ -52,10 +52,10 @@ class Data extends CI_Controller
 
 public function jamdelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->delljam($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->delljam($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
    // redirect('data/jam');
 }
 
@@ -71,13 +71,13 @@ public function jamgetEdit($kode='')
 
 public function jamList()
 {
-    	// POST data dari view
- $postData = $this->input->post();
+        // POST data dari view
+   $postData = $this->input->post();
 
-    	// get data dari model
- $data = $this->Data_model->getMaster($postData);
+        // get data dari model
+   $data = $this->Data_model->getMaster($postData);
 
- echo json_encode($data);
+   echo json_encode($data);
 
 }
 
@@ -137,10 +137,10 @@ public function hariList()
 
 public function haridelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->dellhari($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellhari($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
    // redirect('data/jam');
 }
 
@@ -167,21 +167,27 @@ public function editHari()
 
 // end hari
 
-
+// tahun Akademik
 
 public function t_akademik()
 {
     $data['title'] = 'Master Tahun Akademik';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-
-
-
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('ta/index', $data);
-    $this->load->view('templates/footer');
+    if ($this->form_validation->run() ==  false)
+    {
+     $this->load->view('templates/header', $data);
+     $this->load->view('templates/sidebar', $data);
+     $this->load->view('templates/topbar', $data);
+     $this->load->view('ta/index', $data);
+     $this->load->view('templates/footer');
+    } else {
+        $insertdataTA = [
+        ];
+    }
+    $this->Data_model->addTA($insertdataTA);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/t_akademik');
 
 }
 
