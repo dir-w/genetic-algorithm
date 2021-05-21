@@ -35,7 +35,7 @@ class Data extends CI_Controller
             $this->load->view('templates/footer');
         } else { 
 
-           $insertdata = [
+         $insertdata = [
             'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
         ];
 
@@ -52,10 +52,10 @@ class Data extends CI_Controller
 
 public function jamdelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->delljam($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->delljam($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
    // redirect('data/jam');
 }
 
@@ -72,12 +72,12 @@ public function jamgetEdit($kode='')
 public function jamList()
 {
         // POST data dari view
-   $postData = $this->input->post();
+ $postData = $this->input->post();
 
         // get data dari model
-   $data = $this->Data_model->getMaster($postData);
+ $data = $this->Data_model->getMaster($postData);
 
-   echo json_encode($data);
+ echo json_encode($data);
 
 }
 
@@ -137,10 +137,10 @@ public function hariList()
 
 public function haridelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->dellhari($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellhari($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
    // redirect('data/jam');
 }
 
@@ -178,12 +178,12 @@ public function takademik()
     $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
     if ($this->form_validation->run() ==  false)
     {
-     $this->load->view('templates/header', $data);
-     $this->load->view('templates/sidebar', $data);
-     $this->load->view('templates/topbar', $data);
-     $this->load->view('ta/index', $data);
-     $this->load->view('templates/footer');
- } else {
+       $this->load->view('templates/header', $data);
+       $this->load->view('templates/sidebar', $data);
+       $this->load->view('templates/topbar', $data);
+       $this->load->view('ta/index', $data);
+       $this->load->view('templates/footer');
+   } else {
     $insertdataTA = [
         'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
     ];
@@ -192,8 +192,6 @@ public function takademik()
     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
     redirect('data/takademik');
 }
-
-
 
 }
 
@@ -207,6 +205,20 @@ public function taList()
 
     echo json_encode($data);
 }
+
+public function tadelete()
+{
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellta($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+       // redirect('data/jam');
+}
+
+
+
+
+// end Tahun ajaran 
 
 public function dosen()
 {

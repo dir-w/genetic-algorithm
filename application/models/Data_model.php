@@ -287,11 +287,12 @@ public function getTAMaster($postData=null)
 
         $data[] = array( 
            "no"=>$no++,
+           "kode"=>$record->kode,
            "tahun"=>$record->tahun,
 
 
            "Aksi" => "
-           <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+           <a href='javascript:void(0)' class='badge badge-danger item_hapusta' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
            <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
            "
        ); 
@@ -315,11 +316,16 @@ public function addta($insertdataTA)
     $this->db->insert('tahun_akademik', $insertdataTA);
 }
 
+public function dellta($kode)
+{
+    $hasil=$this->db->query("DELETE FROM tahun_akademik WHERE kode='$kode'");
+    return $hasil;
+}
+
 
 
 
 // end tahun ajaran
-
 public function getDosenMaster($postData=null)
 {
     $response = array();

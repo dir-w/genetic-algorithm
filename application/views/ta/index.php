@@ -95,5 +95,32 @@
 </div> 
 <!--END MODAL Add-->
 
+<!--MODAL HAPUS-->
+<div class="modal fade" id="ModalHapusTA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="hapusjamModalLabel">WARNING MASTER TAHUN AKADEMIK</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
 
+                    <input type="text" name="kode" id="kode" value="" readonly="">
+                    <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                    <button class="btn_hapus btn btn-danger" id="btn_hapusta">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!--END MODAL HAPUS-->
 
