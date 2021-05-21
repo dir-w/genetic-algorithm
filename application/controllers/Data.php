@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Data extends CI_Controller
 {
 
-	public function __construct()
+    public function __construct()
     {
         parent::__construct();
         is_logged_in();
@@ -27,7 +27,7 @@ class Data extends CI_Controller
 
         if ($this->form_validation->run() ==  false)
         {
-         
+
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
@@ -71,10 +71,10 @@ public function jamgetEdit($kode='')
 
 public function jamList()
 {
-    	// POST data dari view
+        // POST data dari view
  $postData = $this->input->post();
 
-    	// get data dari model
+        // get data dari model
  $data = $this->Data_model->getMaster($postData);
 
  echo json_encode($data);
@@ -167,21 +167,31 @@ public function editHari()
 
 // end hari
 
+// tahun Akademik
 
-
-public function t_akademik()
+public function takademik()
 {
     $data['title'] = 'Master Tahun Akademik';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+    $this->form_validation->set_rules('ta1', 'Tahun Ajaran', 'required');
+    $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
+    if ($this->form_validation->run() ==  false)
+    {
+       $this->load->view('templates/header', $data);
+       $this->load->view('templates/sidebar', $data);
+       $this->load->view('templates/topbar', $data);
+       $this->load->view('ta/index', $data);
+       $this->load->view('templates/footer');
+   } else {
+    $insertdataTA = [
+        'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
+    ];
 
-
-
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('ta/index', $data);
-    $this->load->view('templates/footer');
+    $this->Data_model->addta($insertdataTA);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+    redirect('data/takademik');
+}
 
 }
 
@@ -195,6 +205,36 @@ public function taList()
 
     echo json_encode($data);
 }
+
+public function tadelete()
+{
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellta($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+       // redirect('data/jam');
+}
+
+public function tagetEdit($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getTAbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function editTA()
+{
+    $kode = $this->input->post('kode');
+    $tahun = $this->input->post('tahun');
+    $data = $this->Data_model->saveeditta($kode,$tahun);
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
+
+
+
+
+// end Tahun ajaran 
 
 public function dosen()
 {

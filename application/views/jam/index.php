@@ -8,8 +8,6 @@
     <div class="card">
         <div class="card-header">
            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Add</a>
-
-
        </div>
        <div class="row">
         <div class="col-lg">
@@ -128,7 +126,6 @@
 <!--MODAL EDIT-->
 
 <!-- modal edit data -->
-
 <div class="modal fade bs-example-modal-lg modal-edit" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -178,9 +178,6 @@ public function getHariMaster($postData=null)
 
          "Aksi" => "
          <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-         
-         
-
          <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
          "
 
@@ -220,13 +217,11 @@ public function getharibyKode($kode)
         foreach ($hsl->result() as $data) {
             $hasil=array(
                 'nama' => $data->nama,
-                'id_hari'=>$data->id_hari,
-                
+                'id_hari'=>$data->id_hari, 
             );
         }
     }
-    return $hasil;
-    
+    return $hasil;  
 }
 
 public function saveedithari($kode,$nama)
@@ -237,6 +232,9 @@ public function saveedithari($kode,$nama)
 
 
 // end hari
+
+
+// start tahun ajaran
 
 public function getTAMaster($postData=null)
 {
@@ -287,13 +285,13 @@ public function getTAMaster($postData=null)
 
         $data[] = array( 
          "no"=>$no++,
+         "kode"=>$record->kode,
          "tahun"=>$record->tahun,
 
 
          "Aksi" => "
-         <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-         <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-         <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-danger item_hapusta' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
          "
      ); 
         
@@ -311,6 +309,39 @@ public function getTAMaster($postData=null)
     return $response;
 }
 
+public function addta($insertdataTA)
+{
+    $this->db->insert('tahun_akademik', $insertdataTA);
+}
+
+public function dellta($kode)
+{
+    $hasil=$this->db->query("DELETE FROM tahun_akademik WHERE kode='$kode'");
+    return $hasil;
+}
+
+public function getTAbyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM tahun_akademik WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'tahun' => $data->tahun, 
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function saveeditta($kode,$tahun)
+{
+    $hasil=$this->db->query("UPDATE tahun_akademik SET tahun='$tahun' WHERE kode='$kode'");
+    return $hasil;
+}
+
+
+
+// end tahun ajaran
 public function getDosenMaster($postData=null)
 {
     $response = array();

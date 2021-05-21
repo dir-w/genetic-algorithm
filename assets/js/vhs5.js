@@ -120,48 +120,41 @@ $('#hariTable').DataTable({
 
 // get data hapus hari
 $(function(){
-  
+
   $('#hariTable').on('click','.item_hapus',function(){
-      var kode=$(this).attr('data');
+    var kode=$(this).attr('data');
       // console.log(kode);
       $('#ModalHapusHari').modal('show');
       $('#kode').val(kode);
-  });
+    });
 
 });
 //Hapus hari
 $(function(){
 
-        $('#btn_hapushari').on('click',function(){
-          var kode=$('#kode').val();
-          $.ajax({
-            type : "POST",
-            url  : "haridelete",
-            dataType : "JSON",
-            data : {kode: kode},
-            success: function(data){
-              console.log(data);
-              $('#ModalHapusHari').modal('hide');
-              window.location.assign('hari');
-            }
-          });
-          return false;
-        }); 
+  $('#btn_hapushari').on('click',function(){
+    var kode=$('#kode').val();
+    $.ajax({
+      type : "POST",
+      url  : "haridelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        console.log(data);
+        $('#ModalHapusHari').modal('hide');
+        window.location.assign('hari');
+      }
+    });
+    return false;
+  }); 
 });
 
 //GET UPDATE
-
-// $(function(){
-  
-
-
-
-
-  $(function(){
-    $('#hariTable').on('click','.edit_hari', function(){
-      const id = $(this).data('id');
+$(function(){
+  $('#hariTable').on('click','.edit_hari', function(){
+    const id = $(this).data('id');
       // console.log(id);
-        $.ajax({
+      $.ajax({
         url:"harigetEdit",
         data: {kode : id},
         method: 'POST',
@@ -173,10 +166,8 @@ $(function(){
           $('#ModalEditHari').modal('show');
         }
       });
-   
-    
     });
-  });
+});
 
   // edit save
   $(function(){
@@ -209,12 +200,14 @@ $(function(){
 
 // end hari 
 
+
+// start Tahun AJARAN
+
 $('#taTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
   'serverMethod' : 'post',
   'ajax' : {
-
     type : "POST",
     url:"taList"
 
@@ -227,6 +220,82 @@ $('#taTable').DataTable ({
  { data : 'Aksi'},
  ]
 });
+
+// get data hapus TA
+$(function(){
+  $('#taTable').on('click','.item_hapusta',function(){
+    var kode=$(this).attr('data');
+    // console.log(kode);
+    $('#ModalHapusTA').modal('show');
+    $('#kode').val(kode);
+  });
+});
+
+//Hapus TA
+$(function(){
+  $('#btn_hapusta').on('click',function(){
+    var kode=$('#kode').val();
+    $.ajax({
+      type : "POST",
+      url  : "tadelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusTA').modal('hide');
+        window.location.assign('takademik');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#taTable').on('click','.edit_hari', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url:"tagetEdit",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#tkode').val(id);
+        $('#ttta1').val(data.tahun.substring(0,4));
+        $('#tttta2').val(data.tahun.substring(5,9));
+        // console.log(data);
+        $('#ModalEditTA').modal('show');
+      }
+    });
+  });
+});
+
+// edit save
+$(function(){
+  $('#btn_editta').on('click', function(){
+    var kode =$('#tkode').val();
+    var ttta1 =$('#ttta1').val();
+    var tttta2 =$('#tttta2').val();
+    var id_hari =$('#id_hari').val();
+    var tahun = ttta1 + "-" + tttta2;
+
+    $.ajax({
+      method: 'POST',
+      url: 'editTA',
+      dataType: 'JSON',
+      data: {kode:kode, tahun:tahun},
+      success: function(data){
+        $('#tkode').val("");
+        $('#ttta1').val("");
+        $('#tttta2').val("");
+        $('#ModalEditTA').modal('hide');
+      }
+    });
+  });
+});
+
+// end tahun AJARAN
 
 $('#dosenTable').DataTable ({
   'processing' : true,

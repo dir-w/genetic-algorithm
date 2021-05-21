@@ -115,7 +115,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                          
-                            <input type="text" class="form-control" name="ekode" id="ekode" required="required" readonly="" >
+                            <input type="hidden" class="form-control" name="ekode" id="ekode" required="required" readonly="" >
                         </div>
 
                         <div class="form-group">
