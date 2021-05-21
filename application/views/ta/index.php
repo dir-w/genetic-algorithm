@@ -137,7 +137,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <!-- <label for="range">Kode</label>                    -->
-                            <input type="text" class="form-control" name="tkode" id="tkode" required="required" readonly="" >
+                            <input type="hidden" class="form-control" name="tkode" id="tkode" required="required" readonly="" >
                         </div>
 
                         <div class="form-group">
