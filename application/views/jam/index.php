@@ -7,9 +7,9 @@
 
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Add</a>
-     </div>
-     <div class="row">
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Add</a>
+       </div>
+       <div class="row">
         <div class="col-lg">
             <?= $this->session->flashdata('message'); ?>
         </div>
@@ -76,14 +76,14 @@
                         <div class="col">
                             <div class="form-group">
 
-                               <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
-                           </div>
-                       </div>
+                             <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
+                         </div>
+                     </div>
 
-                   </div>
+                 </div>
 
-               </div>
-               <div class="modal-footer">
+             </div>
+             <div class="modal-footer">
                 <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn btn btn-outline-success">Add</button>
             </div>
@@ -126,7 +126,6 @@
 <!--MODAL EDIT-->
 
 <!-- modal edit data -->
-
 <div class="modal fade bs-example-modal-lg modal-edit" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

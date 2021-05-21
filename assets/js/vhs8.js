@@ -150,11 +150,9 @@ $(function(){
 });
 
 //GET UPDATE
-
-// $(function(){
-  $(function(){
-    $('#hariTable').on('click','.edit_hari', function(){
-      const id = $(this).data('id');
+$(function(){
+  $('#hariTable').on('click','.edit_hari', function(){
+    const id = $(this).data('id');
       // console.log(id);
       $.ajax({
         url:"harigetEdit",
@@ -168,10 +166,8 @@ $(function(){
           $('#ModalEditHari').modal('show');
         }
       });
-
-
     });
-  });
+});
 
   // edit save
   $(function(){
@@ -229,7 +225,7 @@ $('#taTable').DataTable ({
 $(function(){
   $('#taTable').on('click','.item_hapusta',function(){
     var kode=$(this).attr('data');
-    console.log(kode);
+    // console.log(kode);
     $('#ModalHapusTA').modal('show');
     $('#kode').val(kode);
   });
@@ -254,6 +250,50 @@ $(function(){
   }); 
 });
 
+//GET UPDATE
+$(function(){
+  $('#taTable').on('click','.edit_hari', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url:"tagetEdit",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#tkode').val(id);
+        $('#ttta1').val(data.tahun.substring(0,4));
+        $('#tttta2').val(data.tahun.substring(5,9));
+        // console.log(data);
+        $('#ModalEditTA').modal('show');
+      }
+    });
+  });
+});
+
+// edit save
+$(function(){
+  $('#btn_editta').on('click', function(){
+    var kode =$('#tkode').val();
+    var ttta1 =$('#ttta1').val();
+    var tttta2 =$('#tttta2').val();
+    var id_hari =$('#id_hari').val();
+    var tahun = ttta1 + "-" + tttta2;
+
+    $.ajax({
+      method: 'POST',
+      url: 'editTA',
+      dataType: 'JSON',
+      data: {kode:kode, tahun:tahun},
+      success: function(data){
+        $('#tkode').val("");
+        $('#ttta1').val("");
+        $('#tttta2').val("");
+        $('#ModalEditTA').modal('hide');
+      }
+    });
+  });
+});
 
 // end tahun AJARAN
 

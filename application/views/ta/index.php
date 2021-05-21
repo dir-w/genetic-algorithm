@@ -6,29 +6,29 @@
 
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newTAModal">Add</a>
-     </div>
-     <div class="card-body">
-      <div class="table-responsive">
-          <table id="taTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-            <!-- <table id="empTable" class="display"> -->
-                <thead class="thead-light">
-                  <tr> 
-                    <th width="10px">No</th>
-                    <th>Tahun Akademik</th>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newTAModal">Add</a>
+       </div>
+       <div class="card-body">
+          <div class="table-responsive">
+              <table id="taTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+                <!-- <table id="empTable" class="display"> -->
+                    <thead class="thead-light">
+                      <tr> 
+                        <th width="10px">No</th>
+                        <th>Tahun Akademik</th>
 
-                    <th width="50px">Aksi</th>
-                </tr>
-            </thead>
+                        <th width="50px">Aksi</th>
+                    </tr>
+                </thead>
 
-            <!-- load barang -->
+                <!-- load barang -->
 
 
-        </table>
+            </table>
+        </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 
@@ -50,8 +50,8 @@
             <form action="<?= base_url('data/takademik'); ?>" method="post">
                 <div class="modal-body">
                     <label class="form-label">Tahun Ajaran</label>
-                    <div class="row">
 
+                    <div class="row">
                         <div class="col">
                             <!-- SELECT / COMBO BOX -->
                             <div class="form-group">
@@ -81,7 +81,6 @@
                                 </select>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
@@ -109,7 +108,7 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="text" name="kode" id="kode" value="" readonly="">
+                    <input type="hidden" name="kode" id="kode" value="" readonly="">
                     <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
                     
                 </div>
@@ -124,3 +123,59 @@
 </div>
 <!--END MODAL HAPUS-->
 
+
+<!-- modal edit data -->
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditTA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EdittaModalLabel">EDIT MASTER TAHUN AKADEMIK</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="text" class="form-control" name="tkode" id="tkode" required="required" readonly="" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="range">Tahun Akademik</label>
+                            <div class="row">
+                                <div class="col">
+                                    <select id="ttta1" name="ttta1" class="form-control show-tick col-xs-4" required>
+                                        <option value="">-- Select --</option>
+                                        <?php
+                                        for($i = 2010; $i < date("Y")+1; $i++){
+                                            echo '<option value="'.$i.'">'.$i.'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                -
+                                <div class="col">
+                                    <select id="tttta2" name="tttta2" class="form-control show-tick col-xs-4" required>
+                                        <option value="">-- Select --</option>
+                                        <?php
+                                        for($i = 2010; $i < date("Y")+1; $i++){
+                                            echo '<option value="'.$i.'">'.$i.'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>             
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editta">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->

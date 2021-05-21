@@ -215,6 +215,22 @@ public function tadelete()
        // redirect('data/jam');
 }
 
+public function tagetEdit($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getTAbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function editTA()
+{
+    $kode = $this->input->post('kode');
+    $tahun = $this->input->post('tahun');
+    $data = $this->Data_model->saveeditta($kode,$tahun);
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
+
 
 
 
