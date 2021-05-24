@@ -56,25 +56,25 @@ public function jamdelete()
  $data=$this->Data_model->delljam($kode);
  echo json_encode($data); 
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
-   // redirect('data/jam');
+       // redirect('data/jam');
 }
 
 public function jamgetEdit($kode='')
 {
     $kode=$this->input->post('kode');
-    
+
     $data=$this->Data_model->getJambyKode($kode);
     echo json_encode($data);
-    
+
 }
 
 
 public function jamList()
 {
-        // POST data dari view
+            // POST data dari view
  $postData = $this->input->post();
 
-        // get data dari model
+            // get data dari model
  $data = $this->Data_model->getMaster($postData);
 
  echo json_encode($data);
@@ -90,7 +90,7 @@ public function editJam()
     $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
 }
 
-// end jam
+    // end jam
 
 public function hari()
 {
@@ -115,8 +115,8 @@ public function hari()
             'id_hari' => $idh
         ];
 
-                        // var_dump($data);
-                        //  die; 
+                            // var_dump($data);
+                            //  die; 
         $this->Data_model->addhari($insertdatahari);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
         redirect('data/hari');
@@ -125,10 +125,10 @@ public function hari()
 
 public function hariList()
 {
-        // POST data dari view
+            // POST data dari view
     $postData = $this->input->post();
 
-        // get data dari model
+            // get data dari model
     $data = $this->Data_model->getHariMaster($postData);
 
     echo json_encode($data);
@@ -141,33 +141,33 @@ public function haridelete()
  $data=$this->Data_model->dellhari($kode);
  echo json_encode($data); 
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
-   // redirect('data/jam');
+       // redirect('data/jam');
 }
 
 
 public function harigetEdit($kode='')
 {
     $kode=$this->input->post('kode');
-    
+
     $data=$this->Data_model->getHaribyKode($kode);
     echo json_encode($data);
-    
+
 }
 
 public function editHari()
 {
     $kode = $this->input->post('kode');
     $nama = $this->input->post('nama');
-    
+
 
     $data = $this->Data_model->saveedithari($kode,$nama);
     echo json_encode($data);
-    
+
 }
 
-// end hari
+    // end hari
 
-// tahun Akademik
+    // tahun Akademik
 
 public function takademik()
 {
@@ -178,12 +178,12 @@ public function takademik()
     $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
     if ($this->form_validation->run() ==  false)
     {
-       $this->load->view('templates/header', $data);
-       $this->load->view('templates/sidebar', $data);
-       $this->load->view('templates/topbar', $data);
-       $this->load->view('ta/index', $data);
-       $this->load->view('templates/footer');
-   } else {
+     $this->load->view('templates/header', $data);
+     $this->load->view('templates/sidebar', $data);
+     $this->load->view('templates/topbar', $data);
+     $this->load->view('ta/index', $data);
+     $this->load->view('templates/footer');
+ } else {
     $insertdataTA = [
         'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
     ];
@@ -197,10 +197,10 @@ public function takademik()
 
 public function taList()
 {
-        // POST data dari view
+            // POST data dari view
     $postData = $this->input->post();
 
-        // get data dari model
+            // get data dari model
     $data = $this->Data_model->getTAMaster($postData);
 
     echo json_encode($data);
@@ -212,7 +212,7 @@ public function tadelete()
  $data=$this->Data_model->dellta($kode);
  echo json_encode($data); 
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
-       // redirect('data/jam');
+           // redirect('data/jam');
 }
 
 public function tagetEdit($kode='')
@@ -241,13 +241,50 @@ public function dosen()
     $data['title'] = 'Master Dosen';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('dosen/index', $data);
-    $this->load->view('templates/footer');
+    $this->form_validation->set_rules('ta1', 'Tahun Ajaran', 'required');
+    $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
+    if ($this->form_validation->run() == false)
+    {
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar', $data);
+      $this->load->view('templates/topbar', $data);
+      $this->load->view('dosen/index', $data);
+      $this->load->view('templates/footer');  
+  } else {
+    $insertdataDosen = [
+    ];
 }
+
+}
+
+// public function takademik()
+// {
+//     $data['title'] = 'Master Tahun Akademik';
+//     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+//     $this->form_validation->set_rules('ta1', 'Tahun Ajaran', 'required');
+//     $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
+//     if ($this->form_validation->run() ==  false)
+//     {
+//      $this->load->view('templates/header', $data);
+//      $this->load->view('templates/sidebar', $data);
+//      $this->load->view('templates/topbar', $data);
+//      $this->load->view('ta/index', $data);
+//      $this->load->view('templates/footer');
+//  } else {
+//     $insertdataTA = [
+//         'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
+//     ];
+
+//     $this->Data_model->addta($insertdataTA);
+//     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+//     redirect('data/takademik');
+// }
+
+// }
+
+
+// end dosen
 
 public function dosenList()
 {
