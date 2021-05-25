@@ -241,47 +241,44 @@ public function dosen()
     $data['title'] = 'Master Dosen';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-    $this->form_validation->set_rules('ta1', 'Tahun Ajaran', 'required');
-    $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
+    $this->form_validation->set_rules('nip', 'No Induk Pegawai', 'required');
+    $this->form_validation->set_rules('nama', 'Nama Pegawai', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat Pegawai', 'required');
+    $this->form_validation->set_rules('telp', 'Telp/HP Pegawai', 'required|alpha_numeric');
+    $this->form_validation->set_rules('status_dosen', 'Status Pegawai', 'required');
     if ($this->form_validation->run() == false)
     {
-      $this->load->view('templates/header', $data);
-      $this->load->view('templates/sidebar', $data);
-      $this->load->view('templates/topbar', $data);
-      $this->load->view('dosen/index', $data);
-      $this->load->view('templates/footer');  
-  } else {
-    $insertdataDosen = [
-    ];
-}
+        echo "OK";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dosen/index', $data);
+        $this->load->view('templates/footer');  
+    } else {
+        $insertdataDosen = [
+            'nip' => $this->input->post('nip'),
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'telp' => $this->input->post('telp'),
+            'status_dosen ' => $this->input->post('status_dosen')
+        ];
+
+    // 'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
+    // var_dump($insertdataDosen);
+    // die;
+        // $this->db->insert('guru', $insertdataDosen);
+        $this->Data_model->adddosen($insertdataDosen);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/dosen');
+
+    // var_dump($insertdataDosen);
+    // die;
+
+    }
 
 }
 
-// public function takademik()
-// {
-//     $data['title'] = 'Master Tahun Akademik';
-//     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-//     $this->form_validation->set_rules('ta1', 'Tahun Ajaran', 'required');
-//     $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
-//     if ($this->form_validation->run() ==  false)
-//     {
-//      $this->load->view('templates/header', $data);
-//      $this->load->view('templates/sidebar', $data);
-//      $this->load->view('templates/topbar', $data);
-//      $this->load->view('ta/index', $data);
-//      $this->load->view('templates/footer');
-//  } else {
-//     $insertdataTA = [
-//         'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
-//     ];
-
-//     $this->Data_model->addta($insertdataTA);
-//     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-//     redirect('data/takademik');
-// }
-
-// }
 
 
 // end dosen

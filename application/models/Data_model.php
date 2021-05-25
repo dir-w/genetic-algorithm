@@ -7,18 +7,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Data_model extends CI_Model
 {
 
-	// crud jam
+    // crud jam
 
-	// json_encode(value)
+    // json_encode(value)
 
 
-	public function getMaster($postData=null)
-	{
-		$response = array();
+    public function getMaster($postData=null)
+    {
+        $response = array();
 
      ## Read value
-     $draw = $postData['draw'];
-     $start = $postData['start'];
+        $draw = $postData['draw'];
+        $start = $postData['start'];
      $rowperpage = $postData['length']; // Rows display per page
      $columnIndex = $postData['order'][0]['column']; // Column index
      $columnName = $postData['columns'][$columnIndex]['data']; // Column name
@@ -425,6 +425,10 @@ $response = array(
 return $response;
 }
 
+public function adddosen($insertdataDosen)
+{
+    $this->db->insert('guru', $insertdataDosen);
+}
 
 
 

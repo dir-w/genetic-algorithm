@@ -54,50 +54,55 @@
                 <h5 class="modal-title text-danger" id="newDosenModalLabel">ADD MASTER DOSEN</h5>
                 
             </div>
-            <form action="<?= base_url('data/dosen'); ?>" method="post">
+            <form action="<?= base_url('data/Dosen'); ?>" method="post">
                 <div class="modal-body">
-                    <label class="form-label">Tahun Ajaran</label>
 
-                    <div class="row">
-                        <div class="col">
-                            <!-- SELECT / COMBO BOX -->
-                            <div class="form-group">
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">NIP</label>
+                      <div class="col-sm-10">
+                          <input type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai">
+                      </div>
+                  </div>
 
-                                <select id="ta1" name="ta1" class="form-control show-tick col-xs-4" required>
-                                    <option value="">-- Select --</option>
-                                    <?php
-                                    for($i = 2010; $i < date("Y")+1; $i++){
-                                        echo '<option value="'.$i.'">'.$i.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            -
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <select id="ta2" name="ta2" class="form-control show-tick col-xs-4" required>
-                                    <option value="">-- Select --</option>
-                                    <?php
-                                    for($i = 2010; $i < date("Y")+1; $i++){
-                                        echo '<option value="'.$i.'">'.$i.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
+                  <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">NAMA</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nam Pegawai">
                     </div>
+                </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn btn btn-outline-success">Add</button>
-                </div>
-            </form>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">ALAMAT</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Pegawai">
+                  </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Telp/HP</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="telp" name="telp" placeholder="No Telp/HP Pegawai">
+                  </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">STATUS</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="status_dosen" name="status_dosen" placeholder="Nomor Induk Pegawai">
+                  </div>
+              </div>
+
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn btn btn-outline-success">Add</button>
         </div>
-    </div>
+    </form>
+</div>
+</div>
 </div> 
 <!--END MODAL Add-->
 
