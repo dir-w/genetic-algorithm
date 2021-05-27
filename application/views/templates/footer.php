@@ -60,7 +60,7 @@
 
 
 
-<script src="<?= base_url('assets/'); ?>js/vhs5.js"></script>
+<script src="<?= base_url('assets/'); ?>js/vhs8.js"></script>
 
 <!-- <script>
     addEventListener('load', function myfuntion(){

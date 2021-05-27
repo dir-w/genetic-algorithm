@@ -297,6 +297,9 @@ $(function(){
 
 // end tahun AJARAN
 
+
+// start Dosen
+
 $('#dosenTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
@@ -319,6 +322,62 @@ $('#dosenTable').DataTable ({
  { data: 'Aksi'},
  ]
 });
+
+// get data hapus TA
+// $(function(){
+//   $('#dosenTable').on('click','.item_hapusdosen',function(){
+//     var kode=$(this).attr('data');
+//     // var name=$(this).attr('data-nam');
+//     // console.log(kode);
+//     $('#ModalHapusDosen').modal('show');
+//     $('#kode').val(kode);
+//     // $('#namad').val(name);
+
+//   });
+// });
+
+//GET DATA HAPUS DOSEN
+$(function(){
+  $('#dosenTable').on('click','.item_hapusdosen', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url:"tagetDeleteDosen",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#kode').val(id);
+        $('#namad').val(data.nama);
+
+        $('#ModalHapusDosen').modal('show');
+      }
+    });
+  });
+});
+
+//Hapus Dosen
+$(function(){
+  $('#btn_hapusdosen').on('click',function(){
+    var kode=$('#kode').val();
+    $.ajax({
+      type : "POST",
+      url  : "dosendelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusDosen').modal('hide');
+        window.location.assign('dosen');
+      }
+    });
+    return false;
+  }); 
+});
+
+
+
+// end Dosen
 
 $('#ruangTable').DataTable ({
   'processing' : true,

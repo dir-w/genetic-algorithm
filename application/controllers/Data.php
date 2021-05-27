@@ -241,7 +241,8 @@ public function dosen()
 
     $data['title'] = 'Master Dosen';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    $data['stat'] = $this->Data_model->getDosen()->result_array();
+    $data['stat'] = $this->Data_model->getstatusDosen()->result_array();
+
 
     $this->form_validation->set_rules('nip', 'No Induk Pegawai', 'required');
     $this->form_validation->set_rules('nama', 'Nama Pegawai', 'required');
@@ -250,7 +251,7 @@ public function dosen()
     $this->form_validation->set_rules('status_dosen', 'Status Pegawai', 'required');
     if ($this->form_validation->run() == false)
     {
-        echo "OK";
+        // echo "OK";
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -277,7 +278,22 @@ public function dosen()
     // die;
 
     }
+}
 
+public function tagetDeleteDosen($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getDosenbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function dosendelete()
+{
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->delldosen($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+           // redirect('data/jam');
 }
 
 
