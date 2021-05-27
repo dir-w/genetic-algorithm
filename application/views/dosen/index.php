@@ -67,7 +67,7 @@
                   <div class="row mb-3">
                       <label class="col-sm-2 col-form-label">NAMA</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nam Pegawai">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pegawai">
                     </div>
                 </div>
 
@@ -88,15 +88,17 @@
               <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">STATUS</label>
                   <div class="col-sm-10">
-                      <input type="text" class="form-control" id="status_dosen" name="status_dosen" placeholder="Nomor Induk Pegawai">
-                  </div>
-              </div>
+                    <select class="form-control" name="status_dosen" id="status_dosen" required>
+                        <option value="">-- Selected --</option>
+                        <?php foreach($stat as $row):?>
+                            <option value="<?= $row['kode']; ?>"><?= $row['status']; ?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
 
-
-
-
-          </div>
-          <div class="modal-footer">
+        </div>
+        <div class="modal-footer">
             <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn btn btn-outline-success">Add</button>
         </div>

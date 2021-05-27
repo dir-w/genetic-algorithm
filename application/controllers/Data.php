@@ -238,8 +238,10 @@ public function editTA()
 
 public function dosen()
 {
+
     $data['title'] = 'Master Dosen';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['stat'] = $this->Data_model->getDosen()->result_array();
 
     $this->form_validation->set_rules('nip', 'No Induk Pegawai', 'required');
     $this->form_validation->set_rules('nama', 'Nama Pegawai', 'required');

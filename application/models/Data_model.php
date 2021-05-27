@@ -430,6 +430,17 @@ public function adddosen($insertdataDosen)
     $this->db->insert('guru', $insertdataDosen);
 }
 
+public function getDosen()
+{
+    // $hsl=$this->db->query("SELECT * FROM status_dosen");
+    // return $hsl;
+
+    $this->db->select('*');
+    $this->db->FROM('status_dosen');
+    $query = $this->db->get();
+    return $query;  
+}
+
 
 
 
