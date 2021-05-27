@@ -323,19 +323,6 @@ $('#dosenTable').DataTable ({
  ]
 });
 
-// get data hapus TA
-// $(function(){
-//   $('#dosenTable').on('click','.item_hapusdosen',function(){
-//     var kode=$(this).attr('data');
-//     // var name=$(this).attr('data-nam');
-//     // console.log(kode);
-//     $('#ModalHapusDosen').modal('show');
-//     $('#kode').val(kode);
-//     // $('#namad').val(name);
-
-//   });
-// });
-
 //GET DATA HAPUS DOSEN
 $(function(){
   $('#dosenTable').on('click','.item_hapusdosen', function(){
@@ -373,6 +360,27 @@ $(function(){
     });
     return false;
   }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#dosenTable').on('click','.edit_dosen', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url:"tagetDeleteDosen",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#dkode').val(id);
+        // $('#ttta1').val(data.tahun.substring(0,4));
+        // $('#tttta2').val(data.tahun.substring(5,9));
+        // console.log(data);
+        $('#ModalEditDosen').modal('show');
+      }
+    });
+  });
 });
 
 

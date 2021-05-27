@@ -122,9 +122,9 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="text" name="kode" id="kode" value="" readonly="">
+                    <input type="hidden" name="kode" id="kode" value="" readonly="" visible>
                     <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="namad" id="namad" required="required" readonly="" visible></p>
-                        
+
                     </div>
 
                 </div>
@@ -138,5 +138,36 @@
 </div>
 </div>
 <!--END MODAL HAPUS-->
+
+<!-- modal edit data -->
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditDosen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EditdosenModalLabel">EDIT MASTER DOSEN</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="text" class="form-control" name="dkode" id="dkode" required="required" readonly="" >
+                        </div>
+
+                        
+
+                    </div>             
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editdosen">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->
 
 
