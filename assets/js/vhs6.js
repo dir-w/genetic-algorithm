@@ -366,7 +366,7 @@ $(function(){
 $(function(){
   $('#dosenTable').on('click','.edit_dosen', function(){
     const id = $(this).data('id');
-    // console.log(id);
+    console.log(id);
     $.ajax({
       url:"tagetDeleteDosen",
       data: {kode : id},
@@ -374,9 +374,13 @@ $(function(){
       dataType: 'JSON',
       success: function(data) {
         $('#dkode').val(id);
-        // $('#ttta1').val(data.tahun.substring(0,4));
+        $('#nipdo').val(data.nip);
+        $('#namado').val(data.nama);
+        $('#alamatdo').val(data.alamat);
+        $('#telpdo').val(data.telp);
+        $('#statusdo').val(data.status);
         // $('#tttta2').val(data.tahun.substring(5,9));
-        // console.log(data);
+        console.log(data);
         $('#ModalEditDosen').modal('show');
       }
     });

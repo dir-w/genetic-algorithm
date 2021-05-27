@@ -155,18 +155,58 @@
                             <input type="text" class="form-control" name="dkode" id="dkode" required="required" readonly="" >
                         </div>
 
-                        
-
-                    </div>             
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                        <button class="btn_edit btn btn-danger" id="btn_editdosen">Save</button>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label">NIP</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nipdo" name="nipdo" placeholder="Nomor Induk Pegawai">
+                        </div>
                     </div>
-                </form>
+
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">NAMA</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="namado" name="namado" placeholder="Nama Pegawai">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">ALAMAT</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="alamatdo" name="alamatdo" placeholder="Alamat Pegawai">
+                  </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Telp/HP</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="telpdo" name="telpdo" placeholder="No Telp/HP Pegawai">
+                  </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">STATUS</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="statusdo" id="statusdo" required>
+                        <option value="">-- Selected --</option>
+                        <?php foreach($stat as $row):?>
+                            <option value="<?= $row['kode']; ?>"><?= $row['status']; ?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
             </div>
+
+
+
+        </div>             
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+            <button class="btn_edit btn btn-danger" id="btn_editdosen">Save</button>
         </div>
-    </div>
+    </form>
+</div>
+</div>
+</div>
 </div>
 <!--END MODAL EDIT-->
 
