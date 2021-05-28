@@ -186,7 +186,7 @@
               <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">STATUS</label>
                   <div class="col-sm-10">
-                    <select class="form-control" name="statusdo" id="statusdo" required>
+                    <select class="form-control" name="statusdo" id="statusdo" >
                         <option value="">-- Selected --</option>
                         <?php foreach($stat as $row):?>
                             <option value="<?= $row['kode']; ?>"><?= $row['status']; ?></option>

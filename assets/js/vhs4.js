@@ -366,7 +366,7 @@ $(function(){
 $(function(){
   $('#dosenTable').on('click','.edit_dosen', function(){
     const id = $(this).data('id');
-    console.log(id);
+    // console.log(id);
     $.ajax({
       url:"tagetDeleteDosen",
       data: {kode : id},
@@ -379,9 +379,38 @@ $(function(){
         $('#alamatdo').val(data.alamat);
         $('#telpdo').val(data.telp);
         $('#statusdo').val(data.status);
-        // $('#tttta2').val(data.tahun.substring(5,9));
-        console.log(data);
+        
+        // console.log(data);
         $('#ModalEditDosen').modal('show');
+      }
+    });
+  });
+});
+
+// edit save
+$(function(){
+  $('#btn_editdosen').on('click', function(){
+    var kode =$('#dkode').val();
+    var nip =$('#nipdo').val();
+    var nama =$('#namado').val();
+    var alamat =$('#alamatdo').val();
+    var telp =$('#telpdo').val();
+    // var status_dosen =$('#statusdo').val();
+    // console.log(kode);
+    $.ajax({
+      method: 'POST',
+      url: 'editDosen',
+      dataType: 'JSON',
+      data: {kode:kode, nip:nip, nama:nama, alamat:alamat, telp:telp},
+      success: function(data){
+        // console.log(data);
+        $('#dkode').val("");
+        $('#nipdo').val("");
+        $('#namado').val("");
+        $('#alamatdo').val("");
+        $('#telpdo').val("");
+        // $('#statusdo').val("");
+        $('#ModalEditDosen').modal('hide');
       }
     });
   });
