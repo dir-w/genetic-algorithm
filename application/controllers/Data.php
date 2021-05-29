@@ -231,16 +231,16 @@ public function editTA()
     $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
 }
 
-
-
-
 // end Tahun ajaran 
+
+// start Master DOSEN
 
 public function dosen()
 {
 
     $data['title'] = 'Master Dosen';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $idd = $this->Nomor_model->getiddosen();
     $data['stat'] = $this->Data_model->getstatusDosen()->result_array();
 
 
@@ -263,7 +263,8 @@ public function dosen()
             'nama' => $this->input->post('nama'),
             'alamat' => $this->input->post('alamat'),
             'telp' => $this->input->post('telp'),
-            'status_dosen ' => $this->input->post('status_dosen')
+            'status_dosen ' => $this->input->post('status_dosen'),
+            'id_guru' => $idd
         ];
 
     // 'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
