@@ -379,8 +379,6 @@ $(function(){
         $('#alamatdo').val(data.alamat);
         $('#telpdo').val(data.telp);
         $('#statusdo').val(data.status);
-        
-        // console.log(data);
         $('#ModalEditDosen').modal('show');
       }
     });
@@ -395,21 +393,19 @@ $(function(){
     var nama =$('#namado').val();
     var alamat =$('#alamatdo').val();
     var telp =$('#telpdo').val();
-    // var status_dosen =$('#statusdo').val();
-    // console.log(kode);
+    var status_dosen =$('#statusdo').val();
     $.ajax({
       method: 'POST',
       url: 'editDosen',
       dataType: 'JSON',
-      data: {kode:kode, nip:nip, nama:nama, alamat:alamat, telp:telp},
+      data: {kode:kode, nip:nip, nama:nama, alamat:alamat, telp:telp, status_dosen:status_dosen},
       success: function(data){
-        // console.log(data);
         $('#dkode').val("");
         $('#nipdo').val("");
         $('#namado').val("");
         $('#alamatdo').val("");
         $('#telpdo').val("");
-        // $('#statusdo').val("");
+        $('#statusdo').val("");
         $('#ModalEditDosen').modal('hide');
       }
     });

@@ -463,19 +463,15 @@ public function delldosen($kode)
     return $hasil;
 }
 
-public function saveeditdosen($kode, $nip, $nama, $alamat)
+public function saveeditdosen($kode, $nip, $nama, $alamat, $telp, $status_dosen)
 {
-    // $hasil=$this->db->query("UPDATE guru SET nip=$nip, nama='$nama' WHERE kode='$kode'");
-    $hasil=$this->db->query("UPDATE guru SET nip='$nip', nama='$nama', alamat='$alamat' WHERE kode='$kode'");
-    return $hasil;
+  $hasil=$this->db->query("UPDATE guru SET nip='$nip', nama='$nama', alamat='$alamat', telp='$telp', status_dosen='$status_dosen' WHERE kode='$kode'");
+  return $hasil;
 }
 
-
-
-
-
-
 // END DOSEN
+
+// start ruangan master
 
 public function getRuangMaster($postData=null)
 {
