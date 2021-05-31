@@ -564,6 +564,30 @@ public function addruangan($insertdataRuangan)
     $this->db->insert('ruang', $insertdataRuangan);
 }
 
+public function getRuanganbyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM ruang WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'id_ruang' => $data->id_ruang,
+                'nama' => $data->nama,
+                'kapasitas' => $data->kapasitas,
+                'type' => $data->type,
+                'id_jenis' => $data->id_jenis,
+                'lantai' => $data->lantai,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellRuangan($kode)
+{
+    $hasil=$this->db->query("DELETE FROM ruang WHERE kode='$kode'");
+    return $hasil;
+}
+
 
 // end Master Ruangan
 

@@ -440,6 +440,49 @@ $('#ruangTable').DataTable ({
  ]
 });
 
+//GET DATA HAPUS Ruangan
+$(function(){
+  $('#ruangTable').on('click','.item_hapusruangan', function(){
+    const id = $(this).data('id');
+    $('#ModalHapusRuangan').modal('show');
+    $.ajax({
+      url:"tagetDeleteRuangan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#kode').val(id);
+        $('#namar').val(data.nama);
+
+        $('#ModalHapusRuangan').modal('show');
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusruangan').on('click',function(){
+    var kode=$('#kode').val();
+    $.ajax({
+      type : "POST",
+      url  : "ruangandelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusRuangan').modal('hide');
+        window.location.assign('ruangan');
+      }
+    });
+    return false;
+  }); 
+});
+
+
+
+
+// end Master Ruangan
+
 $('#jenisruangTable').DataTable ({
   'processing' : true,
   'serverSide' : true,

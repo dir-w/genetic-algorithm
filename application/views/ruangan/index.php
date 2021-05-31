@@ -6,36 +6,36 @@
     
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
 
 
-       </div>
-       <div class="card-body">
-          <div class="table-responsive">
-              <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-                <!-- <table id="empTable" class="display"> -->
-                    <thead class="thead-light">
-                      <tr> 
-                        <th width="10px">No</th>
-                        <th width="60px">Kode Ruangan</th>
-                        <th>Nama Ruangan</th>
-                        <th width="15px">kapasitas</th>
-                        <th>Type</th>
-                        <th>Jenis</th>
-                        <!-- <th>Prodi</th> -->
+     </div>
+     <div class="card-body">
+      <div class="table-responsive">
+          <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+            <!-- <table id="empTable" class="display"> -->
+                <thead class="thead-light">
+                  <tr> 
+                    <th width="10px">No</th>
+                    <th width="60px">Kode Ruangan</th>
+                    <th>Nama Ruangan</th>
+                    <th width="15px">kapasitas</th>
+                    <th>Type</th>
+                    <th>Jenis</th>
+                    <!-- <th>Prodi</th> -->
 
-                        <th width="50px">Aksi</th>
-                    </tr>
-                </thead>
+                    <th width="50px">Aksi</th>
+                </tr>
+            </thead>
 
-                <!-- load barang -->
-
-
-            </table>
-        </div>
+            <!-- load barang -->
 
 
+        </table>
     </div>
+
+
+</div>
 </div>
 
 
@@ -116,4 +116,34 @@
 </div> 
 <!--END MODAL Add-->
 
+<!--MODAL HAPUS-->
+<div class="modal fade" id="ModalHapusRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="hapusRuanganModalLabel">WARNING MASTER RUANGAN</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
+
+                    <input type="hidden" name="kode" id="kode" value="" readonly="" visible>
+                    <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="namar" id="namar" required="required" readonly="" visible></p>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                    <button class="btn_hapus btn btn-danger" id="btn_hapusruangan">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!--END MODAL HAPUS-->
 
