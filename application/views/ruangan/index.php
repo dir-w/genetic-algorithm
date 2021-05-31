@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -10,36 +6,36 @@
     
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
-           
-           
-       </div>
-       <div class="card-body">
-          <div class="table-responsive">
-              <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-                <!-- <table id="empTable" class="display"> -->
-                    <thead class="thead-light">
-                      <tr> 
-                        <th width="10px">No</th>
-                        <th width="60px">Kode Ruangan</th>
-                        <th>Nama Ruangan</th>
-                        <th width="15px">kapasitas</th>
-                        <th>Type</th>
-                        <th>Jenis</th>
-                        <!-- <th>Prodi</th> -->
-                        
-                        <th width="50px">Aksi</th>
-                    </tr>
-                </thead>
-                
-                <!-- load barang -->
-                
-                
-            </table>
-        </div>
-        
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
 
+
+     </div>
+     <div class="card-body">
+      <div class="table-responsive">
+          <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+            <!-- <table id="empTable" class="display"> -->
+                <thead class="thead-light">
+                  <tr> 
+                    <th width="10px">No</th>
+                    <th width="60px">Kode Ruangan</th>
+                    <th>Nama Ruangan</th>
+                    <th width="15px">kapasitas</th>
+                    <th>Type</th>
+                    <th>Jenis</th>
+                    <!-- <th>Prodi</th> -->
+
+                    <th width="50px">Aksi</th>
+                </tr>
+            </thead>
+
+            <!-- load barang -->
+
+
+        </table>
     </div>
+
+
+</div>
 </div>
 
 
@@ -52,102 +48,65 @@
 
 
 <!-- Modal add -->
-<div class="modal fade" id="newRuanganModal" tabindex="-1" role="dialog" aria-labelledby="newRuanganModalLabel" aria-hidden="true">
+<div class="modal fade" id="newDosenModal" tabindex="-1" role="dialog" aria-labelledby="newDosenModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newRuanganModalLabel">Add Ruangan</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
+                <h5 class="modal-title text-danger" id="newDosenModalLabel">ADD MASTER DOSEN</h5>
+                
             </div>
-            <form action="<?= base_url('data/jam'); ?>" method="post">
+            <form action="<?= base_url('data/Dosen'); ?>" method="post">
                 <div class="modal-body">
 
-                	<!-- <div class="row">
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">NIP</label>
+                      <div class="col-sm-10">
+                          <input type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai">
+                      </div>
+                  </div>
 
-                		<div class="col-8">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
-                    		</div>
-                		</div>
-                		<div class="col-4">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="gelar" name="gelar" placeholder="Gelar">
-                    		</div>
-                		</div>
-
-                	</div>
-
-                	<div class="row">
-                		<div class="col">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="nira" name="nira" placeholder="NIRA">
-                    		</div>
-                		</div>
-                	</div>
-
-                	<div class="row">
-                		<div class="col">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
-                    		</div>
-                		</div>
-                	</div>
-                    
-                	<div class="row">
-                		<div class="col-5">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir">
-                    		</div>
-                		</div>
-                		<div class="col-7">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="temp_lahir" name="temp_lahir" placeholder="Tempat Lahir">
-                    		</div>
-                		</div>
-                	</div>
-                    
-                    <div class="row">
-                		<div class="col-6">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="dpp" name="dpp" placeholder="DPP">
-                    		</div>
-                		</div>
-                		<div class="col-6">
-                			<div class="form-group">
-                        		<input type="text" class="form-control" id="dpw" name="dpw" placeholder="DPW">
-                    		</div>
-                		</div>
-                	</div> -->
-
-                	Underwear
-                	<!-- <div class="row">
-                		<div class="col">
-                			<div class="form-group">
-				              
-				                
-				                        <div class="input">
-				                            <div class="custom-file">
-				                                <input type="file" class="custom-file-input" id="fileku" name="fileku">
-				                                <label class="custom-file-label" for="image">Choose file</label>
-				                            </div>
-				                        </div>
-				                    
-				            </div>
-                		</div>
-                	</div> -->
-
-
-
+                  <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">NAMA</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pegawai">
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn btn btn-outline-success">Add</button>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">ALAMAT</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Pegawai">
+                  </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Telp/HP</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" id="telp" name="telp" placeholder="No Telp/HP Pegawai">
+                  </div>
+              </div>
+
+              <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">STATUS</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="status_dosen" id="status_dosen" required>
+                        <option value="">-- Selected --</option>
+                        <?php foreach($stat as $row):?>
+                            <option value="<?= $row['kode']; ?>"><?= $row['status']; ?></option>
+                        <?php endforeach;?>
+                    </select>
                 </div>
-            </form>
+            </div>
+
         </div>
-    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn btn btn-outline-success">Add</button>
+        </div>
+    </form>
+</div>
+</div>
 </div> 
+<!--END MODAL Add-->
 
 

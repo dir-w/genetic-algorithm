@@ -267,16 +267,9 @@ public function dosen()
             'id_guru' => $idd
         ];
 
-    // 'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
-    // var_dump($insertdataDosen);
-    // die;
-        // $this->db->insert('guru', $insertdataDosen);
         $this->Data_model->adddosen($insertdataDosen);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
         redirect('data/dosen');
-
-    // var_dump($insertdataDosen);
-    // die;
 
     }
 }
@@ -312,10 +305,6 @@ public function editDosen()
 }
 
 
-
-
-// end dosen
-
 public function dosenList()
 {
         // POST data dari view
@@ -326,6 +315,10 @@ public function dosenList()
 
     echo json_encode($data);
 }
+
+// end dosen
+
+// Start Master RUANGAN
 
 public function ruangan()
 {
