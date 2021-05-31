@@ -412,9 +412,10 @@ $(function(){
   });
 });
 
-
-
 // end Dosen
+
+
+// start Master Ruangan
 
 $('#ruangTable').DataTable ({
   'processing' : true,

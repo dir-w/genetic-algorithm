@@ -6,36 +6,36 @@
     
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
 
 
-     </div>
-     <div class="card-body">
-      <div class="table-responsive">
-          <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-            <!-- <table id="empTable" class="display"> -->
-                <thead class="thead-light">
-                  <tr> 
-                    <th width="10px">No</th>
-                    <th width="60px">Kode Ruangan</th>
-                    <th>Nama Ruangan</th>
-                    <th width="15px">kapasitas</th>
-                    <th>Type</th>
-                    <th>Jenis</th>
-                    <!-- <th>Prodi</th> -->
+       </div>
+       <div class="card-body">
+          <div class="table-responsive">
+              <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+                <!-- <table id="empTable" class="display"> -->
+                    <thead class="thead-light">
+                      <tr> 
+                        <th width="10px">No</th>
+                        <th width="60px">Kode Ruangan</th>
+                        <th>Nama Ruangan</th>
+                        <th width="15px">kapasitas</th>
+                        <th>Type</th>
+                        <th>Jenis</th>
+                        <!-- <th>Prodi</th> -->
 
-                    <th width="50px">Aksi</th>
-                </tr>
-            </thead>
+                        <th width="50px">Aksi</th>
+                    </tr>
+                </thead>
 
-            <!-- load barang -->
+                <!-- load barang -->
 
 
-        </table>
+            </table>
+        </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 
@@ -48,64 +48,71 @@
 
 
 <!-- Modal add -->
-<div class="modal fade" id="newDosenModal" tabindex="-1" role="dialog" aria-labelledby="newDosenModalLabel" aria-hidden="true">
+<div class="modal fade" id="newRuanganModal" tabindex="-1" role="dialog" aria-labelledby="newRuanganModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newDosenModalLabel">ADD MASTER DOSEN</h5>
+                <h5 class="modal-title text-danger" id="newRuanganModalLabel">ADD MASTER RUANGAN</h5>
                 
             </div>
-            <form action="<?= base_url('data/Dosen'); ?>" method="post">
+            <form action="<?= base_url('data/ruangan'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="row mb-3">
-                      <label class="col-sm-2 col-form-label">NIP</label>
-                      <div class="col-sm-10">
-                          <input type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai">
-                      </div>
-                  </div>
-
-                  <div class="row mb-3">
-                      <label class="col-sm-2 col-form-label">NAMA</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Pegawai">
+                        <label class="col-sm-4 col-form-label">ID Ruangan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="id" name="id" placeholder="ID Ruangan">
+                        </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Nama</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Ruanagn">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Kapasitas</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="kapasitas" name="kapasitas" placeholder="Kapasitas Ruangan">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Type</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="type" name="type" placeholder="Type Ruangan">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Jenis</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="jenis_ruangan" id="jenis_ruangan" required>
+                                <option value="">-- Selected --</option>
+                                <?php foreach($ruang as $ru):?>
+                                    <option value="<?= $ru['idj']; ?>"><?= $ru['nama_jenis']; ?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Lantai</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="lantai" name="lantai" placeholder="Lantai Ruangan">
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">ALAMAT</label>
-                  <div class="col-sm-10">
-                      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Pegawai">
-                  </div>
-              </div>
-
-              <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Telp/HP</label>
-                  <div class="col-sm-10">
-                      <input type="text" class="form-control" id="telp" name="telp" placeholder="No Telp/HP Pegawai">
-                  </div>
-              </div>
-
-              <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">STATUS</label>
-                  <div class="col-sm-10">
-                    <select class="form-control" name="status_dosen" id="status_dosen" required>
-                        <option value="">-- Selected --</option>
-                        <?php foreach($stat as $row):?>
-                            <option value="<?= $row['kode']; ?>"><?= $row['status']; ?></option>
-                        <?php endforeach;?>
-                    </select>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn btn btn-outline-success">Add</button>
                 </div>
-            </div>
-
+            </form>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn btn btn-outline-success">Add</button>
-        </div>
-    </form>
-</div>
-</div>
+    </div>
 </div> 
 <!--END MODAL Add-->
 
