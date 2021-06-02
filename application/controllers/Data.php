@@ -35,7 +35,7 @@ class Data extends CI_Controller
             $this->load->view('templates/footer');
         } else { 
 
-           $insertdata = [
+         $insertdata = [
             'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
         ];
 
@@ -52,10 +52,10 @@ class Data extends CI_Controller
 
 public function jamdelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->delljam($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->delljam($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
        // redirect('data/jam');
 }
 
@@ -72,12 +72,12 @@ public function jamgetEdit($kode='')
 public function jamList()
 {
             // POST data dari view
-   $postData = $this->input->post();
+ $postData = $this->input->post();
 
             // get data dari model
-   $data = $this->Data_model->getMaster($postData);
+ $data = $this->Data_model->getMaster($postData);
 
-   echo json_encode($data);
+ echo json_encode($data);
 
 }
 
@@ -137,10 +137,10 @@ public function hariList()
 
 public function haridelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->dellhari($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellhari($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
        // redirect('data/jam');
 }
 
@@ -178,12 +178,12 @@ public function takademik()
     $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
     if ($this->form_validation->run() ==  false)
     {
-       $this->load->view('templates/header', $data);
-       $this->load->view('templates/sidebar', $data);
-       $this->load->view('templates/topbar', $data);
-       $this->load->view('ta/index', $data);
-       $this->load->view('templates/footer');
-   } else {
+     $this->load->view('templates/header', $data);
+     $this->load->view('templates/sidebar', $data);
+     $this->load->view('templates/topbar', $data);
+     $this->load->view('ta/index', $data);
+     $this->load->view('templates/footer');
+ } else {
     $insertdataTA = [
         'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
     ];
@@ -208,10 +208,10 @@ public function taList()
 
 public function tadelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->dellta($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellta($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
            // redirect('data/jam');
 }
 
@@ -283,10 +283,10 @@ public function tagetDeleteDosen($kode='')
 
 public function dosendelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->delldosen($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->delldosen($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
            // redirect('data/jam');
 }
 
@@ -376,10 +376,10 @@ public function tagetDeleteRuangan($kode='')
 
 public function ruangandelete()
 {
-   $kode=$this->input->post('kode');
-   $data=$this->Data_model->dellruangan($kode);
-   echo json_encode($data); 
-   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellruangan($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
 public function editRuangan()
@@ -400,19 +400,34 @@ public function editRuangan()
 
 // end Master Ruangan
 
+
+// Start master JENIS RUANGAN
+
 public function jenisruangan()
 {
     $data['title'] = 'Master Jenis Ruangan';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+    $this->form_validation->set_rules('nama', 'Nama jenis Ruangan', 'required');
+    $this->form_validation->set_rules('keterangan', 'Keterangan Jenis Ruangan', 'required');
+    if ($this->form_validation->run() == false)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('ruangan/jenis_ruangan', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataJenisRuangan = [
+            'nama_jenis' => $this->input->post('nama'),
+            'ket_jenis' => $this->input->post('keterangan')
+        ];
 
-
-
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('ruangan/jenis_ruangan', $data);
-    $this->load->view('templates/footer');
+        $this->Data_model->addjenisruangan($insertdataJenisRuangan);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/jenisruangan');
+    }
+    
 }
 
 public function jenisruangList()
@@ -425,6 +440,8 @@ public function jenisruangList()
 
     echo json_encode($data);
 }
+
+// end master JENIS RUANGAN
 
 public function typematkul()
 {

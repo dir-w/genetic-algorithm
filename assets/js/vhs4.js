@@ -534,6 +534,8 @@ $(function(){
 
 // end Master Ruangan
 
+// start MASTER JENIS RUANGAN
+
 $('#jenisruangTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
@@ -553,6 +555,28 @@ $('#jenisruangTable').DataTable ({
  { data : 'Aksi'},
  ]
 });
+
+//GET DATA HAPUS Jenis Ruangan
+$(function(){
+  $('#ruangTable').on('click','.item_hapusruangan', function(){
+    const id = $(this).data('id');
+    $('#ModalHapusRuangan').modal('show');
+    $.ajax({
+      url:"tagetDeleteRuangan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#kode').val(id);
+        $('#namar').val(data.nama);
+
+        $('#ModalHapusRuangan').modal('show');
+      }
+    });
+  });
+});
+
+// end MASTER JENIS RUANGAN
 
 $('#typeTable').DataTable ({
   'processing' : true,

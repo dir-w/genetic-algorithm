@@ -607,6 +607,9 @@ public function saveeditruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id
 
 // end Master Ruangan
 
+
+// Start MASTER JENIS RUANGAN
+
 public function getJenisRuangMaster($postData=null)
 {
     $response = array();
@@ -681,6 +684,13 @@ public function getJenisRuangMaster($postData=null)
 
     return $response;
 }
+
+public function addjenisruangan($insertdataJenisRuangan)
+{
+    $this->db->insert('jenis_ruang', $insertdataJenisRuangan);
+}
+
+// end MASTER JENIS RUANGAN
 
 public function getTypeMaster($postData=null)
 {
