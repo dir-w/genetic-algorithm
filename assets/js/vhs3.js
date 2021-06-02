@@ -445,7 +445,7 @@ $('#ruangTable').DataTable ({
 $(function(){
   $('#ruangTable').on('click','.item_hapusruangan', function(){
     const id = $(this).data('id');
-    $('#ModalHapusRuangan').modal('show');
+    // $('#ModalHapusRuangan').modal('show');
     $.ajax({
       url:"tagetDeleteRuangan",
       data: {kode : id},
@@ -558,22 +558,41 @@ $('#jenisruangTable').DataTable ({
 
 //GET DATA HAPUS Jenis Ruangan
 $(function(){
-  $('#ruangTable').on('click','.item_hapusruangan', function(){
+  $('#jenisruangTable').on('click','.item_hapusjenisruangan', function(){
     const id = $(this).data('id');
-    $('#ModalHapusRuangan').modal('show');
+    // console.log(id);
     $.ajax({
-      url:"tagetDeleteRuangan",
-      data: {kode : id},
+      url: "tagetJenisRuangan",
+      data: {idj : id},
       method: 'POST',
       dataType: 'JSON',
       success: function(data) {
-        $('#kode').val(id);
-        $('#namar').val(data.nama);
-
-        $('#ModalHapusRuangan').modal('show');
+        $('#idj').val(id);
+        $('#nama_jenis').val(data.nama_jenis);
+        $('#ModalHapusJenisRuangan').modal('show');
+        // console.log(data);
       }
+      
     });
   });
+});
+
+$(function(){
+  $('#btn_hapusjenisruangan').on('click',function(){
+    var idj=$('#idj').val();
+    $.ajax({
+      type : "POST",
+      url  : "jenisruangandelete",
+      dataType : "JSON",
+      data : {idj: idj},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusJenisRuangan').modal('hide');
+        window.location.assign('jenisruangan');
+      }
+    });
+    return false;
+  }); 
 });
 
 // end MASTER JENIS RUANGAN
