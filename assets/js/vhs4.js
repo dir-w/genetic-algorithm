@@ -435,7 +435,8 @@ $('#ruangTable').DataTable ({
  { data: 'nama' },
  { data: 'kapasitas' },
  { data: 'type' },
- { data: 'id_jenis' },
+ { data: 'nama_jenis' },
+ { data: 'lantai' },
  { data : 'Aksi'},
  ]
 });
@@ -478,8 +479,58 @@ $(function(){
   }); 
 });
 
+//GET UPDATE
+$(function(){
+  $('#ruangTable').on('click','.edit_ruangan', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetDeleteRuangan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#rkode').val(id);
+        $('#idru').val(data.id_ruang);
+        $('#namaru').val(data.nama);
+        $('#kapasitasru').val(data.kapasitas);
+        $('#typeru').val(data.id_type);
+        $('#jenis_ruanganru').val(data.id_jenis);
+        $('#lantairu').val(data.lantai);
+        $('#ModalEditRuangan').modal('show');
+      }
+    });
+  });
+});
 
+// edit save
+$(function(){
+  $('#btn_editruangan').on('click', function(){
+    var kode =$('#rkode').val();
+    var id_ruang =$('#idru').val();
+    var nama =$('#namaru').val();
+    var kapasitas =$('#kapasitasru').val();
+    var id_type =$('#typeru').val();
+    var lantai =$('#lantairu').val();
+    var id_jenis =$('#jenis_ruanganru').val();
 
+    $.ajax({
+      method: 'POST',
+      url: 'editRuangan',
+      dataType: 'JSON',
+      data: {kode:kode, id_ruang:id_ruang, nama:nama, kapasitas:kapasitas, id_type:id_type, id_jenis:id_jenis, lantai:lantai},
+      success: function(data){
+        $('#koderu').val("");
+        $('#idru').val("");
+        $('#namaru').val("");
+        $('#kapasitasru').val("");
+        $('#typeru').val("");
+        $('#jenis_ruanganru').val("");
+        $('#lantairu').val("");
+        $('#ModalEditRuangan').modal('hide');
+      }
+    });
+  });
+});
 
 // end Master Ruangan
 

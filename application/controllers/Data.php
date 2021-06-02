@@ -325,6 +325,7 @@ public function ruangan()
     $data['title'] = 'Master Ruangan';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['ruang'] = $this->Data_model->getjenisRuangan()->result_array();
+    $data['typer'] = $this->Data_model->getstatustype()->result_array();
 
     $this->form_validation->set_rules('id', 'ID Ruangan', 'required');
     $this->form_validation->set_rules('nama', 'Nama Ruangan', 'required');
@@ -344,7 +345,7 @@ public function ruangan()
             'id_ruang' => $this->input->post('id'),
             'nama' => $this->input->post('nama'),
             'kapasitas' => $this->input->post('kapasitas'),
-            'type' => $this->input->post('type'),
+            'id_type' => $this->input->post('type'),
             'id_jenis' => $this->input->post('jenis_ruangan'),
             'lantai' => $this->input->post('lantai')
         ];
@@ -379,6 +380,22 @@ public function ruangandelete()
    $data=$this->Data_model->dellruangan($kode);
    echo json_encode($data); 
    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function editRuangan()
+{
+    $kode = $this->input->post('kode');
+    $id_ruang = $this->input->post('id_ruang');
+    $nama = $this->input->post('nama');
+    $kapasitas = $this->input->post('kapasitas');
+    $id_type = $this->input->post('id_type');
+    $id_jenis = $this->input->post('id_jenis');
+    $lantai = $this->input->post('lantai');
+
+    $data = $this->Data_model->saveeditruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id_jenis, $id_ruang);
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
 }
 
 // end Master Ruangan

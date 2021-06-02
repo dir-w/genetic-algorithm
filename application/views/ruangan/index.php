@@ -22,7 +22,7 @@
                     <th width="15px">kapasitas</th>
                     <th>Type</th>
                     <th>Jenis</th>
-                    <!-- <th>Prodi</th> -->
+                    <th>Lantai</th>
 
                     <th width="50px">Aksi</th>
                 </tr>
@@ -82,9 +82,15 @@
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label">Type</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="type" name="type" placeholder="Type Ruangan">
+                            <select class="form-control" name="type" id="type" required>
+                                <option value="">-- Selected --</option>
+                                <?php foreach($typer as $tr):?>
+                                    <option value="<?= $tr['idt']; ?>"><?= $tr['nama_type']; ?></option>
+                                <?php endforeach;?>
+                            </select>
                         </div>
                     </div>
+
 
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label">Jenis</label>
@@ -146,4 +152,90 @@
 </div>
 </div>
 <!--END MODAL HAPUS-->
+
+
+<!-- modal edit data -->
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EditRuanganModalLabel">EDIT MASTER RUANGAN</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="text" class="form-control" name="rkode" id="rkode" required="required" readonly="" >
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">ID Ruangan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="idru" name="idru" placeholder="ID Ruangan">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Nama</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="namaru" name="namaru" placeholder="Nama Ruanagn">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Kapasitas</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="kapasitasru" name="kapasitasru" placeholder="Kapasitas Ruangan">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Type</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="typeru" id="typeru" required>
+                                    <option value="">-- Selected --</option>
+                                    <?php foreach($typer as $tr):?>
+                                        <option value="<?= $tr['idt']; ?>"><?= $tr['nama_type']; ?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Jenis</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="jenis_ruanganru" id="jenis_ruanganru" required>
+                                    <option value="">-- Selected --</option>
+                                    <?php foreach($ruang as $ru):?>
+                                        <option value="<?= $ru['idj']; ?>"><?= $ru['nama_jenis']; ?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Lantai</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="lantairu" name="lantairu" placeholder="Lantai Ruangan">
+                            </div>
+                        </div>
+
+
+
+                    </div>             
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editruangan">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->
 

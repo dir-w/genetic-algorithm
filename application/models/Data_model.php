@@ -510,9 +510,10 @@ public function getRuangMaster($postData=null)
         $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
-    $this->db->select('ruang.*', 'jenis_ruang');
+    $this->db->select('ruang.*', 'jenis_ruang.*, type_ruang.*');
     $this->db->from('ruang');
     $this->db->join('jenis_ruang', 'ruang.id_jenis=jenis_ruang.idj');
+    $this->db->join('type_ruang', 'ruang.id_type=type_ruang.idt');
      // $this->db->join('jurusan', 'prodi.kode_jurusan=jurusan.kode');
     $records = $this->db->get()->result();
 
@@ -526,8 +527,9 @@ public function getRuangMaster($postData=null)
             "id_ruang"=>$record->id_ruang,
             "nama"=>$record->nama,
             "kapasitas"=>$record->kapasitas,
-            "type"=>$record->type,
-            "id_jenis"=>$record->nama_jenis,
+            "type"=>$record->nama_type,
+            "nama_jenis"=>$record->nama_jenis,
+            "lantai"=>$record->lantai,
 
 
             "Aksi" => "
@@ -548,6 +550,14 @@ public function getRuangMaster($postData=null)
 
 
     return $response;
+}
+
+public function getstatustype()
+{
+    $this->db->select('*');
+    $this->db->FROM('type_ruang');
+    $query = $this->db->get();
+    return $query;  
 }
 
 public function getjenisRuangan()
@@ -573,7 +583,7 @@ public function getRuanganbyKode($kode)
                 'id_ruang' => $data->id_ruang,
                 'nama' => $data->nama,
                 'kapasitas' => $data->kapasitas,
-                'type' => $data->type,
+                'id_type' => $data->id_type,
                 'id_jenis' => $data->id_jenis,
                 'lantai' => $data->lantai,
             );
@@ -588,6 +598,12 @@ public function dellRuangan($kode)
     return $hasil;
 }
 
+
+public function saveeditruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id_jenis, $id_ruang)
+{
+    $hasil=$this->db->query("UPDATE ruang SET nama='$nama', kapasitas='$kapasitas', id_type='$id_type', lantai='$lantai', id_jenis='$id_jenis', id_ruang='$id_ruang' WHERE kode='$kode'");
+    return $hasil;
+}
 
 // end Master Ruangan
 
