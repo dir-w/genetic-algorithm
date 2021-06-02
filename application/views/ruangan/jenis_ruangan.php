@@ -6,33 +6,33 @@
 
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Tambah</a>
 
 
-     </div>
-     <div class="card-body">
-      <div class="table-responsive">
-          <table id="jenisruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-            <!-- <table id="empTable" class="display"> -->
-                <thead class="thead-light">
-                  <tr> 
-                    <th width="10px">No</th>
-                    <th width="60px">Nama</th>
-                    <th>Keterangan</th>
-                    <!-- <th>Prodi</th> -->
+       </div>
+       <div class="card-body">
+          <div class="table-responsive">
+              <table id="jenisruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+                <!-- <table id="empTable" class="display"> -->
+                    <thead class="thead-light">
+                      <tr> 
+                        <th width="10px">No</th>
+                        <th width="60px">Nama</th>
+                        <th>Keterangan</th>
+                        <!-- <th>Prodi</th> -->
 
-                    <th width="50px">Aksi</th>
-                </tr>
-            </thead>
+                        <th width="50px">Aksi</th>
+                    </tr>
+                </thead>
 
-            <!-- load barang -->
+                <!-- load barang -->
 
 
-        </table>
+            </table>
+        </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 
@@ -57,7 +57,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label">Nama</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Ruangan">
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Jenis Ruangan">
                         </div>
                     </div>
 
@@ -109,6 +109,51 @@
 </div>
 </div>
 <!--END MODAL HAPUS-->
+
+<!-- modal edit data -->
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditJenisRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EditJenisRuanganModalLabel">EDIT MASTER RUANGAN</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="hidden" class="form-control" name="idjr" id="idjr" required="required" readonly="" >
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Nama</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama_jenisr" name="nama_jenis" placeholder="Nama Jenis Ruangan">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Keterangan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ket_jenisr" name="ket_jenis" placeholder="Keterangan Jenis Ruangan">
+                            </div>
+                        </div>
+
+
+
+                    </div>             
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editjenisruangan">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->
 
 
 

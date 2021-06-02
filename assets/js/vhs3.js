@@ -572,7 +572,6 @@ $(function(){
         $('#ModalHapusJenisRuangan').modal('show');
         // console.log(data);
       }
-      
     });
   });
 });
@@ -593,6 +592,47 @@ $(function(){
     });
     return false;
   }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#jenisruangTable').on('click','.edit_jenisruangan', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetJenisRuangan",
+      data: {idj : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idjr').val(id);
+        $('#nama_jenisr').val(data.nama_jenis);
+        $('#ket_jenisr').val(data.ket_jenis);
+        $('#ModalEditJenisRuangan').modal('show');
+      }
+    });
+  });
+});
+
+// edit save
+$(function(){
+  $('#btn_editjenisruangan').on('click', function(){
+    var idj =$('#idjr').val();
+    var nama_jenis =$('#nama_jenisr').val();
+    var ket_jenis =$('#ket_jenisr').val();
+    
+    $.ajax({
+      method: 'POST',
+      url: 'editjenisRuangan',
+      dataType: 'JSON',
+      data: {idj:idj, nama_jenis:nama_jenis, ket_jenis:ket_jenis},
+      success: function(data){
+        $('#idjr').val("");
+        $('#nama_jenisr').val("");
+        $('#ket_jenisr').val("");
+        $('#ModalEditJenisRuangan').modal('hide');
+      }
+    });
+  });
 });
 
 // end MASTER JENIS RUANGAN

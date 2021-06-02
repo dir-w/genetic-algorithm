@@ -666,7 +666,7 @@ public function getJenisRuangMaster($postData=null)
 
             "Aksi" => "
             <a href='javascript:void(0)' class='badge badge-danger item_hapusjenisruangan' data-placement='bottom' title='Delete' data-id=$record->idj  ;'><span class='far fa-trash-alt'></span></a>
-            <a href='javascript:void(0)' class='badge badge-warning edit_ruangan' data-placement='bottom' title='Edit' data-id=$record->idj ;'><span class='far fa-edit'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_jenisruangan' data-placement='bottom' title='Edit' data-id=$record->idj ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -707,6 +707,14 @@ public function delljenisruangan($idj)
 {
     $hasil=$this->db->query("DELETE FROM jenis_ruang WHERE idj='$idj'");
     return $hasil;
+}
+
+public function saveeditjenisruangan($idj, $saveedit)
+{
+    // $hasil=$this->db->query("UPDATE ruang SET nama='$nama', kapasitas='$kapasitas', id_type='$id_type', lantai='$lantai', id_jenis='$id_jenis', id_ruang='$id_ruang' WHERE kode='$kode'");
+    // return $hasil;
+    $this->db->where('idj', $idj);
+    $this->db->update('jenis_ruang', $saveedit);
 }
 
 // end MASTER JENIS RUANGAN
