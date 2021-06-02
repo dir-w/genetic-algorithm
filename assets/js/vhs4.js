@@ -637,6 +637,28 @@ $(function(){
 
 // end MASTER JENIS RUANGAN
 
+// start MASTER TYPE RUANGAN
+$('#typeruangTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"typeruangList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'nama_type' },
+ // { data: 'ket_jenis' },
+ { data : 'Aksi'},
+ ]
+});
+// end MASTER TYPE RUANGAN
+
 $('#typeTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
