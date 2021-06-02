@@ -68,12 +68,12 @@
 <!--END MODAL Add-->
 
 <!--MODAL HAPUS-->
-<div class="modal fade" id="ModalHapusJenisRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="ModalHapusTypeRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="hapusJenisRuanganModalLabel">WARNING MASTER JENIS RUANGAN</h5>
+                    <h5 class="modal-title text-danger" id="hapusTypeRuanganModalLabel">WARNING MASTER TYPE RUANGAN</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> -->
@@ -81,15 +81,15 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="hidden" name="idj" id="idj" value="" readonly="" visible>
-                    <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="nama_jenis" id="nama_jenis" required="required" readonly="" visible></p>
+                    <input type="hidden" name="idt" id="idt" value="" readonly="" visible>
+                    <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="nama_type" id="nama_type" required="required" readonly="" visible></p>
 
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                    <button class="btn_hapus btn btn-danger" id="btn_hapusjenisruangan">Delete</button>
+                    <button class="btn_hapus btn btn-danger" id="btn_hapustyperuangan">Delete</button>
                 </div>
             </form>
         </div>

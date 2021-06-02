@@ -653,10 +653,49 @@ $('#typeruangTable').DataTable ({
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
  { data: 'nama_type' },
- // { data: 'ket_jenis' },
  { data : 'Aksi'},
  ]
 });
+
+//GET DATA HAPUS Type Ruangan
+$(function(){
+  $('#typeruangTable').on('click','.item_hapustyperuangan', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetTypeRuangan",
+      data: {idt : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idt').val(id);
+        $('#nama_type').val(data.nama_type);
+        $('#ModalHapusTypeRuangan').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapustyperuangan').on('click',function(){
+    var idt=$('#idt').val();
+    $.ajax({
+      type : "POST",
+      url  : "typeruangandelete",
+      dataType : "JSON",
+      data : {idt: idt},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusTypeRuangan').modal('hide');
+        window.location.assign('typeruangan');
+      }
+    });
+    return false;
+  }); 
+});
+
+
 // end MASTER TYPE RUANGAN
 
 $('#typeTable').DataTable ({

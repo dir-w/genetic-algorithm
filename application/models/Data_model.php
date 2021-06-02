@@ -773,8 +773,8 @@ public function getTypeRuangMaster($postData=null)
 
 
             "Aksi" => "
-            <a href='javascript:void(0)' class='badge badge-danger item_hapusjenisruangan' data-placement='bottom' title='Delete' data-id=$record->idt  ;'><span class='far fa-trash-alt'></span></a>
-            <a href='javascript:void(0)' class='badge badge-warning edit_jenisruangan' data-placement='bottom' title='Edit' data-id=$record->idt ;'><span class='far fa-edit'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapustyperuangan' data-placement='bottom' title='Delete' data-id=$record->idt  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_typeruangan' data-placement='bottom' title='Edit' data-id=$record->idt ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -796,6 +796,26 @@ public function addtyperuangan($insertdataTypeRuangan)
 {
     $this->db->insert('type_ruang', $insertdataTypeRuangan);
 }
+
+public function getTypeRuanganbyKode($idt)
+{
+    $hsl=$this->db->query("SELECT * FROM type_ruang WHERE idt='$idt'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama_type' => $data->nama_type,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function delltyperuangan($idt)
+{
+    $hasil=$this->db->query("DELETE FROM type_ruang WHERE idt='$idt'");
+    return $hasil;
+}
+
 // end MASTER TYPE RUANGAN
 
 public function getTypeMaster($postData=null)
