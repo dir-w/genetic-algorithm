@@ -6,36 +6,36 @@
     
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
 
 
-     </div>
-     <div class="card-body">
-      <div class="table-responsive">
-          <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-            <!-- <table id="empTable" class="display"> -->
-                <thead class="thead-light">
-                  <tr> 
-                    <th width="10px">No</th>
-                    <th width="60px">Kode Ruangan</th>
-                    <th>Nama Ruangan</th>
-                    <th width="15px">kapasitas</th>
-                    <th>Type</th>
-                    <th>Jenis</th>
-                    <th>Lantai</th>
+       </div>
+       <div class="card-body">
+          <div class="table-responsive">
+              <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+                <!-- <table id="empTable" class="display"> -->
+                    <thead class="thead-light">
+                      <tr> 
+                        <th width="10px">No</th>
+                        <th width="60px">Kode Ruangan</th>
+                        <th>Nama Ruangan</th>
+                        <th width="15px">kapasitas</th>
+                        <th>Type</th>
+                        <th>Jenis</th>
+                        <th>Lantai</th>
 
-                    <th width="50px">Aksi</th>
-                </tr>
-            </thead>
+                        <th width="50px">Aksi</th>
+                    </tr>
+                </thead>
 
-            <!-- load barang -->
+                <!-- load barang -->
 
 
-        </table>
+            </table>
+        </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 
@@ -107,7 +107,14 @@
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label">Lantai</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="lantai" name="lantai" placeholder="Lantai Ruangan">
+                            <select class="form-control" name="lantai" id="lantai">
+                                <option value="">-- Selected --</option>
+                                <?php
+                                for ($i = 1; $i < 10; $i++){
+                                    echo '<option value="'.$i.'">'.$i.'</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
 
@@ -220,7 +227,14 @@
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Lantai</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="lantairu" name="lantairu" placeholder="Lantai Ruangan">
+                                <select class="form-control" name="lantairu" id="lantairu">
+                                    <option value="">-- Selected --</option>
+                                    <?php
+                                    for ($i = 1; $i < 10; $i++){
+                                        echo '<option value="'.$i.'">'.$i.'</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
 
