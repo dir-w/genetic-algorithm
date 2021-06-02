@@ -607,6 +607,9 @@ public function saveeditruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id
 
 // end Master Ruangan
 
+
+// Start MASTER JENIS RUANGAN
+
 public function getJenisRuangMaster($postData=null)
 {
     $response = array();
@@ -662,9 +665,8 @@ public function getJenisRuangMaster($postData=null)
 
 
             "Aksi" => "
-            <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-            <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-            <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapusjenisruangan' data-placement='bottom' title='Delete' data-id=$record->idj  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_jenisruangan' data-placement='bottom' title='Edit' data-id=$record->idj ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -681,6 +683,39 @@ public function getJenisRuangMaster($postData=null)
 
     return $response;
 }
+
+public function addjenisruangan($insertdataJenisRuangan)
+{
+    $this->db->insert('jenis_ruang', $insertdataJenisRuangan);
+}
+
+public function getJenisRuanganbyKode($idj)
+{
+    $hsl=$this->db->query("SELECT * FROM jenis_ruang WHERE idj='$idj'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama_jenis' => $data->nama_jenis,
+                'ket_jenis' => $data->ket_jenis,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function delljenisruangan($idj)
+{
+    $hasil=$this->db->query("DELETE FROM jenis_ruang WHERE idj='$idj'");
+    return $hasil;
+}
+
+public function saveeditjenisruangan($idj, $saveedit)
+{
+    $this->db->where('idj', $idj);
+    $this->db->update('jenis_ruang', $saveedit);
+}
+
+// end MASTER JENIS RUANGAN
 
 public function getTypeMaster($postData=null)
 {

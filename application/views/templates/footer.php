@@ -1,4 +1,4 @@
-           
+
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
@@ -60,7 +60,7 @@
 
 
 
-<script src="<?= base_url('assets/'); ?>js/vhs4.js"></script>
+<script src="<?= base_url('assets/'); ?>js/vhs3.js"></script>
 
 <!-- <script>
     addEventListener('load', function myfuntion(){
