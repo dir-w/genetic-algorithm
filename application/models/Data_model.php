@@ -791,6 +791,11 @@ public function getTypeRuangMaster($postData=null)
 
     return $response;
 }
+
+public function addtyperuangan($insertdataTypeRuangan)
+{
+    $this->db->insert('type_ruang', $insertdataTypeRuangan);
+}
 // end MASTER TYPE RUANGAN
 
 public function getTypeMaster($postData=null)

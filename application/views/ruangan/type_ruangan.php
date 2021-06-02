@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header">
 
-            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Tambah</a>
+            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newTypeRuanganModal">Tambah</a>
 
 
         </div>
@@ -39,27 +39,20 @@
 <!-- End of Main Content --> 
 
 <!-- Modal add -->
-<div class="modal fade" id="newJenisRuanganModal" tabindex="-1" role="dialog" aria-labelledby="newJenisRuanganModalLabel" aria-hidden="true">
+<div class="modal fade" id="newTypeRuanganModal" tabindex="-1" role="dialog" aria-labelledby="newTypeRuanganModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newJenisRuanganModalLabel">ADD MASTER JENIS RUANGAN</h5>
+                <h5 class="modal-title text-danger" id="newTypeRuanganModalLabel">ADD MASTER TYPE RUANGAN</h5>
                 
             </div>
-            <form action="<?= base_url('data/jenisruangan'); ?>" method="post">
+            <form action="<?= base_url('data/typeruangan'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label">Nama</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Jenis Ruangan">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label">Keterangan</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan Jenis Ruangan">
                         </div>
                     </div>
 
