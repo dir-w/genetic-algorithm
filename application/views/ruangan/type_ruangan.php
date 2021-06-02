@@ -99,42 +99,34 @@
 <!--END MODAL HAPUS-->
 
 <!-- modal edit data -->
-<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditJenisRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditTypeRuangan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditJenisRuanganModalLabel">EDIT MASTER RUANGAN</h5>
+                    <h5 class="modal-title text-danger" id="EditTypeRuanganModalLabel">EDIT MASTER RUANGAN</h5>
                     
                 </div>
                 <form class="form-horizontal">
                     <div class="modal-body">
                         <div class="form-group">
                             <!-- <label for="range">Kode</label>                    -->
-                            <input type="hidden" class="form-control" name="idjr" id="idjr" required="required" readonly="" >
+                            <input type="hidden" class="form-control" name="idtru" id="idtru" required="required" readonly="" >
                         </div>
 
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama_jenisr" name="nama_jenis" placeholder="Nama Jenis Ruangan">
+                                <input type="text" class="form-control" id="nama_typeru" name="nama_typeru" placeholder="Nama Jenis Ruangan">
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Keterangan</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="ket_jenisr" name="ket_jenis" placeholder="Keterangan Jenis Ruangan">
-                            </div>
-                        </div>
-
-
-
+                        
                     </div>             
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                        <button class="btn_edit btn btn-danger" id="btn_editjenisruangan">Save</button>
+                        <button class="btn_edit btn btn-danger" id="btn_edittyperuangan">Save</button>
                     </div>
                 </form>
             </div>

@@ -695,6 +695,42 @@ $(function(){
   }); 
 });
 
+//GET UPDATE
+$(function(){
+  $('#typeruangTable').on('click','.edit_typeruangan', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetTypeRuangan",
+      data: {idt : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idtru').val(id);
+        $('#nama_typeru').val(data.nama_type);
+        $('#ModalEditTypeRuangan').modal('show');
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_edittyperuangan').on('click', function(){
+    var idt =$('#idtru').val();
+    var nama_type =$('#nama_typeru').val();
+    $.ajax({
+      method: 'POST',
+      url: 'edittypeRuangan',
+      dataType: 'JSON',
+      data: {idt:idt, nama_type:nama_type},
+      success: function(data){
+        $('#idtru').val("");
+        $('#nama_typeru').val("");
+        $('#ModalEditTypeRuangan').modal('hide');
+      }
+    });
+  });
+});
+
 
 // end MASTER TYPE RUANGAN
 

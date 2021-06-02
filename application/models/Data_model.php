@@ -816,6 +816,12 @@ public function delltyperuangan($idt)
     return $hasil;
 }
 
+public function saveedittyperuangan($idt, $saveedittype)
+{
+    $this->db->where('idt', $idt);
+    $this->db->update('type_ruang', $saveedittype);
+}
+
 // end MASTER TYPE RUANGAN
 
 public function getTypeMaster($postData=null)
