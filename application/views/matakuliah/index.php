@@ -6,11 +6,11 @@
 
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Tambah</a>
+            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Add</a>
 
 
-       </div>
-       <div class="card-body">
+        </div>
+        <div class="card-body">
           <div class="table-responsive">
               <table id="matkulTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
                 <!-- <table id="empTable" class="display"> -->
@@ -52,16 +52,51 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newMapelModalLabel">ADD MASTER TYPE MATAKULIAH</h5>
+                <h5 class="modal-title text-danger" id="newMapelModalLabel">ADD MASTER MATAKULIAH</h5>
                 
             </div>
-            <form action="<?= base_url('data/typematkul'); ?>" method="post">
+            <form action="<?= base_url('data/matkul'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label">Nama</label>
+                        <label class="col-sm-4 col-form-label">Kelompok</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Type Mata Kuliah">
+                            <input type="text" class="form-control" id="kel" name="kel" placeholder="Kelompok Matakuliah">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Kode Matakuliah</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="kodemk" name="kodemk" placeholder="Kode Matakuliah">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Nama Matakuliah</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="kel" name="kel" placeholder="Nama Matakuliah">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Type</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="typemk" name="typemk" placeholder="Kelompok Mata Kuliah">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Jenis</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="jenismk" name="jenismk" placeholder="Jenis Matakuliah">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Semester</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="smk" name="smk" placeholder="Semester">
                         </div>
                     </div>
 

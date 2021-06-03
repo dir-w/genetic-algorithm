@@ -852,7 +852,7 @@ $('#matkulTable').DataTable ({
  { data: 'nama' },
 
  { data: 'keterangan' },
- { data: 'jenis' },
+ { data: 'nama_jenismk' },
  { data: 'semester' },
  
  { data : 'Aksi'},
