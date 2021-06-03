@@ -532,8 +532,6 @@ public function edittypeRuangan()
     $saveedittype = [
         'nama_type' => $this->input->post('nama_type')
     ];
-    // var_dump($saveedittype);
-    // die;
     $data = $this->Data_model->saveedittyperuangan($idt, $saveedittype);
 
     
@@ -593,6 +591,19 @@ public function typematkuldelete()
    $data=$this->Data_model->delltypematkul($idtpel);
    echo json_encode($data); 
    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function edittypeMatKul()
+{
+    $idtpel = $this->input->post('idtpel');
+    $saveedittypematkul = [
+        'keterangan' => $this->input->post('keterangan')
+    ];
+    $data = $this->Data_model->saveedittypematkul($idtpel, $saveedittypematkul);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
 }
 
 // end MASTER TYPE MATA KULIAH

@@ -923,6 +923,12 @@ public function delltypematkul($idtpel)
     return $hasil;
 }
 
+public function saveedittypematkul($idtpel, $saveedittypematkul)
+{
+    $this->db->where('idtpel', $idtpel);
+    $this->db->update('typepelajaran', $saveedittypematkul);
+}
+
 
 // end MASTER TYPE MATA KULIAH
 

@@ -793,6 +793,42 @@ $(function(){
   }); 
 });
 
+//GET UPDATE
+$(function(){
+  $('#typeTable').on('click','.edit_typematkul', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetTypeMatKul",
+      data: {idtpel : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idtpel').val(id);
+        $('#keterangan').val(data.keterangan);
+        $('#ModalEditTypeMatkul').modal('show');
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_edittyperuangan').on('click', function(){
+    var idtpel =$('#idtpel').val();
+    var keterangan =$('#keterangan').val();
+    $.ajax({
+      method: 'POST',
+      url: 'edittypeMatKul',
+      dataType: 'JSON',
+      data: {idtpel:idtpel, keterangan:keterangan},
+      success: function(data){
+        $('#idtpel').val("");
+        $('#keterangan').val("");
+        $('#ModalEditTypeMatkul').modal('hide');
+      }
+    });
+  });
+});
+
 // end MASTER TYPE MATA KULIAH
 
 $('#matkulTable').DataTable ({
