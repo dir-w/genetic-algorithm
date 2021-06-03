@@ -831,6 +831,8 @@ $(function(){
 
 // end MASTER TYPE MATA KULIAH
 
+// start MASTER MATA KULIAH
+
 $('#matkulTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
@@ -857,6 +859,10 @@ $('#matkulTable').DataTable ({
  ]
 });
 
+// end MASTER MATA KULIAH
+
+// start MASTER KELOMPOK MATA KULIAH
+
 $('#kelmatkulTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
@@ -879,7 +885,45 @@ $('#kelmatkulTable').DataTable ({
  ]
 });
 
+//GET DATA HAPUS Type MATAKULIAH
+$(function(){
+  $('#kelmatkulTable').on('click','.item_hapuskelmatkul', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetKelMatKul",
+      data: {idk : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idkel').val(id);
+        $('#nama_kelo').val(data.nama_kelompok_mk);
+        $('#ModalHapusKelMatKul').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
 
+$(function(){
+  $('#btn_hapustkelmatkkul').on('click',function(){
+    var idk=$('#idkel').val();
+    $.ajax({
+      type : "POST",
+      url  : "kelmatkuldelete",
+      dataType : "JSON",
+      data : {idk: idk},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusKelMatKul').modal('hide');
+        window.location.assign('kelmatkul');
+      }
+    });
+    return false;
+  }); 
+});
+
+// end MASTER MATA KULIAH
 
 
 

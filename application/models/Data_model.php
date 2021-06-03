@@ -1078,8 +1078,8 @@ public function getKelMatkulMaster($postData=null)
             "nama_kelompok_mk"=>$record->nama_kelompok_mk,
             "ket_kelompok"=>$record->ket_kelompok,
             "Aksi" => "
-            <a href='javascript:void(0)' class='badge badge-danger item_hapustypematkul' data-placement='bottom' title='Delete' data-id=$record->idk  ;'><span class='far fa-trash-alt'></span></a>
-            <a href='javascript:void(0)' class='badge badge-warning edit_typematkul' data-placement='bottom' title='Edit' data-id=$record->idk ;'><span class='far fa-edit'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapuskelmatkul' data-placement='bottom' title='Delete' data-id=$record->idk  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_kelmatkul' data-placement='bottom' title='Edit' data-id=$record->idk ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -1100,6 +1100,25 @@ public function getKelMatkulMaster($postData=null)
 public function addkelmatkul($insertdataKelMatkul)
 {
     $this->db->insert('kelompokmk', $insertdataKelMatkul);
+}
+
+public function getKelMatKulbyKode($idk)
+{
+    $hsl=$this->db->query("SELECT * FROM kelompokmk WHERE idk='$idk'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama_kelompok_mk' => $data->nama_kelompok_mk,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellkelmatkul($idk)
+{
+    $hasil=$this->db->query("DELETE FROM kelompokmk WHERE idk='$idk'");
+    return $hasil;
 }
 
 // end MASTER KELOMPOK MATA KULIAH
