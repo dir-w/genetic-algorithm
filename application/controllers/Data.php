@@ -608,17 +608,20 @@ public function edittypeMatKul()
 
 // end MASTER TYPE MATA KULIAH
 
+// start MASTER MATA KULIAH
+
 public function matkul()
 {
     $data['title'] = 'Master Matakuliah';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+    
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('matakuliah/index', $data);
     $this->load->view('templates/footer');
+
 }
 
 public function matkulList()
@@ -632,17 +635,33 @@ public function matkulList()
     echo json_encode($data);
 }
 
+// end MASTER MATA KULIAH
+
+// start MASTER KELOMPOK MATA KULIAH
+
 public function kelmatkul()
 {
     $data['title'] = 'Master Kelompok Matakuliah';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $this->form_validation->set_rules('nama_kel', 'Kelompok Matakuliah', 'required');
+    $this->form_validation->set_rules('ket_kel', 'Keterangan Matakuliah', 'required');
+    if ($this->form_validation->run() == false)
+    {
 
-
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('matakuliah/kelompok_matakuliah', $data);
-    $this->load->view('templates/footer');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('matakuliah/kelompok_matakuliah', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataKelMatkul = [
+            'nama_kelompok_mk' => $this->input->post('nama_kel'),
+            'ket_kelompok' => $this->input->post('ket_kel')
+        ];
+        $this->Data_model->addkelmatkul($insertdataKelMatkul);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/kelmatkul');
+    }
 }
 
 public function kelmatkulList()
@@ -655,6 +674,8 @@ public function kelmatkulList()
 
     echo json_encode($data);
 }
+
+// end MASTER KELOMPOK MATA KULIAH
 
 
 

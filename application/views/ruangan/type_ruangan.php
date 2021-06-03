@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header">
 
-            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newTypeRuanganModal">Tambah</a>
+            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newTypeRuanganModal">Add</a>
 
 
         </div>
