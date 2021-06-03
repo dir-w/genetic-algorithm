@@ -6,31 +6,31 @@
 
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Add</a>
 
 
-     </div>
-     <div class="card-body">
-      <div class="table-responsive">
-          <table id="typeTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-            <!-- <table id="empTable" class="display"> -->
-                <thead class="thead-light">
-                  <tr> 
-                    <th width="10px">No</th>
-                    <th>Type Matakuliah</th>
+       </div>
+       <div class="card-body">
+          <div class="table-responsive">
+              <table id="typeTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+                <!-- <table id="empTable" class="display"> -->
+                    <thead class="thead-light">
+                      <tr> 
+                        <th width="10px">No</th>
+                        <th>Type Matakuliah</th>
 
-                    <th width="50px">Aksi</th>
-                </tr>
-            </thead>
+                        <th width="50px">Aksi</th>
+                    </tr>
+                </thead>
 
-            <!-- load barang -->
+                <!-- load barang -->
 
 
-        </table>
+            </table>
+        </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 
@@ -128,7 +128,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                        <button class="btn_edit btn btn-danger" id="btn_edittyperuangan">Save</button>
+                        <button class="btn_edit btn btn-danger" id="btn_edittypematkul">Save</button>
                     </div>
                 </form>
             </div>

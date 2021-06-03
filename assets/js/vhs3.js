@@ -812,7 +812,7 @@ $(function(){
 });
 
 $(function(){
-  $('#btn_edittyperuangan').on('click', function(){
+  $('#btn_edittypematkul').on('click', function(){
     var idtpel =$('#idtpel').val();
     var keterangan =$('#keterangan').val();
     $.ajax({
@@ -830,6 +830,8 @@ $(function(){
 });
 
 // end MASTER TYPE MATA KULIAH
+
+// start MASTER MATA KULIAH
 
 $('#matkulTable').DataTable ({
   'processing' : true,
@@ -857,6 +859,10 @@ $('#matkulTable').DataTable ({
  ]
 });
 
+// end MASTER MATA KULIAH
+
+// start MASTER KELOMPOK MATA KULIAH
+
 $('#kelmatkulTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
@@ -879,7 +885,86 @@ $('#kelmatkulTable').DataTable ({
  ]
 });
 
+//GET DATA HAPUS Type MATAKULIAH
+$(function(){
+  $('#kelmatkulTable').on('click','.item_hapuskelmatkul', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetKelMatKul",
+      data: {idk : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idkel').val(id);
+        $('#nama_kelo').val(data.nama_kelompok_mk);
+        $('#ModalHapusKelMatKul').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
 
+$(function(){
+  $('#btn_hapustkelmatkkul').on('click',function(){
+    var idk=$('#idkel').val();
+    $.ajax({
+      type : "POST",
+      url  : "kelmatkuldelete",
+      dataType : "JSON",
+      data : {idk: idk},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusKelMatKul').modal('hide');
+        window.location.assign('kelmatkul');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#kelmatkulTable').on('click','.edit_kelmatkul', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetKelMatKul",
+      data: {idk : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#idk').val(id);
+        $('#nama_kelompok').val(data.nama_kelompok_mk);
+        $('#ket_kelompok').val(data.ket_kelompok);
+        $('#ModalEditKelMatkul').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editkelmatakuliah').on('click', function(){
+    var idk =$('#idk').val();
+    var nama_kelompok_mk =$('#nama_kelompok').val();
+    var ket_kelompok =$('#ket_kelompok').val();
+    $.ajax({
+      method: 'POST',
+      url: 'editkelMatKul',
+      dataType: 'JSON',
+      data: {idk:idk, nama_kelompok_mk:nama_kelompok_mk, ket_kelompok:ket_kelompok},
+      success: function(data){
+        $('#idk').val("");
+        $('#nama_kelompok').val("");
+        $('#ket_kelompok').val("");
+        $('#ModalEditKelMatkul').modal('hide');
+      }
+    });
+  });
+});
+
+// end MASTER MATA KULIAH
 
 
 

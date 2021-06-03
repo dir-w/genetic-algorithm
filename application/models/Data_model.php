@@ -932,6 +932,8 @@ public function saveedittypematkul($idtpel, $saveedittypematkul)
 
 // end MASTER TYPE MATA KULIAH
 
+// start MASTER MATA KULIAH
+
 public function getMatkulMaster($postData=null)
 {
     $response = array();
@@ -1019,6 +1021,10 @@ public function getMatkulMaster($postData=null)
     return $response;
 }
 
+// end MASTER MATA KULIAH
+
+// start MASTER KELOMPOK MATA KULIAH
+
 public function getKelMatkulMaster($postData=null)
 {
     $response = array();
@@ -1059,11 +1065,6 @@ public function getKelMatkulMaster($postData=null)
         $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
-     // $this->db->select('*');
-     // $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*');
-     // $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idt', "left");
-     // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
-     // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk', "left");
     $records = $this->db->get('kelompokmk')->result();
 
 
@@ -1076,15 +1077,9 @@ public function getKelMatkulMaster($postData=null)
             "no"=>$no++,
             "nama_kelompok_mk"=>$record->nama_kelompok_mk,
             "ket_kelompok"=>$record->ket_kelompok,
-
-
-
-
-
             "Aksi" => "
-            <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-            <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-            <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapuskelmatkul' data-placement='bottom' title='Delete' data-id=$record->idk  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_kelmatkul' data-placement='bottom' title='Edit' data-id=$record->idk ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -1102,7 +1097,38 @@ public function getKelMatkulMaster($postData=null)
     return $response;
 }
 
+public function addkelmatkul($insertdataKelMatkul)
+{
+    $this->db->insert('kelompokmk', $insertdataKelMatkul);
+}
 
+public function getKelMatKulbyKode($idk)
+{
+    $hsl=$this->db->query("SELECT * FROM kelompokmk WHERE idk='$idk'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama_kelompok_mk' => $data->nama_kelompok_mk,
+                'ket_kelompok' => $data->ket_kelompok,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellkelmatkul($idk)
+{
+    $hasil=$this->db->query("DELETE FROM kelompokmk WHERE idk='$idk'");
+    return $hasil;
+}
+
+public function saveeditkelmatkul($idk, $saveeditkelmatkul)
+{
+    $this->db->where('idk', $idk);
+    $this->db->update('kelompokmk', $saveeditkelmatkul);
+}
+
+// end MASTER KELOMPOK MATA KULIAH
 
 
 

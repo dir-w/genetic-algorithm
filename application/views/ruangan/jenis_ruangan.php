@@ -6,33 +6,33 @@
 
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Tambah</a>
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Add</a>
 
 
-       </div>
-       <div class="card-body">
-          <div class="table-responsive">
-              <table id="jenisruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-                <!-- <table id="empTable" class="display"> -->
-                    <thead class="thead-light">
-                      <tr> 
-                        <th width="10px">No</th>
-                        <th width="60px">Nama</th>
-                        <th>Keterangan</th>
-                        <!-- <th>Prodi</th> -->
+     </div>
+     <div class="card-body">
+      <div class="table-responsive">
+          <table id="jenisruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+            <!-- <table id="empTable" class="display"> -->
+                <thead class="thead-light">
+                  <tr> 
+                    <th width="10px">No</th>
+                    <th width="60px">Nama</th>
+                    <th>Keterangan</th>
+                    <!-- <th>Prodi</th> -->
 
-                        <th width="50px">Aksi</th>
-                    </tr>
-                </thead>
+                    <th width="50px">Aksi</th>
+                </tr>
+            </thead>
 
-                <!-- load barang -->
-
-
-            </table>
-        </div>
+            <!-- load barang -->
 
 
+        </table>
     </div>
+
+
+</div>
 </div>
 
 

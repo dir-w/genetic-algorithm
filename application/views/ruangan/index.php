@@ -6,36 +6,36 @@
     
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Tambah</a>
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Add</a>
 
 
-     </div>
-     <div class="card-body">
-      <div class="table-responsive">
-          <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-            <!-- <table id="empTable" class="display"> -->
-                <thead class="thead-light">
-                  <tr> 
-                    <th width="10px">No</th>
-                    <th width="60px">Kode Ruangan</th>
-                    <th>Nama Ruangan</th>
-                    <th width="15px">kapasitas</th>
-                    <th>Type</th>
-                    <th>Jenis</th>
-                    <th>Lantai</th>
+       </div>
+       <div class="card-body">
+          <div class="table-responsive">
+              <table id="ruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+                <!-- <table id="empTable" class="display"> -->
+                    <thead class="thead-light">
+                      <tr> 
+                        <th width="10px">No</th>
+                        <th width="60px">Kode Ruangan</th>
+                        <th>Nama Ruangan</th>
+                        <th width="15px">kapasitas</th>
+                        <th>Type</th>
+                        <th>Jenis</th>
+                        <th>Lantai</th>
 
-                    <th width="50px">Aksi</th>
-                </tr>
-            </thead>
+                        <th width="50px">Aksi</th>
+                    </tr>
+                </thead>
 
-            <!-- load barang -->
+                <!-- load barang -->
 
 
-        </table>
+            </table>
+        </div>
+
+
     </div>
-
-
-</div>
 </div>
 
 
