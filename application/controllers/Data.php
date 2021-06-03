@@ -543,6 +543,8 @@ public function edittypeRuangan()
 
 // end MASTER TYPE RUANGAN
 
+// start MASTER TYPE MATA KULIAH
+
 public function typematkul()
 {
     $data['title'] = 'Master Type Matakuliah';
