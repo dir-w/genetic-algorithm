@@ -637,6 +637,103 @@ $(function(){
 
 // end MASTER JENIS RUANGAN
 
+// start MASTER TYPE RUANGAN
+$('#typeruangTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"typeruangList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'nama_type' },
+ { data : 'Aksi'},
+ ]
+});
+
+//GET DATA HAPUS Type Ruangan
+$(function(){
+  $('#typeruangTable').on('click','.item_hapustyperuangan', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetTypeRuangan",
+      data: {idt : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idt').val(id);
+        $('#nama_type').val(data.nama_type);
+        $('#ModalHapusTypeRuangan').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapustyperuangan').on('click',function(){
+    var idt=$('#idt').val();
+    $.ajax({
+      type : "POST",
+      url  : "typeruangandelete",
+      dataType : "JSON",
+      data : {idt: idt},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusTypeRuangan').modal('hide');
+        window.location.assign('typeruangan');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#typeruangTable').on('click','.edit_typeruangan', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetTypeRuangan",
+      data: {idt : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idtru').val(id);
+        $('#nama_typeru').val(data.nama_type);
+        $('#ModalEditTypeRuangan').modal('show');
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_edittyperuangan').on('click', function(){
+    var idt =$('#idtru').val();
+    var nama_type =$('#nama_typeru').val();
+    $.ajax({
+      method: 'POST',
+      url: 'edittypeRuangan',
+      dataType: 'JSON',
+      data: {idt:idt, nama_type:nama_type},
+      success: function(data){
+        $('#idtru').val("");
+        $('#nama_typeru').val("");
+        $('#ModalEditTypeRuangan').modal('hide');
+      }
+    });
+  });
+});
+
+
+// end MASTER TYPE RUANGAN
+
 $('#typeTable').DataTable ({
   'processing' : true,
   'serverSide' : true,

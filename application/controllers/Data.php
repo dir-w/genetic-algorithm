@@ -465,16 +465,83 @@ public function editjenisRuangan()
     ];
 
     $data = $this->Data_model->saveeditjenisruangan($idj, $saveedit);
-    // $nama_jenis = $this->input->post('nama_jenis');
-    // $ket_jenis = $this->input->post('ket_jenis');
-    
-    // $data = $this->Data_model->saveeditjenisruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id_jenis, $id_ruang);
+
     
     echo json_encode($data);
     $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
 }
 
 // end master JENIS RUANGAN
+
+// start MASTER TYPE RUANGAN
+public function typeruangan()
+{
+    $data['title'] = 'Master Type Ruangan';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->form_validation->set_rules('nama', 'Nama Type Ruangan', 'required');
+    
+    if ($this->form_validation->run() == false)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('ruangan/type_ruangan', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataTypeRuangan = [
+            'nama_type' => $this->input->post('nama')
+        ];
+
+        $this->Data_model->addtyperuangan($insertdataTypeRuangan);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/typeruangan');
+    }
+
+}
+
+public function typeruangList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getTypeRuangMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function tagetTypeRuangan($idt='')
+{
+    $idt=$this->input->post('idt');
+    $data=$this->Data_model->getTypeRuanganbyKode($idt);
+    echo json_encode($data);  
+}
+
+public function typeruangandelete()
+{
+   $idt=$this->input->post('idt');
+   $data=$this->Data_model->delltyperuangan($idt);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function edittypeRuangan()
+{
+    $idt = $this->input->post('idt');
+    $saveedittype = [
+        'nama_type' => $this->input->post('nama_type')
+    ];
+    // var_dump($saveedittype);
+    // die;
+    $data = $this->Data_model->saveedittyperuangan($idt, $saveedittype);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
+
+// end MASTER TYPE RUANGAN
 
 public function typematkul()
 {
