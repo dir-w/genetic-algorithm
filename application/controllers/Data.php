@@ -532,8 +532,6 @@ public function edittypeRuangan()
     $saveedittype = [
         'nama_type' => $this->input->post('nama_type')
     ];
-    // var_dump($saveedittype);
-    // die;
     $data = $this->Data_model->saveedittyperuangan($idt, $saveedittype);
 
     
@@ -543,17 +541,30 @@ public function edittypeRuangan()
 
 // end MASTER TYPE RUANGAN
 
+// start MASTER TYPE MATA KULIAH
+
 public function typematkul()
 {
     $data['title'] = 'Master Type Matakuliah';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+    $this->form_validation->set_rules('ket', 'Type Matakuliah', 'required');
+    if ($this->form_validation->run() == false)
+    {
 
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('typemapel/index', $data);
-    $this->load->view('templates/footer');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('matakuliah/type_matakuliah', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataTypeMatkul = [
+            'keterangan' => $this->input->post('ket')
+        ];
+        $this->Data_model->addtypematkul($insertdataTypeMatkul);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/typematkul');
+    }
 }
 
 public function typeList()
@@ -566,6 +577,36 @@ public function typeList()
 
     echo json_encode($data);
 }
+
+public function tagetTypeMatKul($idtpel='')
+{
+    $idtpel=$this->input->post('idtpel');
+    $data=$this->Data_model->getTypeMatKulbyKode($idtpel);
+    echo json_encode($data);  
+}
+
+public function typematkuldelete()
+{
+   $idtpel=$this->input->post('idtpel');
+   $data=$this->Data_model->delltypematkul($idtpel);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function edittypeMatKul()
+{
+    $idtpel = $this->input->post('idtpel');
+    $saveedittypematkul = [
+        'keterangan' => $this->input->post('keterangan')
+    ];
+    $data = $this->Data_model->saveedittypematkul($idtpel, $saveedittypematkul);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
+
+// end MASTER TYPE MATA KULIAH
 
 public function matkul()
 {

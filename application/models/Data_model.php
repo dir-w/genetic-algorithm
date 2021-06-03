@@ -770,8 +770,6 @@ public function getTypeRuangMaster($postData=null)
         $data[] = array( 
             "no"=>$no++,
             "nama_type"=>$record->nama_type,
-
-
             "Aksi" => "
             <a href='javascript:void(0)' class='badge badge-danger item_hapustyperuangan' data-placement='bottom' title='Delete' data-id=$record->idt  ;'><span class='far fa-trash-alt'></span></a>
             <a href='javascript:void(0)' class='badge badge-warning edit_typeruangan' data-placement='bottom' title='Edit' data-id=$record->idt ;'><span class='far fa-edit'></span></a>
@@ -823,6 +821,8 @@ public function saveedittyperuangan($idt, $saveedittype)
 }
 
 // end MASTER TYPE RUANGAN
+
+// start MASTER TYPE MATA KULIAH
 
 public function getTypeMaster($postData=null)
 {
@@ -879,12 +879,9 @@ public function getTypeMaster($postData=null)
             "no"=>$no++,
             "keterangan"=>$record->keterangan,
 
-
-
             "Aksi" => "
-            <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-            <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-            <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapustypematkul' data-placement='bottom' title='Delete' data-id=$record->idtpel  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_typematkul' data-placement='bottom' title='Edit' data-id=$record->idtpel ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -901,6 +898,39 @@ public function getTypeMaster($postData=null)
 
     return $response;
 }
+
+public function addtypematkul($insertdataTypeMatkul)
+{
+    $this->db->insert('typepelajaran', $insertdataTypeMatkul);
+}
+
+public function getTypeMatKulbyKode($idtpel)
+{
+    $hsl=$this->db->query("SELECT * FROM typepelajaran WHERE idtpel='$idtpel'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'keterangan' => $data->keterangan,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function delltypematkul($idtpel)
+{
+    $hasil=$this->db->query("DELETE FROM typepelajaran WHERE idtpel='$idtpel'");
+    return $hasil;
+}
+
+public function saveedittypematkul($idtpel, $saveedittypematkul)
+{
+    $this->db->where('idtpel', $idtpel);
+    $this->db->update('typepelajaran', $saveedittypematkul);
+}
+
+
+// end MASTER TYPE MATA KULIAH
 
 public function getMatkulMaster($postData=null)
 {
@@ -944,7 +974,7 @@ public function getMatkulMaster($postData=null)
     $this->db->limit($rowperpage, $start);
     $this->db->select('matapelajaran.*');
     $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*');
-    $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idt', "left");
+    $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idtpel', "left");
     $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
      // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk', "left");
     $records = $this->db->get()->result();
