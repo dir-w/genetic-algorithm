@@ -690,6 +690,20 @@ public function kelmatkuldelete()
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
+public function editkelMatKul()
+{
+    $idk = $this->input->post('idk');
+    $saveeditkelmatkul = [
+        'nama_kelompok_mk' => $this->input->post('nama_kelompok_mk'),
+        'ket_kelompok' => $this->input->post('ket_kelompok')
+    ];
+    $data = $this->Data_model->saveeditkelmatkul($idk, $saveeditkelmatkul);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
+
 // end MASTER KELOMPOK MATA KULIAH
 
 

@@ -128,7 +128,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                        <button class="btn_edit btn btn-danger" id="btn_edittyperuangan">Save</button>
+                        <button class="btn_edit btn btn-danger" id="btn_edittypematkul">Save</button>
                     </div>
                 </form>
             </div>

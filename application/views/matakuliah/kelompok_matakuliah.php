@@ -110,4 +110,48 @@
 </div>
 <!--END MODAL HAPUS-->
 
+<!-- modal edit data -->
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditKelMatkul" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EditKelMatkulModalLabel">EDIT MASTER KELOMPOK MATAKULIAH</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="text" class="form-control" name="idk" id="idk" required="required" readonly="" >
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Kelompok</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama_kelompok" name="nama_kelompok" placeholder="Type Mata Kuliah">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Keterangan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ket_kelompok" name="ket_kelompok" placeholder="Type Mata Kuliah">
+                            </div>
+                        </div>
+
+                        
+                    </div>             
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editkelmatakuliah">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->
+
 
