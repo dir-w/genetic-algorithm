@@ -74,27 +74,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-danger" id="hapusTypeRuanganModalLabel">WARNING MASTER TYPE RUANGAN</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
-            </div>
-            <form class="form-horizontal">
-                <div class="modal-body">
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
 
-                    <input type="hidden" name="idt" id="idt" value="" readonly="" visible>
-                    <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="nama_type" id="nama_type" required="required" readonly="" visible></p>
+                        <input type="hidden" name="idt" id="idt" value="" readonly="" visible>
+                        <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="nama_type" id="nama_type" required="required" readonly="" visible></p>
+
+                        </div>
 
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                    <button class="btn_hapus btn btn-danger" id="btn_hapustyperuangan">Delete</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_hapus btn btn-danger" id="btn_hapustyperuangan">Delete</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <!--END MODAL HAPUS-->
 
