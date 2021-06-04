@@ -60,17 +60,17 @@ class Data_model extends CI_Model
     foreach($records as $record ){
 
         $data[] = array( 
-         "no"=>$no++,
-         "kode"=>$record->kode,
-         "range_jam"=>$record->range_jam,
+           "no"=>$no++,
+           "kode"=>$record->kode,
+           "range_jam"=>$record->range_jam,
 
 
 
-         "Aksi" => "
-         <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='Modal' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-         <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='Modal' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
-         "
-     ); 
+           "Aksi" => "
+           <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='Modal' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+           <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='Modal' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
+           "
+       ); 
         
     }
 
@@ -171,16 +171,16 @@ public function getHariMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-         "no"=>$no++,
-         "kode"=>$record->kode,
-         "nama"=>$record->nama,
+           "no"=>$no++,
+           "kode"=>$record->kode,
+           "nama"=>$record->nama,
 
 
-         "Aksi" => "
-         <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-         <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
-         "
-     ); 
+           "Aksi" => "
+           <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+           <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
+           "
+       ); 
         
     }
 
@@ -281,16 +281,16 @@ public function getTAMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-         "no"=>$no++,
-         "kode"=>$record->kode,
-         "tahun"=>$record->tahun,
+           "no"=>$no++,
+           "kode"=>$record->kode,
+           "tahun"=>$record->tahun,
 
 
-         "Aksi" => "
-         <a href='javascript:void(0)' class='badge badge-danger item_hapusta' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-         <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
-         "
-     ); 
+           "Aksi" => "
+           <a href='javascript:void(0)' class='badge badge-danger item_hapusta' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+           <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
+           "
+       ); 
         
     }
 
@@ -377,46 +377,46 @@ public function getDosenMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-       $this->db->where($searchQuery);
-   $this->db->order_by($columnName, $columnSortOrder);
-   $this->db->limit($rowperpage, $start);
-   $this->db->select('guru.*', 'status_dosen.kode as kd', 'status_dosen.status');
-   $this->db->from('guru');
-   $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
-   $records = $this->db->get()->result();
+     $this->db->where($searchQuery);
+ $this->db->order_by($columnName, $columnSortOrder);
+ $this->db->limit($rowperpage, $start);
+ $this->db->select('guru.*', 'status_dosen.kode as kd', 'status_dosen.status');
+ $this->db->from('guru');
+ $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
+ $records = $this->db->get()->result();
 
-   $data = array();
+ $data = array();
 
-   $no = 1;
-   foreach($records as $record ){
+ $no = 1;
+ foreach($records as $record ){
 
     $data[] = array( 
-     "no"=>$no++,
-     "kode"=>$record->kode,
-     "nip"=>$record->nip,
-     "nama"=>$record->nama,
-     "alamat"=>$record->alamat,
-     "telp"=>$record->telp,
-     "status_dosen"=> $record->status,
+       "no"=>$no++,
+       "kode"=>$record->kode,
+       "nip"=>$record->nip,
+       "nama"=>$record->nama,
+       "alamat"=>$record->alamat,
+       "telp"=>$record->telp,
+       "status_dosen"=> $record->status,
            // "status_dosen"=> if ($record->status_dosen == "1") {"11"} else {"22"
              # code...
            // },
 
            // $record->status_dosen,           
 
-     "Aksi" => "
-     <a href='javascript:void(0)' class='badge badge-danger item_hapusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-     <a href='javascript:void(0)' class='badge badge-warning edit_dosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
- ); 
+       "Aksi" => "
+       <a href='javascript:void(0)' class='badge badge-danger item_hapusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+       <a href='javascript:void(0)' class='badge badge-warning edit_dosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
+   ); 
 
 }
 
      ## Response 
 $response = array(
- "draw" => intval($draw),
- "iTotalRecords" => $totalRecords,
- "iTotalDisplayRecords" => $totalRecordwithFilter,
- "aaData" => $data
+   "draw" => intval($draw),
+   "iTotalRecords" => $totalRecords,
+   "iTotalDisplayRecords" => $totalRecordwithFilter,
+   "aaData" => $data
 );
 return $response;
 }
@@ -975,10 +975,11 @@ public function getMatkulMaster($postData=null)
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
     $this->db->select('matapelajaran.*');
-    $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*', 'jenis_matakuliah.*');
+    $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*', 'jenis_matakuliah.*', 'prodi.*');
     $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idtpel', "left");
     $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
     $this->db->join('jenis_matakuliah', 'matapelajaran.id_jenis_mk=jenis_matakuliah.idjmk');
+    $this->db->join('prodi', 'matapelajaran.kode_prodi=prodi.kode');
     $records = $this->db->get()->result();
 
 
@@ -996,12 +997,13 @@ public function getMatkulMaster($postData=null)
             "keterangan"=>$record->keterangan,
             "nama_jenismk"=>$record->nama_jenismk,
             "semester"=>$record->semester,
+            "nama_prodi"=>$record->nama_prodi,
 
 
 
 
             "Aksi" => "
-            <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
+            
             <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
             <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
             "
@@ -1019,6 +1021,51 @@ public function getMatkulMaster($postData=null)
 
 
     return $response;
+}
+
+public function getKelompoMK()
+{
+    $this->db->select('*');
+    $this->db->FROM('kelompokmk');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getTypeMK()
+{
+    $this->db->select('*');
+    $this->db->FROM('typepelajaran');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getJMK()
+{
+    $this->db->select('*');
+    $this->db->FROM('jenis_matakuliah');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getProdi()
+{
+    $this->db->select('*');
+    $this->db->FROM('prodi');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getsmester()
+{
+    $this->db->select('*');
+    $this->db->FROM('semester_tipe');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function addmatkul($saveMK)
+{
+    $this->db->insert('matapelajaran', $saveMK);
 }
 
 // end MASTER MATA KULIAH
