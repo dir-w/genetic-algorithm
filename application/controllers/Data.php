@@ -772,7 +772,43 @@ public function editkelMatKul()
 
 // end MASTER KELOMPOK MATA KULIAH
 
+// Start MASTER PRODI
+public function prodi()
+{
+    $data['title'] = 'Master Prodi';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    // $this->form_validation->set_rules('nama_kel', 'Kelompok Matakuliah', 'required');
+    // $this->form_validation->set_rules('ket_kel', 'Keterangan Matakuliah', 'required');
+    if ($this->form_validation->run() == false)
+    {
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('prodi/index', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataProdi = [
+            'nama_kelompok_mk' => $this->input->post('nama_kel'),
+            'ket_kelompok' => $this->input->post('ket_kel')
+        ];
+        // $this->Data_model->addkelmatkul($insertdataKelMatkul);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/kelmatkul');
+    }
+}
+
+public function prodiList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getProdiMaster($postData);
+
+    echo json_encode($data);
+}
+// end MASTER PRODI
 
 
 

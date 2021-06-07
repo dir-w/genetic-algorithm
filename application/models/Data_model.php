@@ -1211,6 +1211,83 @@ public function saveeditkelmatkul($idk, $saveeditkelmatkul)
 
 // end MASTER KELOMPOK MATA KULIAH
 
+// start MASTER prodi
+public function getProdiMaster($postData=null)
+{
+    $response = array();
+
+     ## Read value
+    $draw = $postData['draw'];
+    $start = $postData['start'];
+    $rowperpage = $postData['length']; // Rows display per page
+    $columnIndex = $postData['order'][0]['column']; // Column index
+    $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+    $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+    $searchValue = $postData['search']['value']; // Search value
+
+     ## Search 
+    $searchQuery = "";
+    if($searchValue != ''){
+        $searchQuery = " (nama_prodi like '%".$searchValue."%') ";
+    }
+
+     ## Total number of records without filtering
+    $this->db->select('count(*) as allcount');
+
+    $records = $this->db->get('prodi')->result();
+    $totalRecords = $records[0]->allcount;
+
+     ## Total number of record with filtering
+    $this->db->select('count(*) as allcount');
+    if($searchQuery != '')
+        $this->db->where($searchQuery);
+    $records = $this->db->get('prodi')->result();
+    $totalRecordwithFilter = $records[0]->allcount;
+
+    ## Fetch records
+    $this->db->select('*');
+     // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
+    if($searchQuery != '')
+        $this->db->where($searchQuery);
+    $this->db->order_by($columnName, $columnSortOrder);
+    $this->db->limit($rowperpage, $start);
+    $this->db->select('prodi.*', 'jurusan.*');
+    $this->db->from('prodi');
+    $this->db->join('jurusan', 'prodi.kode_jurusan=jurusan.kode', "left");
+
+    $records = $this->db->get()->result();
+
+    $data = array();
+
+    $no = 1;
+    foreach($records as $record ){
+
+        $data[] = array( 
+            "no"=>$no++,
+            "id_prodi"=>$record->id_prodi,
+            "nama_prodi"=>$record->nama_prodi,
+            "nama_jurusan"=>$record->nama_jurusan,
+            "Aksi" => "
+            <a href='javascript:void(0)' class='badge badge-danger item_hapusprodi' data-placement='bottom' title='Delete' data-id=$record->kode  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_prodi' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
+            "
+        ); 
+
+    }
+
+     ## Response 
+    $response = array(
+        "draw" => intval($draw),
+        "iTotalRecords" => $totalRecords,
+        "iTotalDisplayRecords" => $totalRecordwithFilter,
+        "aaData" => $data
+    );
+
+
+    return $response;
+}
+// end MASTER PRODI
+
 
 
 

@@ -1063,6 +1063,30 @@ $(function(){
 
 // end MASTER MATA KULIAH
 
+// start MASTER PRODI
+$('#prodiTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"prodiList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'id_prodi'},
+ { data: 'nama_prodi'},
+ { data: 'nama_jurusan' },
+ 
+ { data : 'Aksi'},
+ ]
+});
+// end MASTER PRODI
+
 
 
 
