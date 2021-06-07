@@ -897,6 +897,65 @@ $(function(){
   }); 
 });
 
+//GET UPDATE
+$(function(){
+  $('#matkulTable').on('click','.edit_matkul', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetMatKul",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        console.log(data);
+        $('#kodemkkk1').val(id);
+        $('#kelmkkk').val(data.id_kelompok);
+        $('#kodemkkk').val(data.nama_kode);
+        $('#namamkkk').val(data.nama);
+        $('#typemkk').val(data.id_type);
+        $('#jenismkk').val(data.id_jenis_mk);
+        $('#smkk').val(data.id_semester_tipe);
+        $('#prodi').val(data.kode_prodi);
+        $('#jjmkk').val(data.jumlah_jam);
+        $('#ModalEditMatkul').modal('show');
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editmatkul').on('click', function(){
+    var kode =$('#kodemkkk1').val();
+    var id_kelompok =$('#kelmkkk').val();
+    var nama_kode =$ ('#kodemkkk').val();
+    var nama =$ ('#namamkkk').val();
+    var id_type =$ ('#typemkk').val();
+    var id_jenis_mk =$ ('#jenismkk').val();
+    var id_semester_tipe =$ ('#smkk').val();
+    var kode_prodi =$ ('#prodi').val();
+    var jumlah_jam =$ ('#jjmkk').val();
+
+    $.ajax({
+      method: 'POST',
+      url: 'editMatKul',
+      dataType: 'JSON',
+      data: {kode:kode, id_kelompok:id_kelompok, nama_kode:nama_kode, nama:nama, id_type:id_type, id_jenis_mk:id_jenis_mk, id_semester_tipe:id_semester_tipe, kode_prodi:kode_prodi, jumlah_jam:jumlah_jam},
+      success: function(data){
+        $('#kodemkkk1').val("");
+        $('#kelmkkk').val("");
+        $('#kodemkkk').val("");
+        $('#namamkkk').val("");
+        $('#typemkk').val("");
+        $('#jenismkk').val("");
+        $('#smkk').val("");
+        $('#prodi').val("");
+        $('#jjmkk').val("");
+        $('#ModalEditMatkul').modal('hide');
+      }
+    });
+  });
+});
+
 // end MASTER MATA KULIAH
 
 // start MASTER KELOMPOK MATA KULIAH
