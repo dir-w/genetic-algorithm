@@ -35,7 +35,7 @@ class Data extends CI_Controller
             $this->load->view('templates/footer');
         } else { 
 
-         $insertdata = [
+           $insertdata = [
             'range_jam' => $this->input->post('range_jam1').'-'.$this->input->post('range_jam2')
         ];
 
@@ -52,10 +52,10 @@ class Data extends CI_Controller
 
 public function jamdelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->delljam($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->delljam($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
        // redirect('data/jam');
 }
 
@@ -72,12 +72,12 @@ public function jamgetEdit($kode='')
 public function jamList()
 {
             // POST data dari view
- $postData = $this->input->post();
+   $postData = $this->input->post();
 
             // get data dari model
- $data = $this->Data_model->getMaster($postData);
+   $data = $this->Data_model->getMaster($postData);
 
- echo json_encode($data);
+   echo json_encode($data);
 
 }
 
@@ -137,10 +137,10 @@ public function hariList()
 
 public function haridelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->dellhari($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellhari($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
        // redirect('data/jam');
 }
 
@@ -178,12 +178,12 @@ public function takademik()
     $this->form_validation->set_rules('ta2', 'Tahun Ajaran', 'required');
     if ($this->form_validation->run() ==  false)
     {
-     $this->load->view('templates/header', $data);
-     $this->load->view('templates/sidebar', $data);
-     $this->load->view('templates/topbar', $data);
-     $this->load->view('ta/index', $data);
-     $this->load->view('templates/footer');
- } else {
+       $this->load->view('templates/header', $data);
+       $this->load->view('templates/sidebar', $data);
+       $this->load->view('templates/topbar', $data);
+       $this->load->view('ta/index', $data);
+       $this->load->view('templates/footer');
+   } else {
     $insertdataTA = [
         'tahun' => $this->input->post('ta1').'-'.$this->input->post('ta2')
     ];
@@ -208,10 +208,10 @@ public function taList()
 
 public function tadelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->dellta($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellta($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
            // redirect('data/jam');
 }
 
@@ -283,10 +283,10 @@ public function tagetDeleteDosen($kode='')
 
 public function dosendelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->delldosen($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->delldosen($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
            // redirect('data/jam');
 }
 
@@ -376,10 +376,10 @@ public function tagetDeleteRuangan($kode='')
 
 public function ruangandelete()
 {
- $kode=$this->input->post('kode');
- $data=$this->Data_model->dellruangan($kode);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellruangan($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
 public function editRuangan()
@@ -450,10 +450,10 @@ public function tagetJenisRuangan($idj='')
 
 public function jenisruangandelete()
 {
- $idj=$this->input->post('idj');
- $data=$this->Data_model->delljenisruangan($idj);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $idj=$this->input->post('idj');
+   $data=$this->Data_model->delljenisruangan($idj);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
 public function editjenisRuangan()
@@ -520,10 +520,10 @@ public function tagetTypeRuangan($idt='')
 
 public function typeruangandelete()
 {
- $idt=$this->input->post('idt');
- $data=$this->Data_model->delltyperuangan($idt);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $idt=$this->input->post('idt');
+   $data=$this->Data_model->delltyperuangan($idt);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
 public function edittypeRuangan()
@@ -587,10 +587,10 @@ public function tagetTypeMatKul($idtpel='')
 
 public function typematkuldelete()
 {
- $idtpel=$this->input->post('idtpel');
- $data=$this->Data_model->delltypematkul($idtpel);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $idtpel=$this->input->post('idtpel');
+   $data=$this->Data_model->delltypematkul($idtpel);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
 public function edittypeMatKul()
@@ -750,10 +750,10 @@ public function tagetKelMatKul($idk='')
 
 public function kelmatkuldelete()
 {
- $idk=$this->input->post('idk');
- $data=$this->Data_model->dellkelmatkul($idk);
- echo json_encode($data); 
- $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+   $idk=$this->input->post('idk');
+   $data=$this->Data_model->dellkelmatkul($idk);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
 public function editkelMatKul()
@@ -777,8 +777,11 @@ public function prodi()
 {
     $data['title'] = 'Master Prodi';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    // $this->form_validation->set_rules('nama_kel', 'Kelompok Matakuliah', 'required');
-    // $this->form_validation->set_rules('ket_kel', 'Keterangan Matakuliah', 'required');
+    $data['jurus'] = $this->Data_model->getJurusan()->result_array();
+    $idp = $this->Nomor_model->getidProdi();
+
+    $this->form_validation->set_rules('nama_pro', 'Nama Prodi', 'required');
+    $this->form_validation->set_rules('jur', 'Jurusan', 'required');
     if ($this->form_validation->run() == false)
     {
 
@@ -789,12 +792,13 @@ public function prodi()
         $this->load->view('templates/footer');
     } else {
         $insertdataProdi = [
-            'nama_kelompok_mk' => $this->input->post('nama_kel'),
-            'ket_kelompok' => $this->input->post('ket_kel')
+            'nama_prodi' => $this->input->post('nama_pro'),
+            'kode_jurusan' => $this->input->post('jur'),
+            'id_prodi' => $idp
         ];
-        // $this->Data_model->addkelmatkul($insertdataKelMatkul);
+        $this->Data_model->addprodi($insertdataProdi);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-        redirect('data/kelmatkul');
+        redirect('data/prodi');
     }
 }
 

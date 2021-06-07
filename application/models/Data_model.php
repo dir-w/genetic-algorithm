@@ -1286,6 +1286,19 @@ public function getProdiMaster($postData=null)
 
     return $response;
 }
+
+public function getJurusan()
+{
+    $this->db->select('*');
+    $this->db->FROM('jurusan');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function addprodi($insertdataProdi)
+{
+    $this->db->insert('prodi', $insertdataProdi);
+}
 // end MASTER PRODI
 
 
