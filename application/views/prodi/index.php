@@ -58,7 +58,7 @@
                   <div class="row mb-3">
                     <label class="col-sm-4 col-form-label">Nama Prodi</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nama_pro" name="nama_pro" placeholder="Kode Matakuliah">
+                        <input type="text" class="form-control" id="nama_pro" name="nama_pro" placeholder="Nama Prodi">
                     </div>
                 </div>
 

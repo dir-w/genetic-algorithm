@@ -1167,6 +1167,104 @@ $(function(){
 });
 // end MASTER PRODI
 
+// start MASTER JURUSAN
+$('#jurusanTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"jurusanList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'nama_jurusan' },
+ { data : 'Aksi'},
+ ]
+});
+
+//GET DATA HAPUS JURUSAN
+$(function(){
+  $('#jurusanTable').on('click','.item_hapusjurusan', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetJurusan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nama_jur').val(data.nama_jurusan);
+        $('#ModalHapusJurusan').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusjurusan').on('click',function(){
+    var kode=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "jurusandelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusJurusan').modal('hide');
+        window.location.assign('jurusan');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#jurusanTable').on('click','.edit_jurusan', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetJurusan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#kode').val(id);
+        $('#nama_jurusan').val(data.nama_jurusan);
+        $('#ModalEditJurusan').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editjurusan').on('click', function(){
+    var kode =$('#kode').val();
+    var nama_jurusan =$('#nama_jurusan').val();
+    // alert(kode_jurusan);
+    $.ajax({
+      method: 'POST',
+      url: 'editJurusan',
+      dataType: 'JSON',
+      data: {kode:kode, nama_jurusan:nama_jurusan},
+      success: function(data){
+        $('#kode').val("");
+        $('#nama_jurusan').val("");
+        $('#ModalEditJurusan').modal('hide');
+      }
+    });
+  });
+});
+// end MASTER JURUSAN
+
 
 
 
