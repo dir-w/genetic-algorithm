@@ -1299,6 +1299,27 @@ public function addprodi($insertdataProdi)
 {
     $this->db->insert('prodi', $insertdataProdi);
 }
+
+public function getKelProdibyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM prodi WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama_prodi' => $data->nama_prodi,
+                'kode_jurusan' => $data->kode_jurusan,
+                'id_prodi' => $data->id_prodi,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellprodi($kode)
+{
+    $hasil=$this->db->query("DELETE FROM prodi WHERE kode='$kode'");
+    return $hasil;
+}
 // end MASTER PRODI
 
 

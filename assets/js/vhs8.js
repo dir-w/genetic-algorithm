@@ -1085,6 +1085,44 @@ $('#prodiTable').DataTable ({
  { data : 'Aksi'},
  ]
 });
+
+//GET DATA HAPUS PRODI
+$(function(){
+  $('#prodiTable').on('click','.item_hapusprodi', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetProdi",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nama_prod').val(data.nama_prodi);
+        $('#ModalHapusProdi').modal('show');
+        console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusprodi').on('click',function(){
+    var kode=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "prodidelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusProdi').modal('hide');
+        window.location.assign('prodi');
+      }
+    });
+    return false;
+  }); 
+});
 // end MASTER PRODI
 
 

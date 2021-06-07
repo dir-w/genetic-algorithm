@@ -86,3 +86,34 @@
 </div>
 </div> 
 <!--END MODAL Add-->
+
+<!--MODAL HAPUS-->
+<div class="modal fade" id="ModalHapusProdi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="hapusProdiModalLabel">WARNING MASTER PRODI</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
+
+                    <input type="hidden" name="ko" id="ko" value="" readonly="" visible>
+                    <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="nama_prod" id="nama_prod" required="required" readonly="" visible></p>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                    <button class="btn_hapus btn btn-danger" id="btn_hapusprodi">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!--END MODAL HAPUS-->
