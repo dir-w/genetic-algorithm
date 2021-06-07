@@ -6,20 +6,18 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newProdiModal">Add</a>
+            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJurusanModal">Add</a>
 
 
         </div>
         <div class="card-body">
           <div class="table-responsive">
-              <table id="prodiTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+            <table id="jurusanTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
                 <!-- <table id="empTable" class="display"> -->
                     <thead class="thead-light">
                       <tr> 
                         <th width="7px">No</th>
-                        <th width="8px">ID Prodi</th>
-                        <th>Nama Prodi</th>
-                        <th>Jurusan</th>
+                        <th>Nama Jurusan</th>
                         <th width="45px">Aksi</th>
                     </tr>
                 </thead>
@@ -44,34 +42,21 @@
 
 
 <!-- Modal add -->
-<div class="modal fade" id="newProdiModal" tabindex="-1" role="dialog" aria-labelledby="newProdiModalLabel" aria-hidden="true">
+<div class="modal fade" id="newJurusanModal" tabindex="-1" role="dialog" aria-labelledby="newJurusanModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newMapelModalLabel">ADD MASTER PRODI</h5>
+                <h5 class="modal-title text-danger" id="newJurusanModalLabel">ADD MASTER JURUSAN</h5>
                 
             </div>
-            <form action="<?= base_url('data/prodi'); ?>" method="post">
+            <form action="<?= base_url('data/jurusan'); ?>" method="post">
                 <div class="modal-body">
 
 
                   <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Nama Prodi</label>
+                    <label class="col-sm-4 col-form-label">Nama Jurusan</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nama_pro" name="nama_pro" placeholder="Nama Prodi">
-                    </div>
-                </div>
-
-
-                <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Jurusan</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" name="jur" id="jur" required>
-                            <option value="">-- Selected --</option>
-                            <?php foreach($jurus as $ju):?>
-                                <option value="<?= $ju['kode']; ?>"><?= $ju['nama_jurusan']; ?></option>
-                            <?php endforeach;?>
-                        </select>
+                        <input type="text" class="form-control" id="jur" name="jur" placeholder="Nama Jurusan">
                     </div>
                 </div>
 

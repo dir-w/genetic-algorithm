@@ -843,6 +843,45 @@ public function editProdi()
 }
 // end MASTER PRODI
 
+// start MASTER JURUSAN
+public function jurusan()
+{
+    $data['title'] = 'Master Jurusan';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    // $data['jurus'] = $this->Data_model->getJurusan()->result_array();
+    // $idp = $this->Nomor_model->getidProdi();
+
+    $this->form_validation->set_rules('jur', 'Jurusan', 'required');
+    if ($this->form_validation->run() == false)
+    {
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('jurusan/index', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataJurusan = [
+            'nama_jurusan' => $this->input->post('jur')
+        ];
+        $this->Data_model->addjurusan($insertdataJurusan);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/jurusan');
+    }
+}
+
+public function jurusanList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getJurusanMaster($postData);
+
+    echo json_encode($data);
+}
+// end MASTER JURUSAN
+
 
 
 
