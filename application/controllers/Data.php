@@ -880,6 +880,21 @@ public function jurusanList()
 
     echo json_encode($data);
 }
+
+public function tagetJurusan($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getJurusanbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function jurusandelete()
+{
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->delljurusan($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
 // end MASTER JURUSAN
 
 

@@ -1186,6 +1186,44 @@ $('#jurusanTable').DataTable ({
  { data : 'Aksi'},
  ]
 });
+
+//GET DATA HAPUS JURUSAN
+$(function(){
+  $('#jurusanTable').on('click','.item_hapusjurusan', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetJurusan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nama_jur').val(data.nama_jurusan);
+        $('#ModalHapusJurusan').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusjurusan').on('click',function(){
+    var kode=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "jurusandelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusJurusan').modal('hide');
+        window.location.assign('jurusan');
+      }
+    });
+    return false;
+  }); 
+});
 // end MASTER JURUSAN
 
 
