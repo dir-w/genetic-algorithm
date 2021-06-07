@@ -135,7 +135,7 @@
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Jumlah Jam</label>
                 <div class="col-sm-8">
-                 <select class="form-control" name="jj" id="jj">
+                   <select class="form-control" name="jj" id="jj">
                     <option value="">-- Selected --</option>
                     <?php
                     for ($i = 1; $i < 11; $i++){
@@ -201,7 +201,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <!-- <label for="range">Kode</label>                    -->
-                            <input type="text" class="form-control" name="kodemkkk1" id="kodemkkk1" required="required" readonly="" >
+                            <input type="hidden" class="form-control" name="kodemkkk1" id="kodemkkk1" required="required" readonly="" >
                         </div>
 
                         <div class="row mb-3">
@@ -281,7 +281,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-4 col-form-label">Jumlah Jam</label>
                     <div class="col-sm-8">
-                     <select class="form-control" name="jjmkk" id="jjmkk">
+                       <select class="form-control" name="jjmkk" id="jjmkk">
                         <option value="">-- Selected --</option>
                         <?php
                         for ($i = 1; $i < 11; $i++){
