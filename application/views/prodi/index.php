@@ -117,3 +117,53 @@
 </div>
 </div>
 <!--END MODAL HAPUS-->
+
+<!-- modal edit data -->
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditProdi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="EditProdiModalLabel">EDIT MASTER PRODI</h5>
+                    
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <!-- <label for="range">Kode</label>                    -->
+                            <input type="hidden" class="form-control" name="kode" id="kode" required="required" readonly="" >
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Nama Prodi</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="nama_prodi" name="nama_prodi" placeholder="Kode Matakuliah">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Jurusan</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="jurusan" id="jurusan" required>
+                                    <option value="">-- Selected --</option>
+                                    <?php foreach($jurus as $ju):?>
+                                        <option value="<?= $ju['kode']; ?>"><?= $ju['nama_jurusan']; ?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>             
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editprodi">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL EDIT-->

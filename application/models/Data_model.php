@@ -1320,6 +1320,12 @@ public function dellprodi($kode)
     $hasil=$this->db->query("DELETE FROM prodi WHERE kode='$kode'");
     return $hasil;
 }
+
+public function saveeditprodi($kode, $saveeditprod)
+{
+    $this->db->where('kode', $kode);
+    $this->db->update('prodi', $saveeditprod);
+}
 // end MASTER PRODI
 
 

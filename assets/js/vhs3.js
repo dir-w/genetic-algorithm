@@ -1100,7 +1100,7 @@ $(function(){
         $('#ko').val(id);
         $('#nama_prod').val(data.nama_prodi);
         $('#ModalHapusProdi').modal('show');
-        console.log(data);
+        // console.log(data);
       }
     });
   });
@@ -1122,6 +1122,48 @@ $(function(){
     });
     return false;
   }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#prodiTable').on('click','.edit_prodi', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetProdi",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#kode').val(id);
+        $('#nama_prodi').val(data.nama_prodi);
+        $('#jurusan').val(data.kode_jurusan);
+        $('#ModalEditProdi').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editprodi').on('click', function(){
+    var kode =$('#kode').val();
+    var nama_prodi =$('#nama_prodi').val();
+    var kode_jurusan =$('#jurusan').val();
+    // alert(kode_jurusan);
+    $.ajax({
+      method: 'POST',
+      url: 'editProdi',
+      dataType: 'JSON',
+      data: {kode:kode, nama_prodi:nama_prodi, kode_jurusan:kode_jurusan},
+      success: function(data){
+        $('#kode').val("");
+        $('#nama_prodi').val("");
+        $('#jurusan').val("");
+        $('#ModalEditProdi').modal('hide');
+      }
+    });
+  });
 });
 // end MASTER PRODI
 

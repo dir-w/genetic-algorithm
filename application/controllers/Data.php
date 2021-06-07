@@ -827,6 +827,20 @@ public function prodidelete()
  echo json_encode($data); 
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
+
+public function editProdi()
+{
+    $kode = $this->input->post('kode');
+    $saveeditprod = [
+        'nama_prodi' => $this->input->post('nama_prodi'),
+        'kode_jurusan' => $this->input->post('kode_jurusan')
+    ];
+    $data = $this->Data_model->saveeditprodi($kode, $saveeditprod);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
 // end MASTER PRODI
 
 
