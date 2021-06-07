@@ -975,10 +975,12 @@ public function getMatkulMaster($postData=null)
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
     $this->db->select('matapelajaran.*');
-    $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*');
+    $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*', 'jenis_matakuliah.*', 'prodi.*', 'semester_tipe.*');
     $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idtpel', "left");
     $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
-     // $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk', "left");
+    $this->db->join('jenis_matakuliah', 'matapelajaran.id_jenis_mk=jenis_matakuliah.idjmk');
+    $this->db->join('prodi', 'matapelajaran.kode_prodi=prodi.kode');
+    $this->db->join('semester_tipe', 'matapelajaran.id_semester_tipe=semester_tipe.kode');
     $records = $this->db->get()->result();
 
 
@@ -994,16 +996,17 @@ public function getMatkulMaster($postData=null)
             "nama"=>$record->nama,
 
             "keterangan"=>$record->keterangan,
-            "jenis"=>$record->jenis,
-            "semester"=>$record->semester,
+            "nama_jenismk"=>$record->nama_jenismk,
+            "semester"=>$record->tipe_semester,
+            "nama_prodi"=>$record->nama_prodi,
 
 
 
 
             "Aksi" => "
-            <a href='#' class='badge badge-primary' data-toggle='modal' data-target='#detailAnggotaModal' data-placement='bottom' title='detail'><span class='fas fa-info'></span></a>
-            <a href='#' class='badge badge-warning' data-toggle='tooltip' data-placement='bottom' title='Edit'><span class='far fa-edit'></span></a>
-            <a href='#' class='badge badge-danger' data-toggle='tooltip' data-placement='bottom' title='Delete' onclick='return confirm('Are you sure want to delete?...');'><span class='far fa-trash-alt'></span></a>
+            
+            <a href='javascript:void(0)' class='badge badge-danger item_hapusmatkul' data-placement='bottom' title='Delete' data-id=$record->kode  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_matkul' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -1019,6 +1022,84 @@ public function getMatkulMaster($postData=null)
 
 
     return $response;
+}
+
+public function getKelompoMK()
+{
+    $this->db->select('*');
+    $this->db->FROM('kelompokmk');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getTypeMK()
+{
+    $this->db->select('*');
+    $this->db->FROM('typepelajaran');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getJMK()
+{
+    $this->db->select('*');
+    $this->db->FROM('jenis_matakuliah');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getProdi()
+{
+    $this->db->select('*');
+    $this->db->FROM('prodi');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function getsmester()
+{
+    $this->db->select('*');
+    $this->db->FROM('semester_tipe');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function addmatkul($saveMK)
+{
+    $this->db->insert('matapelajaran', $saveMK);
+}
+
+public function getMatKulbyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM matapelajaran WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama' => $data->nama,
+                'id_kelompok' => $data->id_kelompok,
+                'nama_kode' => $data->nama_kode,
+                'id_type' =>$data->id_type,
+                'id_jenis_mk' => $data->id_jenis_mk,
+                'id_semester_tipe' => $data->id_semester_tipe,
+                'kode_prodi' => $data->kode_prodi,
+                'jumlah_jam' => $data->jumlah_jam,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellmatkul($kode)
+{
+    $hasil=$this->db->query("DELETE FROM matapelajaran WHERE kode='$kode'");
+    return $hasil;
+}
+
+public function saveeditMatKul($kode, $saveeditmatkul)
+{
+
+    $this->db->where('kode', $kode);
+    $this->db->update('matapelajaran', $saveeditmatkul);
 }
 
 // end MASTER MATA KULIAH
