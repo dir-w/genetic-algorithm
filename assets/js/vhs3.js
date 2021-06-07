@@ -1063,6 +1063,110 @@ $(function(){
 
 // end MASTER MATA KULIAH
 
+// start MASTER PRODI
+$('#prodiTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"prodiList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'id_prodi'},
+ { data: 'nama_prodi'},
+ { data: 'nama_jurusan' },
+ 
+ { data : 'Aksi'},
+ ]
+});
+
+//GET DATA HAPUS PRODI
+$(function(){
+  $('#prodiTable').on('click','.item_hapusprodi', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetProdi",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nama_prod').val(data.nama_prodi);
+        $('#ModalHapusProdi').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusprodi').on('click',function(){
+    var kode=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "prodidelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusProdi').modal('hide');
+        window.location.assign('prodi');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#prodiTable').on('click','.edit_prodi', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetProdi",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#kode').val(id);
+        $('#nama_prodi').val(data.nama_prodi);
+        $('#jurusan').val(data.kode_jurusan);
+        $('#ModalEditProdi').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editprodi').on('click', function(){
+    var kode =$('#kode').val();
+    var nama_prodi =$('#nama_prodi').val();
+    var kode_jurusan =$('#jurusan').val();
+    // alert(kode_jurusan);
+    $.ajax({
+      method: 'POST',
+      url: 'editProdi',
+      dataType: 'JSON',
+      data: {kode:kode, nama_prodi:nama_prodi, kode_jurusan:kode_jurusan},
+      success: function(data){
+        $('#kode').val("");
+        $('#nama_prodi').val("");
+        $('#jurusan').val("");
+        $('#ModalEditProdi').modal('hide');
+      }
+    });
+  });
+});
+// end MASTER PRODI
+
 
 
 

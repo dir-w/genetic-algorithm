@@ -772,7 +772,76 @@ public function editkelMatKul()
 
 // end MASTER KELOMPOK MATA KULIAH
 
+// Start MASTER PRODI
+public function prodi()
+{
+    $data['title'] = 'Master Prodi';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['jurus'] = $this->Data_model->getJurusan()->result_array();
+    $idp = $this->Nomor_model->getidProdi();
 
+    $this->form_validation->set_rules('nama_pro', 'Nama Prodi', 'required');
+    $this->form_validation->set_rules('jur', 'Jurusan', 'required');
+    if ($this->form_validation->run() == false)
+    {
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('prodi/index', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataProdi = [
+            'nama_prodi' => $this->input->post('nama_pro'),
+            'kode_jurusan' => $this->input->post('jur'),
+            'id_prodi' => $idp
+        ];
+        $this->Data_model->addprodi($insertdataProdi);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/prodi');
+    }
+}
+
+public function prodiList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getProdiMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function tagetProdi($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getKelProdibyKode($kode);
+    echo json_encode($data);  
+}
+
+public function prodidelete()
+{
+ $kode=$this->input->post('kode');
+ $data=$this->Data_model->dellprodi($kode);
+ echo json_encode($data); 
+ $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function editProdi()
+{
+    $kode = $this->input->post('kode');
+    $saveeditprod = [
+        'nama_prodi' => $this->input->post('nama_prodi'),
+        'kode_jurusan' => $this->input->post('kode_jurusan')
+    ];
+    $data = $this->Data_model->saveeditprodi($kode, $saveeditprod);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+}
+// end MASTER PRODI
 
 
 
