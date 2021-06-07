@@ -859,6 +859,44 @@ $('#matkulTable').DataTable ({
  ]
 });
 
+//GET DATA HAPUS MATAKULIAH
+$(function(){
+  $('#matkulTable').on('click','.item_hapusmatkul', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetMatKul",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#kode').val(id);
+        $('#namamkk').val(data.nama);
+        $('#ModalHapusMatKul').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusmatkul').on('click',function(){
+    var kode=$('#kode').val();
+    $.ajax({
+      type : "POST",
+      url  : "matkuldelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusMatKul').modal('hide');
+        window.location.assign('matkul');
+      }
+    });
+    return false;
+  }); 
+});
+
 // end MASTER MATA KULIAH
 
 // start MASTER KELOMPOK MATA KULIAH
