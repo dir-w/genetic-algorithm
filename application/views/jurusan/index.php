@@ -53,22 +53,22 @@
                 <div class="modal-body">
 
 
-                  <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Nama Jurusan</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="jur" name="jur" placeholder="Nama Jurusan">
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Nama Jurusan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="jur" name="jur" placeholder="Nama Jurusan">
+                        </div>
                     </div>
-                </div>
 
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn btn btn-outline-success">Add</button>
-            </div>
-        </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn btn btn-outline-success">Add</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div> 
 <!--END MODAL Add-->
 
@@ -104,12 +104,12 @@
 <!--END MODAL HAPUS-->
 
 <!-- modal edit data -->
-<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditProdi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditJurusan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditProdiModalLabel">EDIT MASTER PRODI</h5>
+                    <h5 class="modal-title text-danger" id="EditJurusanModalLabel">EDIT MASTER JURUSAN</h5>
                     
                 </div>
                 <form class="form-horizontal">
@@ -120,22 +120,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Nama Prodi</label>
+                            <label class="col-sm-4 col-form-label">Nama Jurusan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama_prodi" name="nama_prodi" placeholder="Kode Matakuliah">
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Jurusan</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="jurusan" id="jurusan" required>
-                                    <option value="">-- Selected --</option>
-                                    <?php foreach($jurus as $ju):?>
-                                        <option value="<?= $ju['kode']; ?>"><?= $ju['nama_jurusan']; ?></option>
-                                    <?php endforeach;?>
-                                </select>
+                                <input type="text" class="form-control" id="nama_jurusan" name="nama_jurusan" placeholder="Nama Jurusan">
                             </div>
                         </div>
 
@@ -144,7 +131,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-                        <button class="btn_edit btn btn-danger" id="btn_editprodi">Save</button>
+                        <button class="btn_edit btn btn-danger" id="btn_editjurusan">Save</button>
                     </div>
                 </form>
             </div>

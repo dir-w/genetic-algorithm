@@ -1426,6 +1426,12 @@ public function delljurusan($kode)
     $hasil=$this->db->query("DELETE FROM jurusan WHERE kode='$kode'");
     return $hasil;
 }
+
+public function saveeditjurusan($kode, $saveeditjur)
+{
+    $this->db->where('kode', $kode);
+    $this->db->update('jurusan', $saveeditjur);
+}
 // end MASTER JURUSAN
 
 

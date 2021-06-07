@@ -1224,6 +1224,45 @@ $(function(){
     return false;
   }); 
 });
+
+//GET UPDATE
+$(function(){
+  $('#jurusanTable').on('click','.edit_jurusan', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetJurusan",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#kode').val(id);
+        $('#nama_jurusan').val(data.nama_jurusan);
+        $('#ModalEditJurusan').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editjurusan').on('click', function(){
+    var kode =$('#kode').val();
+    var nama_jurusan =$('#nama_jurusan').val();
+    // alert(kode_jurusan);
+    $.ajax({
+      method: 'POST',
+      url: 'editJurusan',
+      dataType: 'JSON',
+      data: {kode:kode, nama_jurusan:nama_jurusan},
+      success: function(data){
+        $('#kode').val("");
+        $('#nama_jurusan').val("");
+        $('#ModalEditJurusan').modal('hide');
+      }
+    });
+  });
+});
 // end MASTER JURUSAN
 
 
