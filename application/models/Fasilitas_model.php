@@ -214,6 +214,13 @@ class Fasilitas_model extends CI_Model
             foreach ($hsl->result() as $data) {
                 $hasil=array(
                     'no_ppku' => $data->no_ppku,
+                    'no_peminjam' => $data->no_peminjam,
+                    'tgl_surat_peminjaman' => $data->tgl_surat_peminjaman,
+                    'hari' => $data->hari,
+                    'tgl_kegiatan' => $data->tgl_kegiatan,
+                    'id_fasilitas' => $data->id_fasilitas,
+                    'kegiatan' => $data->kegiatan,
+                    'pj' => $data->pj,
                 );
             }
         }
@@ -232,6 +239,12 @@ class Fasilitas_model extends CI_Model
         $this->db->FROM('fasilitas');
         $query = $this->db->get();
         return $query;  
+    }
+
+    public function saveeditpemilik($kode_p, $saveeditpem)
+    {
+        $this->db->where('kode_p', $kode_p);
+        $this->db->update('peminjam', $saveeditpem);
     }
     // end Model Master Peminjam
 

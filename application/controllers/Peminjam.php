@@ -153,6 +153,24 @@ class Peminjam extends CI_Controller
 		echo json_encode($data); 
 		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 	}
+
+	public function editPeminjam()
+	{
+		$kode_p = $this->input->post('kode_p');
+		$saveeditpem = [
+			'no_ppku' => $this->input->post('no_ppku'),
+			'no_peminjam' => $this->input->post('no_peminjam'),
+			'kegiatan' => $this->input->post('kegiatan'),
+			'tgl_surat_peminjaman' => $this->input->post('tgl_surat_peminjaman'),
+			'hari' => $this->input->post('hari'),
+			'tgl_kegiatan' => $this->input->post('tgl_kegiatan'),
+			'id_fasilitas' => $this->input->post('id_fasilitas'),
+			'pj' => $this->input->post('pj')
+		];
+		$data = $this->Fasilitas_model->saveeditpemilik($kode_p, $saveeditpem);
+		echo json_encode($data);
+		$this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+	}
     // end Controller Master Peminjam
 
 }

@@ -213,28 +213,46 @@
 						<div class="row mb-3">
 							<label class="col-sm-4 col-form-label">Tgl Surat Peminj</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="tglsp" name="tglsp" placeholder="Tanggal Surat Peminjaman">
+								<input type="date" class="form-control" id="tglsp" name="tglsp" placeholder="Tanggal Surat Peminjaman">
 							</div>
 						</div>
 
 						<div class="row mb-3">
 							<label class="col-sm-4 col-form-label">Hari</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="hari" name="hari" placeholder="Hari">
+								<!-- <input type="text" class="form-control" id="hari" name="hari" placeholder="Hari"> -->
+								<select class="form-control" name="hari" id="hari" required>
+								<option value="">-- Selected --</option>
+								
+								<option value="Senin">Senin</option>
+								<option value="Selasa">Selasa</option>
+								<option value="Rabu">Rabu</option>
+								<option value="Kamis">Kamis</option>
+								<option value="Jum'at">Jum'at</option>
+								<option value="Sabtu">Sabtu</option>
+								<option value="Minggu">Minggu</option>
+								
+							</select>
 							</div>
 						</div>
 
 						<div class="row mb-3">
 							<label class="col-sm-4 col-form-label">Tgl Kegiatan</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="tglkeg" name="tglkeg" placeholder="Tanggal Kegiatan">
+								<input type="date" class="form-control" id="tglkeg" name="tglkeg" placeholder="Tanggal Kegiatan">
 							</div>
 						</div>
 
 						<div class="row mb-3">
 							<label class="col-sm-4 col-form-label">Fasilitas</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas">
+								<!-- <input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas"> -->
+								<select class="form-control" name="fasilitas" id="fasilitas" required>
+								<option value="">-- Selected --</option>
+								<?php foreach($fasi as $fa):?>
+									<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
+								<?php endforeach;?>
+							</select>
 							</div>
 						</div>
 
