@@ -19,4 +19,42 @@ $('#fasilitasTable').DataTable({
  ]
 }); 
 
+//GET DATA HAPUS JURUSAN
+$(function(){
+  $('#fasilitasTable').on('click','.item_hapusfasilitas', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetFasilitas",
+      data: {kode_f : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nama_f').val(data.nama_fasilitas);
+        $('#ModalHapusFasilitas').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapusfasilitas').on('click',function(){
+    var kode_f=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "fasilitasdelete",
+      dataType : "JSON",
+      data : {kode_f: kode_f},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusFasilitas').modal('hide');
+        window.location.assign('fasilitas');
+      }
+    });
+    return false;
+  }); 
+});
+
 // end JS Master Fasilitas

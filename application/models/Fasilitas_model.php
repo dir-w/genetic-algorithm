@@ -86,6 +86,25 @@ class Fasilitas_model extends CI_Model
     	$this->db->insert('fasilitas', $insertdataF);
     }
 
+    public function getFasilitasbyKode($kode_f)
+    {
+    	$hsl=$this->db->query("SELECT * FROM fasilitas WHERE kode_f='$kode_f'");
+    	if($hsl->num_rows()>0){
+    		foreach ($hsl->result() as $data) {
+    			$hasil=array(
+    				'nama_fasilitas' => $data->nama_fasilitas,
+    			);
+    		}
+    	}
+    	return $hasil;  
+    }
+
+    public function dellFasilitas($kode_f)
+    {
+    	$hasil=$this->db->query("DELETE FROM fasilitas WHERE kode_f='$kode_f'");
+    	return $hasil;
+    }
+
     // end Model Master Fasilitas
 
 }

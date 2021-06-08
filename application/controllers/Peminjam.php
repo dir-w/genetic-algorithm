@@ -53,6 +53,21 @@ class Peminjam extends CI_Controller
 		echo json_encode($data);
 
 	}
+
+	public function tagetFasilitas($kode_f='')
+	{
+		$kode_f=$this->input->post('kode_f');
+		$data=$this->Fasilitas_model->getFasilitasbyKode($kode_f);
+		echo json_encode($data);  
+	}
+
+	public function fasilitasdelete()
+	{
+		$kode_f=$this->input->post('kode_f');
+		$data=$this->Fasilitas_model->dellFasilitas($kode_f);
+		echo json_encode($data); 
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+	}
     // end Controller Master Falsilitas
 
 }
