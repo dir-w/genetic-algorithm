@@ -184,8 +184,8 @@ class Fasilitas_model extends CI_Model
 
 
                 "Aksi" => "
-                <a href='javascript:void(0)' class='badge badge-danger item_hapusfasilitas' data-placement='bottom' title='Delete' data-id=$record->kode_p  ;'><span class='far fa-trash-alt'></span></a>
-                <a href='javascript:void(0)' class='badge badge-warning edit_fasilitas' data-placement='bottom' title='Edit' data-id=$record->kode_p ;'><span class='far fa-edit'></span></a>
+                <a href='javascript:void(0)' class='badge badge-danger item_hapuspeminjam' data-placement='bottom' title='Delete' data-id=$record->kode_p  ;'><span class='far fa-trash-alt'></span></a>
+                <a href='javascript:void(0)' class='badge badge-warning edit_peminjam' data-placement='bottom' title='Edit' data-id=$record->kode_p ;'><span class='far fa-edit'></span></a>
                 "
             ); 
 
@@ -205,6 +205,25 @@ class Fasilitas_model extends CI_Model
     public function addpeminjam($insertdataP)
     {
         $this->db->insert('peminjam', $insertdataP);
+    }
+
+    public function getPeminjambyKode($kode_p)
+    {
+        $hsl=$this->db->query("SELECT * FROM peminjam WHERE kode_p='$kode_p'");
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'no_ppku' => $data->no_ppku,
+                );
+            }
+        }
+        return $hasil;  
+    }
+
+    public function dellPeminjam($kode_p)
+    {
+        $hasil=$this->db->query("DELETE FROM peminjam WHERE kode_p='$kode_p'");
+        return $hasil;
     }
     // end Model Master Peminjam
 

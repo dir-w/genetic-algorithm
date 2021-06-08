@@ -119,8 +119,7 @@ class Peminjam extends CI_Controller
 				'id_fasilitas' => $this->input->post('fas'),
 				'pj' => $this->input->post('penj')
 			];
-			// var_dump($insertdataP);
-			// die;
+			// 
 			$this->Fasilitas_model->addpeminjam($insertdataP);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
 			redirect('peminjam/peminjaman');
@@ -137,6 +136,21 @@ class Peminjam extends CI_Controller
 
 		echo json_encode($data);
 
+	}
+
+	public function tagetPeminjam($kode_p='')
+	{
+		$kode_p=$this->input->post('kode_p');
+		$data=$this->Fasilitas_model->getPeminjambyKode($kode_p);
+		echo json_encode($data);  
+	}
+
+	public function peminjamdelete()
+	{
+		$kode_p=$this->input->post('kode_p');
+		$data=$this->Fasilitas_model->dellPeminjam($kode_p);
+		echo json_encode($data); 
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 	}
     // end Controller Master Peminjam
 

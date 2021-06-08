@@ -123,4 +123,42 @@ $('#peminjamTable').DataTable({
  { data : 'Aksi'},
  ]
 });
+
+//GET DATA HAPUS PEMINJAM
+$(function(){
+  $('#peminjamTable').on('click','.item_hapuspeminjam', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "tagetPeminjam",
+      data: {kode_p : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nopk').val(data.no_ppku);
+        $('#ModalHapusPeminjam').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapuspeminjam').on('click',function(){
+    var kode_p=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "peminjamdelete",
+      dataType : "JSON",
+      data : {kode_p: kode_p},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusPeminjam').modal('hide');
+        window.location.assign('peminjaman');
+      }
+    });
+    return false;
+  }); 
+});
 // end JS Master Peminjam
