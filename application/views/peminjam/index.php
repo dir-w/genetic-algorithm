@@ -77,35 +77,52 @@
 					<div class="row mb-3">
 						<label class="col-sm-4 col-form-label">Nama Kegiatan</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="keg" name="keg" placeholder="Nama Kegiatan">
+							<!-- <input type="text" class="form-control" id="keg" name="keg" placeholder="Nama Kegiatan"> -->
+							<textarea class="form-control" id="keg" name="keg" placeholder="Nama Kegiatan"></textarea>
 						</div>
 					</div>
 
 					<div class="row mb-3">
 						<label class="col-sm-4 col-form-label">Tgl Surat Peminj</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="tsp" name="tsp" placeholder="Tanggal Surat Peminjaman">
+							<input type="date" class="form-control" id="tsp" name="tsp" placeholder="Tanggal Surat Peminjaman">
 						</div>
 					</div>
 
 					<div class="row mb-3">
 						<label class="col-sm-4 col-form-label">Hari</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="har" name="har" placeholder="Hari">
+							<select class="form-control" name="har" id="har" required>
+								<option value="">-- Selected --</option>
+								
+								<option value="Senin">Senin</option>
+								<option value="Selasa">Selasa</option>
+								<option value="Rabu">Rabu</option>
+								<option value="Kamis">Kamis</option>
+								<option value="Jum'at">Jum'at</option>
+								<option value="Sabtu">Sabtu</option>
+								<option value="Minggu">Minggu</option>
+								
+							</select>
 						</div>
 					</div>
 
 					<div class="row mb-3">
 						<label class="col-sm-4 col-form-label">Tgl Kegiatan</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="tg" name="tg" placeholder="Tanggal Kegiatan">
+							<input type="date" class="form-control" id="tg" name="tg" placeholder="Tanggal Kegiatan">
 						</div>
 					</div>
 
 					<div class="row mb-3">
 						<label class="col-sm-4 col-form-label">Fasilitas</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="fas" name="fas" placeholder="Fasilitas">
+							<select class="form-control" name="fas" id="fas" required>
+								<option value="">-- Selected --</option>
+								<?php foreach($fasi as $fa):?>
+									<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
+								<?php endforeach;?>
+							</select>
 						</div>
 					</div>
 
@@ -157,25 +174,74 @@
 <!--END MODAL HAPUS-->
 
 <!-- modal edit data -->
-<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditFasilitas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditPeminjam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title text-danger" id="EditFasilitasModalLabel">EDIT MASTER FASILITAS</h5>
+					<h5 class="modal-title text-danger" id="EditPeminjamModalLabel">EDIT MASTER PEMINJAM</h5>
 
 				</div>
 				<form class="form-horizontal">
 					<div class="modal-body">
 						<div class="form-group">
 							<!-- <label for="range">Kode</label>                    -->
-							<input type="hidden" class="form-control" name="kode" id="kode" required="required" readonly="" >
+							<input type="hidden" class="form-control" name="kode_p" id="kode_p" required="required" readonly="" >
 						</div>
 
 						<div class="row mb-3">
-							<label class="col-sm-4 col-form-label">Nama Fasilitas</label>
+							<label class="col-sm-4 col-form-label">No Surat PPKU</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="nama_fasilitas" name="nama_fasilitas" placeholder="Nama Jurusan">
+								<input type="text" class="form-control" id="no_ppku" name="no_ppku" placeholder="No Surat PPKU">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">No Peminjaman</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="no_peminjam" name="no_peminjam" placeholder="No Surat Peminjaman">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">Nama Kegiatan</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Nama Kegiatan">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">Tgl Surat Peminj</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="tglsp" name="tglsp" placeholder="Tanggal Surat Peminjaman">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">Hari</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="hari" name="hari" placeholder="Hari">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">Tgl Kegiatan</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="tglkeg" name="tglkeg" placeholder="Tanggal Kegiatan">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">Fasilitas</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas">
+							</div>
+						</div>
+
+						<div class="row mb-3">
+							<label class="col-sm-4 col-form-label">Penanggung Jawab</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="penanggungj" name="penanggungj" placeholder="Penanggung Jawab">
 							</div>
 						</div>
 
@@ -184,7 +250,7 @@
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-						<button class="btn_edit btn btn-danger" id="btn_editfasilitas">Save</button>
+						<button class="btn_edit btn btn-danger" id="btn_editpeminjam">Save</button>
 					</div>
 				</form>
 			</div>

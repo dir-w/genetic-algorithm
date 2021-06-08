@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header">
            <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Add</a>
-           
+
        </div>
        <div class="card-body">
           <div class="table-responsive">
@@ -17,17 +17,17 @@
                       <tr> 
                         <th width="10px">No</th>
                         <th>Nama hari</th>
-                        
+
                         <th width="50px">Aksi</th>
                     </tr>
                 </thead>
-                
+
                 <!-- load barang -->
-                
-                
+
+
             </table>
         </div>
-        
+
 
     </div>
 </div>
@@ -51,15 +51,22 @@
             </div>
             <form action="<?= base_url('data/hari'); ?>" method="post">
                 <div class="modal-body">
-                    <label class="form-label">Hari</label>
-                    <div class="row">
 
-                        <div class="col">
-                            
-                            <div class="form-group">
-
-                                <input type="text" name="hari" id="hari"  class="form-control"  />
-                            </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Hari</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="hari" id="hari" required>
+                                <option value="">-- Selected --</option>
+                                
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jum'at">Jum'at</option>
+                                <option value="Sabtu">Sabtu</option>
+                                <option value="Minggu">Minggu</option>
+                                
+                            </select>
                         </div>
                     </div>
 
@@ -114,7 +121,7 @@
                 <form class="form-horizontal">
                     <div class="modal-body">
                         <div class="form-group">
-                         
+
                             <input type="hidden" class="form-control" name="ekode" id="ekode" required="required" readonly="" >
                         </div>
 
@@ -123,8 +130,20 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <input type="text" class="form-control" name="nhari" id="nhari" required="required">
+                                    <select class="form-control" name="nhari" id="nhari" required>
+                                        <option value="">-- Selected --</option>
+
+                                        <option value="Senin">Senin</option>
+                                        <option value="Selasa">Selasa</option>
+                                        <option value="Rabu">Rabu</option>
+                                        <option value="Kamis">Kamis</option>
+                                        <option value="Jum'at">Jum'at</option>
+                                        <option value="Sabtu">Sabtu</option>
+                                        <option value="Minggu">Minggu</option>
+
+                                    </select>
                                 </div>
+
                                 <div class="col-2">
                                     <input type="text" class="form-control" name="id_hari" id="id_hari" required="required" readonly="" visible>
                                 </div>

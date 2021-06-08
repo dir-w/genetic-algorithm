@@ -89,6 +89,7 @@ class Peminjam extends CI_Controller
 		$data['title'] = 'Master Peminjam';
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['fasi'] = $this->Fasilitas_model->getFasilitas()->result_array();
 
 		$this->form_validation->set_rules('nppku', 'No Surat PPKU', 'required');
 		$this->form_validation->set_rules('nop', 'No Surat Peminjaman', 'required');

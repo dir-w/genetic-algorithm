@@ -225,6 +225,14 @@ class Fasilitas_model extends CI_Model
         $hasil=$this->db->query("DELETE FROM peminjam WHERE kode_p='$kode_p'");
         return $hasil;
     }
+
+    public function getFasilitas()
+    {
+        $this->db->select('*');
+        $this->db->FROM('fasilitas');
+        $query = $this->db->get();
+        return $query;  
+    }
     // end Model Master Peminjam
 
     
