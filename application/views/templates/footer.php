@@ -61,6 +61,7 @@
 
 
 <script src="<?= base_url('assets/'); ?>js/vhs3.js"></script>
+<script src="<?= base_url('assets/'); ?>js/jsf.js"></script>
 
 <!-- <script>
     addEventListener('load', function myfuntion(){
