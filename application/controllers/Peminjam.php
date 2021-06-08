@@ -68,6 +68,19 @@ class Peminjam extends CI_Controller
 		echo json_encode($data); 
 		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 	}
+
+	public function editFasilitas()
+	{
+		$kode_f = $this->input->post('kode_f');
+		$saveeditf = [
+			'nama_fasilitas' => $this->input->post('nama_fasilitas')
+		];
+		$data = $this->Fasilitas_model->saveeditfasilitas($kode_f, $saveeditf);
+
+		
+		echo json_encode($data);
+		$this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+	}
     // end Controller Master Falsilitas
 
 }

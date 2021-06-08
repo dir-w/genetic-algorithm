@@ -19,7 +19,7 @@ $('#fasilitasTable').DataTable({
  ]
 }); 
 
-//GET DATA HAPUS JURUSAN
+//GET DATA HAPUS FASILITAS
 $(function(){
   $('#fasilitasTable').on('click','.item_hapusfasilitas', function(){
     const id = $(this).data('id');
@@ -57,4 +57,42 @@ $(function(){
   }); 
 });
 
+//GET UPDATE
+$(function(){
+  $('#fasilitasTable').on('click','.edit_fasilitas', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"tagetFasilitas",
+      data: {kode_f : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#kode').val(id);
+        $('#nama_fasilitas').val(data.nama_fasilitas);
+        $('#ModalEditFasilitas').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editfasilitas').on('click', function(){
+    var kode_f =$('#kode').val();
+    var nama_fasilitas =$('#nama_fasilitas').val();
+    // alert(kode_jurusan);
+    $.ajax({
+      method: 'POST',
+      url: 'editFasilitas',
+      dataType: 'JSON',
+      data: {kode_f:kode_f, nama_fasilitas:nama_fasilitas},
+      success: function(data){
+        $('#kode').val("");
+        $('#nama_fasilitas').val("");
+        $('#ModalEditFasilitas').modal('hide');
+      }
+    });
+  });
+});
 // end JS Master Fasilitas

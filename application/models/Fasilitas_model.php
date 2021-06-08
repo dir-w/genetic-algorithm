@@ -105,6 +105,12 @@ class Fasilitas_model extends CI_Model
     	return $hasil;
     }
 
+    public function saveeditfasilitas($kode_f, $saveeditf)
+    {
+    	$this->db->where('kode_f', $kode_f);
+    	$this->db->update('fasilitas', $saveeditf);
+    }
+
     // end Model Master Fasilitas
 
 }

@@ -78,7 +78,7 @@
 		<div class="modal-content">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title text-danger" id="hapusFasilitasModalLabel">WARNING MASTER Fasilitas</h5>
+					<h5 class="modal-title text-danger" id="hapusFasilitasModalLabel">WARNING MASTER FASILITAS</h5>
 				</div>
 				<form class="form-horizontal">
 					<div class="modal-body">
@@ -101,12 +101,12 @@
 <!--END MODAL HAPUS-->
 
 <!-- modal edit data -->
-<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditJurusan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditFasilitas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title text-danger" id="EditJurusanModalLabel">EDIT MASTER JURUSAN</h5>
+					<h5 class="modal-title text-danger" id="EditFasilitasModalLabel">EDIT MASTER FASILITAS</h5>
 
 				</div>
 				<form class="form-horizontal">
@@ -117,9 +117,9 @@
 						</div>
 
 						<div class="row mb-3">
-							<label class="col-sm-4 col-form-label">Nama Jurusan</label>
+							<label class="col-sm-4 col-form-label">Nama Fasilitas</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="nama_jurusan" name="nama_jurusan" placeholder="Nama Jurusan">
+								<input type="text" class="form-control" id="nama_fasilitas" name="nama_fasilitas" placeholder="Nama Jurusan">
 							</div>
 						</div>
 
@@ -128,7 +128,7 @@
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-						<button class="btn_edit btn btn-danger" id="btn_editjurusan">Save</button>
+						<button class="btn_edit btn btn-danger" id="btn_editfasilitas">Save</button>
 					</div>
 				</form>
 			</div>
