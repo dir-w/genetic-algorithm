@@ -96,3 +96,31 @@ $(function(){
   });
 });
 // end JS Master Fasilitas
+
+// start JS Master Peminjam
+$('#peminjamTable').DataTable({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"peminjamList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'no_ppku' },
+ { data: 'no_peminjam' },
+ { data: 'kegiatan' },
+ { data: 'tgl_surat_peminjaman' },
+ { data: 'hari' },
+ { data: 'tgl_kegiatan' },
+ { data: 'nama_fasilitas' },
+ { data: 'pj' },
+ { data : 'Aksi'},
+ ]
+});
+// end JS Master Peminjam
