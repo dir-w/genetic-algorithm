@@ -1078,6 +1078,109 @@ $(function(){
 
 // end MASTER MATA KULIAH
 
+// start MASTER JENIS MATA KULIAH
+$('#jenismatkulTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"jenismatkulList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ 
+ { data: 'nama_jenismk' },
+ { data: 'ket_jenismk' },
+ 
+ { data : 'Aksi'},
+ ]
+});
+
+//GET DATA HAPUS Jenis MATAKULIAH
+$(function(){
+  $('#jenismatkulTable').on('click','.item_hapusjenismatkul', function(){
+    const id = $(this).data('id');
+    console.log(id);
+    $.ajax({
+      url: "targetJenisMatKul",
+      data: {idjmk : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#idjm').val(id);
+        $('#nama_j').val(data.nama_jenismk);
+        $('#ModalHapusJenisMatKul').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapustjenismatkkul').on('click',function(){
+    var idjmk=$('#idjm').val();
+    $.ajax({
+      type : "POST",
+      url  : "jenismatkuldelete",
+      dataType : "JSON",
+      data : {idjmk: idjmk},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusJenisMatKul').modal('hide');
+        window.location.assign('jenismatkul');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#jenismatkulTable').on('click','.edit_jenismatkul', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"targetJenisMatKul",
+      data: {idjmk : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#idjmk').val(id);
+        $('#nama_jenismk').val(data.nama_jenismk);
+        $('#ket_jenismk').val(data.ket_jenismk);
+        $('#ModalEditJenisMatkul').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editjenismatakuliah').on('click', function(){
+    var idjmk =$('#idjmk').val();
+    var nama_jenismk =$('#nama_jenismk').val();
+    var ket_jenismk =$('#ket_jenismk').val();
+    $.ajax({
+      method: 'POST',
+      url: 'editjenisMatKul',
+      dataType: 'JSON',
+      data: {idjmk:idjmk, nama_jenismk:nama_jenismk, ket_jenismk:ket_jenismk},
+      success: function(data){
+        $('#idjmk').val("");
+        $('#nama_jenismk').val("");
+        $('#ket_jenismk').val("");
+        $('#ModalEditJenisMatkul').modal('hide');
+      }
+    });
+  });
+});
+// end MASTER JENIS MATA KULIAH
+
 // start MASTER PRODI
 $('#prodiTable').DataTable ({
   'processing' : true,
