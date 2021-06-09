@@ -4,7 +4,7 @@
 	<!-- Page Heading -->
 	<h1 id="h1" class="h3 mb-4 text-primary"><?= $title; ?></h1>
 
-	<div class="card">
+	<div class="card"> 
 		<div class="card-header">
 			<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newInputModal">Add</a>
 
@@ -17,6 +17,7 @@
 						<thead class="thead-light">
 							<tr> 
 								<th width="7px">No</th>
+								<th>Kode Matakuliah</th>
 								<th>Peminjam</th>
 								<th>Ruangan</th>
 								<th>Nama Matakuliah</th>
@@ -24,7 +25,7 @@
 								<th>Start</th>
 								<th>End</th>
 								<th>Semester</th>
-								<!--<th>Penanggung Jawab</th>-->
+								<th>Tgl Pemakaian</th>
 								<th width="45px">Aksi</th>
 							</tr>
 						</thead>

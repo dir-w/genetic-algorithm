@@ -40,6 +40,17 @@ class Proses extends CI_Controller
 			redirect('peminjam/fasilitas');
 		}
 	}
+
+	public function pinputList()
+	{
+            // POST data dari view
+		$postData = $this->input->post();
+
+            // get data dari model
+		$data = $this->Proses_model->getInputMaster($postData);
+
+		echo json_encode($data);
+	}
 	// END CONTROLLER PROSES INPUT PEMAKAIAN
 
 }
