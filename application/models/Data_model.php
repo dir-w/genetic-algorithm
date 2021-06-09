@@ -62,12 +62,13 @@ class Data_model extends CI_Model
         $data[] = array( 
          "no"=>$no++,
          "kode"=>$record->kode,
-         "range_jam"=>$record->range_jam,
+         "start"=>$record->start,
+         "end"=>$record->end,
 
 
 
          "Aksi" => "
-         <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='Modal' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='Modal' data-placement='bottom' title='Delete' data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
          <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='Modal' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
          "
      ); 
@@ -103,8 +104,9 @@ public function getJambyKode($kode)
     if($hsl->num_rows()>0){
         foreach ($hsl->result() as $data) {
             $hasil=array(
-                'range_jam' => $data->range_jam,
-                
+                'start' => $data->start,
+                'end' => $data->end,
+                'gab' => $data->start.'-'.$data->end,
             );
         }
     }
@@ -112,10 +114,12 @@ public function getJambyKode($kode)
     
 }
 
-public function saveeditjam($kode,$range_jam)
+public function saveeditjam($kode,$saveeditj)
 {
-    $hasil=$this->db->query("UPDATE jam SET range_jam='$range_jam' WHERE kode='$kode'");
-    return $hasil;
+    // $hasil=$this->db->query("UPDATE jam SET range_jam='$range_jam' WHERE kode='$kode'");
+    // return $hasil;
+    $this->db->where('kode', $kode);
+    $this->db->update('jam', $saveeditj);
 }
 
 

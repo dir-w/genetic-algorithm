@@ -16,22 +16,36 @@ $('#jamTable').DataTable({
   { data: null,"sortable": false, render: function (data, type, row, meta){
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
- { data: 'range_jam' },
-
+ { data: 'start' },
+ { data: 'end' },
  { data : 'Aksi'},
  ]
 }); 
 
-// get data hapus jam
-$('#jamTable').on('click','.item_hapus',function(){
-  var kode=$(this).attr('data');
-  $('#ModalHapus').modal('show');
-  $('[name="kode"]').val(kode);
+//GET DATA HAPUS JURUSAN
+$(function(){
+  $('#jamTable').on('click','.item_hapus', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "jamgetEdit",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#se').val(data.gab);
+        $('#ModalHapus').modal('show');
+        // console.log(data);
+      }
+    });
+  });
 });
+
 
         //Hapus jam
         $('#btn_hapus').on('click',function(){
-          var kode=$('#textkode').val();
+          var kode=$('#ko').val();
           $.ajax({
             type : "POST",
             url  : "jamdelete",
@@ -49,35 +63,36 @@ $('#jamTable').on('click','.item_hapus',function(){
   $(function(){
     $('#jamTable').on('click','.tampilModaleditjam', function(){
       const id = $(this).data('id');
+// console.log(id);
+$.ajax({
+  url:"jamgetEdit",
+  data: {kode : id},
+  method: 'POST',
+  dataType: 'JSON',
+  success: function(data) {
 
-      $.ajax({
-        url:"jamgetEdit",
-        data: {kode : id},
-        method: 'POST',
-        dataType: 'JSON',
-        success: function(data) {
-          $('#kode').val(id);
-          $('#range_jamm').val(data.range_jam.substring(0,5));
-          $('#range_jammm').val(data.range_jam.substring(6,11));
-          // console.log(data.range_jam.substring(0,5));
-          $('#ModalEdit').modal('show');
-        }
-      });
-    });
+    $('#kode').val(id);
+    $('#range_jamm').val(data.start);
+    $('#range_jammm').val(data.end);
+    console.log(data);
+    $('#ModalEdit').modal('show');
+  }
+});
+});
   });
 
   // edit save
   $(function(){
     $('#btn_edit').on('click', function(){
       var kode =$('#kode').val();
-      var r1 =$('#range_jamm').val();
-      var r2 =$('#range_jammm').val();
-      var range_jam = r1 + "-" + r2;
+      var start =$('#range_jamm').val();
+      var end =$('#range_jammm').val();
+      var range_jam = start + "-" + end;
       $.ajax({
         method : 'POST',
         url : 'editJam',
         dataType : 'JSON',
-        data : {kode:kode, range_jam:range_jam},
+        data : {kode:kode, start:start, end:end},
 
         success: function(data){
           // console.log(data);

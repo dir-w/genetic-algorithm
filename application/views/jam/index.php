@@ -7,9 +7,9 @@
 
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Add</a>
-       </div>
-       <div class="row">
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJamModal">Add</a>
+     </div>
+     <div class="row">
         <div class="col-lg">
             <?= $this->session->flashdata('message'); ?>
         </div>
@@ -21,25 +21,22 @@
                 <thead class="thead-light">
                   <tr> 
                     <th width="10px">No</th>
-                    <th>Range Jam</th>
-                        <!-- <th>SKS</th>
-                            <th>Sesi</th>  -->
+                    <th>Start</th>
+                    <th>End</th>
+                    <th width="50px">Aksi</th>
+                </tr>
+            </thead>
 
 
-                            <th width="50px">Aksi</th>
-                        </tr>
-                    </thead>
-
-                    
-                    <!-- load barang -->
-
-                    
-                </table>
-            </div>
+            <!-- load barang -->
 
 
-        </div>
+        </table>
     </div>
+
+
+</div>
+</div>
 
 
 
@@ -60,30 +57,30 @@
             </div>
             <form action="<?= base_url('data/jam'); ?>" method="post">
                 <div class="modal-body">
-                    <label class="form-label">Range Jam</label>
+
                     <div class="row">
 
                         <div class="col">
                             <!-- SELECT / COMBO BOX -->
+                            <label class="form-label">Start</label>
                             <div class="form-group">
 
                                 <input type="time" name="range_jam1" id="range_jam1"  class="form-control" onkeyup="Waktumasuk();" />
                             </div>
                         </div>
-                        <div class="col-1">
-                            -
-                        </div>
+
                         <div class="col">
+                            <label class="form-label">End</label>
                             <div class="form-group">
 
-                             <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
-                         </div>
-                     </div>
+                               <input type="time" name="range_jam2" id="range_jam2"  class="form-control" onkeyup="Waktumasuk();" />
+                           </div>
+                       </div>
 
-                 </div>
+                   </div>
 
-             </div>
-             <div class="modal-footer">
+               </div>
+               <div class="modal-footer">
                 <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn btn btn-outline-success">Add</button>
             </div>
@@ -108,8 +105,12 @@
             <form class="form-horizontal">
                 <div class="modal-body">
 
-                    <input type="hidden" name="kode" id="textkode" value="" readonly="">
-                    <div class="alert alert-warning"><p>Are you sure you want to delete?</p></div>
+                    <input type="hidden" name="ko" id="ko" value="" readonly="">
+                    <div class="alert alert-warning">
+                        <p>Are you sure you want to delete?
+                            <input type="text" class="form-control" name="se" id="se" required="required" readonly="" visible>
+                        </p>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -145,11 +146,11 @@
                             <label for="range">Range Jam</label>
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" class="form-control" name="range_jamm" id="range_jamm" required="required">
+                                    <input type="time" class="form-control" name="range_jamm" id="range_jamm" onkeyup="Waktumasuk();" required="required">
                                 </div>
                                 -
                                 <div class="col">
-                                    <input type="text" class="form-control" name="range_jammm" id="range_jammm" required="required">
+                                    <input type="time" class="form-control" name="range_jammm" id="range_jammm" onkeyup="Waktumasuk();" required="required">
                                 </div>
                             </div>
                         </div>
