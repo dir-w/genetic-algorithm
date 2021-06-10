@@ -57,7 +57,7 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
-<script src="<?= base_url('assets/'); ?>js/vhs4.js"></script>
+<script src="<?= base_url('assets/'); ?>js/vhs6.js"></script>
 <script src="<?= base_url('assets/'); ?>js/jsf.js"></script>
 <script src="<?= base_url('assets/'); ?>js/jsp5.js"></script>
 

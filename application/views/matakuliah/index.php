@@ -21,7 +21,7 @@
                         <th>Kode MatKul</th>
                         <th>Nama</th>
                         <th>Type</th>
-                        <th>Jenis</th>
+                        <th>Pararel</th>
                         <th width="5px">Semester</th>
                         <th>Prodi</th>
                         <th width="45px">Aksi</th>
@@ -29,7 +29,6 @@
                 </thead>
 
                 <!-- load barang -->
-
 
             </table>
         </div>
@@ -90,68 +89,68 @@
                         <select class="form-control" name="typemk" id="typemk" required>
                             <option value="">-- Selected --</option>
                             <?php foreach($typ as $tp):?>
-                              <option value="<?= $tp['idtpel']; ?>"><?= $tp['keterangan']; ?></option>
-                          <?php endforeach;?>
-                      </select>
-                  </div>
-              </div>
+                                <option value="<?= $tp['idtpel']; ?>"><?= $tp['nama_typemk']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
 
-              <div class="row mb-3">
-                <label class="col-sm-4 col-form-label">Jenis</label>
-                <div class="col-sm-8">
-                    <select class="form-control" name="jenismk" id="jenismk" required>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Pararel</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="parmk" id="parmk" required>
+                            <option value="">-- Selected --</option>
+                            <?php foreach($par as $pr):?>
+                                <option value="<?= $pr['idjmk']; ?>"><?= $pr['keterangan']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Semester</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="smk" id="smk" required>
+                            <option value="">-- Selected --</option>
+                            <?php foreach($smes as $sm):?>
+                                <option value="<?= $sm['kode']; ?>"><?= $sm['tipe_semester']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Prodi</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="prod" id="prod" required>
+                            <option value="">-- Selected --</option>
+                            <?php foreach($prod as $pr):?>
+                                <option value="<?= $pr['kode']; ?>"><?= $pr['nama_prodi']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label">Jumlah Jam</label>
+                    <div class="col-sm-8">
+                       <select class="form-control" name="jj" id="jj">
                         <option value="">-- Selected --</option>
-                        <?php foreach($jen as $jn):?>
-                            <option value="<?= $jn['idjmk']; ?>"><?= $jn['nama_jenismk']; ?></option>
-                        <?php endforeach;?>
+                        <?php
+                        for ($i = 1; $i < 11; $i++){
+                            echo '<option value="'.$i.'">'.$i.'</option>';
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <label class="col-sm-4 col-form-label">Semester</label>
-                <div class="col-sm-8">
-                    <select class="form-control" name="smk" id="smk" required>
-                        <option value="">-- Selected --</option>
-                        <?php foreach($smes as $sm):?>
-                            <option value="<?= $sm['kode']; ?>"><?= $sm['tipe_semester']; ?></option>
-                        <?php endforeach;?>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label class="col-sm-4 col-form-label">Prodi</label>
-                <div class="col-sm-8">
-                    <select class="form-control" name="prod" id="prod" required>
-                        <option value="">-- Selected --</option>
-                        <?php foreach($prod as $pr):?>
-                            <option value="<?= $pr['kode']; ?>"><?= $pr['nama_prodi']; ?></option>
-                        <?php endforeach;?>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label class="col-sm-4 col-form-label">Jumlah Jam</label>
-                <div class="col-sm-8">
-                   <select class="form-control" name="jj" id="jj">
-                    <option value="">-- Selected --</option>
-                    <?php
-                    for ($i = 1; $i < 11; $i++){
-                        echo '<option value="'.$i.'">'.$i.'</option>';
-                    }
-                    ?>
-                </select>
-            </div>
         </div>
-
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn btn btn-outline-success">Add</button>
-    </div>
-</form>
+        <div class="modal-footer">
+            <button type="button" class="btn btn btn btn-outline-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn btn btn-outline-success">Add</button>
+        </div>
+    </form>
 </div>
 </div>
 </div> 
@@ -236,19 +235,19 @@
                             <select class="form-control" name="typemkk" id="typemkk" required>
                                 <option value="">-- Selected --</option>
                                 <?php foreach($typ as $tp):?>
-                                  <option value="<?= $tp['idtpel']; ?>"><?= $tp['keterangan']; ?></option>
+                                  <option value="<?= $tp['idtpel']; ?>"><?= $tp['nama_typemk']; ?></option>
                               <?php endforeach;?>
                           </select>
                       </div>
                   </div>
 
                   <div class="row mb-3">
-                    <label class="col-sm-4 col-form-label">Jenis</label>
+                    <label class="col-sm-4 col-form-label">Pararel</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="jenismkk" id="jenismkk" required>
+                        <select class="form-control" name="pararelmk" id="pararelmk" required>
                             <option value="">-- Selected --</option>
-                            <?php foreach($jen as $jn):?>
-                                <option value="<?= $jn['idjmk']; ?>"><?= $jn['nama_jenismk']; ?></option>
+                            <?php foreach($par as $prl):?>
+                                <option value="<?= $prl['idjmk']; ?>"><?= $prl['keterangan']; ?></option>
                             <?php endforeach;?>
                         </select>
                     </div>
