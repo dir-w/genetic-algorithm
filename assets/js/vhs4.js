@@ -1082,15 +1082,15 @@ $(function(){
 
 // end MASTER MATA KULIAH
 
-// start MASTER JENIS MATA KULIAH
-$('#jenismatkulTable').DataTable ({
+// start MASTER PARAREL MATA KULIAH
+$('#pararelmatkulTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
   'serverMethod' : 'post',
   'ajax' : {
 
     type : "POST",
-    url:"jenismatkulList"
+    url:"pararelmatkulList"
 
   },
   'columns' : [
@@ -1098,27 +1098,25 @@ $('#jenismatkulTable').DataTable ({
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
  
- { data: 'nama_jenismk' },
- { data: 'ket_jenismk' },
- 
+ { data: 'keterangan' }, 
  { data : 'Aksi'},
  ]
 });
 
-//GET DATA HAPUS Jenis MATAKULIAH
+//GET DATA HAPUS PARAREL MATAKULIAH
 $(function(){
-  $('#jenismatkulTable').on('click','.item_hapusjenismatkul', function(){
+  $('#pararelmatkulTable').on('click','.item_hapuspararelmatkul', function(){
     const id = $(this).data('id');
     console.log(id);
     $.ajax({
-      url: "targetJenisMatKul",
+      url: "targetPararelMatKul",
       data: {idjmk : id},
       method: 'POST',
       dataType: 'JSON',
       success: function(data) {
         $('#idjm').val(id);
-        $('#nama_j').val(data.nama_jenismk);
-        $('#ModalHapusJenisMatKul').modal('show');
+        $('#nama_j').val(data.keterangan);
+        $('#ModalHapusPararelMatKul').modal('show');
         // console.log(data);
       }
     });
@@ -1126,17 +1124,17 @@ $(function(){
 });
 
 $(function(){
-  $('#btn_hapustjenismatkkul').on('click',function(){
+  $('#btn_hapustpararelmatkkul').on('click',function(){
     var idjmk=$('#idjm').val();
     $.ajax({
       type : "POST",
-      url  : "jenismatkuldelete",
+      url  : "pararelmatkuldelete",
       dataType : "JSON",
       data : {idjmk: idjmk},
       success: function(data){
         // console.log(data);
         $('#ModalHapusJenisMatKul').modal('hide');
-        window.location.assign('jenismatkul');
+        window.location.assign('pararelmatkul');
       }
     });
     return false;
@@ -1145,19 +1143,19 @@ $(function(){
 
 //GET UPDATE
 $(function(){
-  $('#jenismatkulTable').on('click','.edit_jenismatkul', function(){
+  $('#pararelmatkulTable').on('click','.edit_pararelmatkul', function(){
     const id = $(this).data('id');
+    console.log(id);
     $.ajax({
-      url:"targetJenisMatKul",
+      url:"targetPararelMatKul",
       data: {idjmk : id},
       method: 'POST',
       dataType: 'JSON',
       success: function(data) {
         // console.log(data);
         $('#idjmk').val(id);
-        $('#nama_jenismk').val(data.nama_jenismk);
-        $('#ket_jenismk').val(data.ket_jenismk);
-        $('#ModalEditJenisMatkul').modal('show');
+        $('#nama_pararelmk').val(data.keterangan);
+        $('#ModalEditPararelMatkul').modal('show');
         
       }
     });
@@ -1165,20 +1163,18 @@ $(function(){
 });
 
 $(function(){
-  $('#btn_editjenismatakuliah').on('click', function(){
+  $('#btn_editpararelmatakuliah').on('click', function(){
     var idjmk =$('#idjmk').val();
-    var nama_jenismk =$('#nama_jenismk').val();
-    var ket_jenismk =$('#ket_jenismk').val();
+    var keterangan =$('#nama_pararelmk').val();
     $.ajax({
       method: 'POST',
-      url: 'editjenisMatKul',
+      url: 'editpararelMatKul',
       dataType: 'JSON',
-      data: {idjmk:idjmk, nama_jenismk:nama_jenismk, ket_jenismk:ket_jenismk},
+      data: {idjmk:idjmk, keterangan:keterangan},
       success: function(data){
         $('#idjmk').val("");
-        $('#nama_jenismk').val("");
-        $('#ket_jenismk').val("");
-        $('#ModalEditJenisMatkul').modal('hide');
+        $('#nama_pararelmk').val("");
+        $('#ModalEditPararelMatkul').modal('hide');
       }
     });
   });

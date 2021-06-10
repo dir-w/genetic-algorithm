@@ -710,69 +710,66 @@ public function editMatKul()
 
 // end MASTER MATA KULIAH
 
-// start MASTER JENIS MATA KULIAH
-public function jenismatkul()
+// start MASTER PARAREL MATA KULIAH
+public function pararelmatkul()
 {
-    $data['title'] = 'Master Jenis Matakuliah';
+    $data['title'] = 'Master Pararel Matakuliah';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-    $this->form_validation->set_rules('nama_jen', 'Nama Jenis Matakuliah', 'required');
-    $this->form_validation->set_rules('ket_jen', 'Keterangan Jenis Matakuliah', 'required');
-    
+    $this->form_validation->set_rules('namapar', 'Nama Pararel Matakuliah', 'required');
+
     if ($this->form_validation->run() == false)
     {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('matakuliah/jenis_matakuliah', $data);
+        $this->load->view('matakuliah/pararel_matakuliah', $data);
         $this->load->view('templates/footer');
     } else {
-        $saveJMK = [
-            'nama_jenismk' => $this->input->post('nama_jen'),
-            'ket_jenismk' => $this->input->post('ket_jen')
+        $savePMK = [
+            'keterangan' => $this->input->post('namapar')
         ];
-        $this->Data_model->addjenismatkul($saveJMK);
+        $this->Data_model->addpararelmatkul($savePMK);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-        redirect('data/jenismatkul');
+        redirect('data/pararelmatkul');
 
     }
 
 }
 
-public function jenismatkulList()
+public function pararelmatkulList()
 {
         // POST data dari view
     $postData = $this->input->post();
 
         // get data dari model
-    $data = $this->Data_model->getJenisMatkulMaster($postData);
+    $data = $this->Data_model->getPararelMatkulMaster($postData);
 
     echo json_encode($data);
 }
 
-public function targetJenisMatKul($idjmk='')
+public function targetPararelMatKul($idjmk='')
 {
     $idjmk=$this->input->post('idjmk');
-    $data=$this->Data_model->getJenisMatKulbyKode($idjmk);
+    $data=$this->Data_model->getPararelMatKulbyKode($idjmk);
     echo json_encode($data);  
 }
 
-public function jenismatkuldelete()
+public function pararelmatkuldelete()
 {
  $idjmk=$this->input->post('idjmk');
- $data=$this->Data_model->delljenismatkul($idjmk);
+ $data=$this->Data_model->dellpararelmatkul($idjmk);
  echo json_encode($data); 
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
-public function editjenisMatKul()
+public function editpararelMatKul()
 {
     $idjmk = $this->input->post('idjmk');
-    $saveeditjenismatkul = [
-        'nama_jenismk' => $this->input->post('nama_jenismk'),
-        'ket_jenismk' => $this->input->post('ket_jenismk')
+    $saveeditpararelmatkul = [
+        'keterangan' => $this->input->post('keterangan')
     ];
-    $data = $this->Data_model->saveeditjenmatkul($idjmk, $saveeditjenismatkul);
+    $data = $this->Data_model->saveeditparmatkul($idjmk, $saveeditpararelmatkul);
 
     
     echo json_encode($data);
