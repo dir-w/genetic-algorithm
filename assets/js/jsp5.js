@@ -26,7 +26,34 @@ $('#inputTable').DataTable({
  { data: 'tgl_pr' },
  { data : 'Aksi'},
  ]
+});
+
+//GET DATA 
+$(function(){
+  $('#kodemk').on('click', function(){
+    const id =$('#kodemk').val();
+
+    // const id = $(this).data('id');
+    // $('#namamk').val("<?php echo $mk['nama']; ?>");
+    console.log(id);
+    $.ajax({
+      url : "dataMK",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#namamk').val(data.nama);
+        // $('#se').val(data.gab);
+        // $('#ModalHapus').modal('show');
+        // console.log(data);
+      }
+    });
+  });
 }); 
 
+
+
 });
+
+
 

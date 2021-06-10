@@ -94,6 +94,31 @@ class Proses_model extends CI_Model
 
 	    return $response;
 	}
+
+	public function getMatakuliah()
+	{
+		$this->db->select('*');
+		$this->db->FROM('matapelajaran');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getMK($kode)
+	{
+		$hsl=$this->db->query("SELECT * FROM matapelajaran WHERE kode='$kode'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil=array(
+					'nama' => $data->nama,
+					
+				);
+			}
+		}
+		return $hasil;
+
+	}
+
+	
 	// end Model PROSES INPUT
 
 

@@ -19,6 +19,7 @@ class Proses extends CI_Controller
 
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+		$data['matakuliah'] = $this->Proses_model->getMatakuliah()->result_array();
 		$this->form_validation->set_rules('nf', 'Nama Fasilitas', 'required');
 		
 		if ($this->form_validation->run() ==  false)
@@ -51,6 +52,17 @@ class Proses extends CI_Controller
 
 		echo json_encode($data);
 	}
+
+	public function dataMK($kode='')
+	{
+		$kode=$this->input->post('kode');
+
+		$data=$this->Proses_model->getMK($kode);
+		echo json_encode($data);
+
+	}
+
+	
 	// END CONTROLLER PROSES INPUT PEMAKAIAN
 
 }
