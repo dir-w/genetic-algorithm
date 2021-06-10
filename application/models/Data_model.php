@@ -844,7 +844,7 @@ public function getTypeMaster($postData=null)
      ## Search 
     $searchQuery = "";
     if($searchValue != ''){
-        $searchQuery = " (keterangan like '%".$searchValue."%') ";
+        $searchQuery = " (nama_typemk like '%".$searchValue."%') ";
     }
 
      ## Total number of records without filtering
@@ -881,8 +881,8 @@ public function getTypeMaster($postData=null)
 
         $data[] = array( 
             "no"=>$no++,
-            "keterangan"=>$record->keterangan,
-
+            "nama_typemk"=>$record->nama_typemk,
+            "keterangan_typemk"=>$record->keterangan_typemk,
             "Aksi" => "
             <a href='javascript:void(0)' class='badge badge-danger item_hapustypematkul' data-placement='bottom' title='Delete' data-id=$record->idtpel  ;'><span class='far fa-trash-alt'></span></a>
             <a href='javascript:void(0)' class='badge badge-warning edit_typematkul' data-placement='bottom' title='Edit' data-id=$record->idtpel ;'><span class='far fa-edit'></span></a>
@@ -914,7 +914,8 @@ public function getTypeMatKulbyKode($idtpel)
     if($hsl->num_rows()>0){
         foreach ($hsl->result() as $data) {
             $hasil=array(
-                'keterangan' => $data->keterangan,
+                'nama_typemk' => $data->nama_typemk,
+                'keterangan_typemk' => $data->keterangan_typemk,
             );
         }
     }

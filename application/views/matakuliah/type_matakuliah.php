@@ -6,31 +6,31 @@
 
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Add</a>
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Add</a>
 
 
-       </div>
-       <div class="card-body">
-          <div class="table-responsive">
-              <table id="typeTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-                <!-- <table id="empTable" class="display"> -->
-                    <thead class="thead-light">
-                      <tr> 
-                        <th width="10px">No</th>
-                        <th>Type Matakuliah</th>
+     </div>
+     <div class="card-body">
+      <div class="table-responsive">
+          <table id="typeTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+            <!-- <table id="empTable" class="display"> -->
+                <thead class="thead-light">
+                  <tr> 
+                    <th width="10px">No</th>
+                    <th>Nama</th>
+                    <th>Keterangan</th>
+                    <th width="50px">Aksi</th>
+                </tr>
+            </thead>
 
-                        <th width="50px">Aksi</th>
-                    </tr>
-                </thead>
-
-                <!-- load barang -->
-
-
-            </table>
-        </div>
+            <!-- load barang -->
 
 
+        </table>
     </div>
+
+
+</div>
 </div>
 
 
@@ -54,9 +54,16 @@
                 <div class="modal-body">
 
                     <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label">Type Matakuliah</label>
+                        <label class="col-sm-4 col-form-label">Nama</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="ket" name="ket" placeholder="Type Mata Kuliah">
+                            <input type="text" class="form-control" id="namamk" name="namamk" placeholder="Nama Type Mata Kuliah">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Keterangan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="ket" name="ket" placeholder="Keterangan Type Mata Kuliah">
                         </div>
                     </div>
 
@@ -84,7 +91,7 @@
                     <div class="modal-body">
 
                         <input type="hidden" name="idtpe" id="idtpe" value="" readonly="" visible>
-                        <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="keter" id="keter" required="required" readonly="" visible></p>
+                        <div class="alert alert-warning"><p>Are you sure you want to delete?<input type="text" class="form-control" name="namatmk" id="namatmk" required="required" readonly="" visible></p>
 
                         </div>
 
@@ -117,9 +124,16 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Type Matakuliah</label>
+                            <label class="col-sm-4 col-form-label">Nama</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Type Mata kuliah">
+                                <input type="text" class="form-control" id="namatypemk" name="namatypemk" placeholder="Nama">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label">Keterangan</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ketmk" name="ketmk" placeholder="Keterangan">
                             </div>
                         </div>
 
