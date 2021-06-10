@@ -552,8 +552,8 @@ public function typematkul()
 {
     $data['title'] = 'Master Type Matakuliah';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-    $this->form_validation->set_rules('ket', 'Type Matakuliah', 'required');
+    $this->form_validation->set_rules('namamk', 'Nama', 'required');
+    $this->form_validation->set_rules('ket', 'Keterangan', 'required');
     if ($this->form_validation->run() == false)
     {
 
@@ -564,7 +564,8 @@ public function typematkul()
         $this->load->view('templates/footer');
     } else {
         $insertdataTypeMatkul = [
-            'keterangan' => $this->input->post('ket')
+            'nama_typemk' => $this->input->post('namamk'),
+            'keterangan_typemk' => $this->input->post('ket')
         ];
         $this->Data_model->addtypematkul($insertdataTypeMatkul);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
@@ -602,7 +603,8 @@ public function edittypeMatKul()
 {
     $idtpel = $this->input->post('idtpel');
     $saveedittypematkul = [
-        'keterangan' => $this->input->post('keterangan')
+        'nama_typemk' => $this->input->post('nama_typemk'),
+        'keterangan_typemk' => $this->input->post('keterangan_typemk')
     ];
     $data = $this->Data_model->saveedittypematkul($idtpel, $saveedittypematkul);
 

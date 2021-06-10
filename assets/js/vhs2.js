@@ -765,7 +765,8 @@ $('#typeTable').DataTable ({
   { data: null,"sortable": false, render: function (data, type, row, meta){
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
- { data: 'keterangan' },
+ { data: 'nama_typemk' },
+ { data: 'keterangan_typemk' },
  { data : 'Aksi'},
  ]
 });
@@ -782,7 +783,7 @@ $(function(){
       dataType: 'JSON',
       success: function(data) {
         $('#idtpe').val(id);
-        $('#keter').val(data.keterangan);
+        $('#namatmk').val(data.nama_typemk);
         $('#ModalHapusTypeMatKul').modal('show');
         // console.log(data);
       }
@@ -819,7 +820,8 @@ $(function(){
       dataType: 'JSON',
       success: function(data) {
         $('#idtpel').val(id);
-        $('#keterangan').val(data.keterangan);
+        $('#namatypemk').val(data.nama_typemk);
+        $('#ketmk').val(data.keterangan_typemk);
         $('#ModalEditTypeMatkul').modal('show');
       }
     });
@@ -829,15 +831,17 @@ $(function(){
 $(function(){
   $('#btn_edittypematkul').on('click', function(){
     var idtpel =$('#idtpel').val();
-    var keterangan =$('#keterangan').val();
+    var nama_typemk =$('#namatypemk').val();
+    var keterangan_typemk =$('#ketmk').val();
     $.ajax({
       method: 'POST',
       url: 'edittypeMatKul',
       dataType: 'JSON',
-      data: {idtpel:idtpel, keterangan:keterangan},
+      data: {idtpel:idtpel, nama_typemk:nama_typemk, keterangan_typemk:keterangan_typemk},
       success: function(data){
         $('#idtpel').val("");
-        $('#keterangan').val("");
+        $('#namatypemk').val("");
+        $('#ketmk').val("");
         $('#ModalEditTypeMatkul').modal('hide');
       }
     });
