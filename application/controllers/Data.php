@@ -623,14 +623,14 @@ public function matkul()
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $data['kelom'] = $this->Data_model->getKelompoMK()->result_array();
     $data['typ'] = $this->Data_model->getTypeMK()->result_array();
-    $data['jen'] = $this->Data_model->getJMK()->result_array();
+    $data['par'] = $this->Data_model->getPMK()->result_array();
     $data['prod'] = $this->Data_model->getProdi()->result_array();
     $data['smes'] = $this->Data_model->getsmester()->result_array();
     $this->form_validation->set_rules('kel', 'Kelompok Matakuliah', 'required');
     $this->form_validation->set_rules('kodemk', 'Kode Matakuliah', 'required');
     $this->form_validation->set_rules('namamk', 'Nama Matakuliah', 'required');
     $this->form_validation->set_rules('typemk', 'Type Matakuliah', 'required');
-    $this->form_validation->set_rules('jenismk', 'Jenis Matakuliah', 'required');
+    $this->form_validation->set_rules('parmk', 'Pararel Matakuliah', 'required');
     $this->form_validation->set_rules('smk', 'Semester Matakuliah', 'required');
     $this->form_validation->set_rules('prod', 'Prodi', 'required');
     $this->form_validation->set_rules('jj', 'Prodi', 'required');
@@ -647,7 +647,7 @@ public function matkul()
             'nama_kode' => $this->input->post('kodemk'),
             'nama' => $this->input->post('namamk'),
             'id_type' => $this->input->post('typemk'),
-            'id_jenis_mk' => $this->input->post('jenismk'),
+            'id_pararel' => $this->input->post('parmk'),
             'id_semester_tipe' => $this->input->post('smk'),
             'kode_prodi' => $this->input->post('prod'),
             'jumlah_jam' => $this->input->post('jj')
@@ -694,7 +694,7 @@ public function editMatKul()
         'id_kelompok' => $this->input->post('id_kelompok'),
         'nama_kode' => $this->input->post('nama_kode'),
         'id_type' => $this->input->post('id_type'),
-        'id_jenis_mk' => $this->input->post('id_jenis_mk'),
+        'id_pararel' => $this->input->post('id_pararel'),
         'id_semester_tipe' => $this->input->post('id_semester_tipe'),
         'kode_prodi' => $this->input->post('kode_prodi'),
         'jumlah_jam' => $this->input->post('jumlah_jam')
