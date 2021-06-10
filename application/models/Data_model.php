@@ -1216,8 +1216,8 @@ public function saveeditkelmatkul($idk, $saveeditkelmatkul)
 
 // end MASTER KELOMPOK MATA KULIAH
 
-// start MASTER JENIS MATA KULIAH
-public function getJenisMatkulMaster($postData=null)
+// start MASTER PARAREL MATA KULIAH
+public function getPararelMatkulMaster($postData=null)
 {
     $response = array();
 
@@ -1233,20 +1233,20 @@ public function getJenisMatkulMaster($postData=null)
      ## Search 
     $searchQuery = "";
     if($searchValue != ''){
-        $searchQuery = " (nama_jenismk like '%".$searchValue."%' or ket_jenismk like '%".$searchValue."%') ";
+        $searchQuery = " (keterangan like '%".$searchValue."%') ";
     }
 
      ## Total number of records without filtering
     $this->db->select('count(*) as allcount');
 
-    $records = $this->db->get('jenis_matakuliah')->result();
+    $records = $this->db->get('pararel')->result();
     $totalRecords = $records[0]->allcount;
 
      ## Total number of record with filtering
     $this->db->select('count(*) as allcount');
     if($searchQuery != '')
         $this->db->where($searchQuery);
-    $records = $this->db->get('jenis_matakuliah')->result();
+    $records = $this->db->get('pararel')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
     
@@ -1257,7 +1257,7 @@ public function getJenisMatkulMaster($postData=null)
         $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
-    $records = $this->db->get('jenis_matakuliah')->result();
+    $records = $this->db->get('pararel')->result();
 
 
     $data = array();
@@ -1267,11 +1267,11 @@ public function getJenisMatkulMaster($postData=null)
 
         $data[] = array( 
             "no"=>$no++,
-            "nama_jenismk"=>$record->nama_jenismk,
-            "ket_jenismk"=>$record->ket_jenismk,
+            "keterangan"=>$record->keterangan,
+            
             "Aksi" => "
-            <a href='javascript:void(0)' class='badge badge-danger item_hapusjenismatkul' data-placement='bottom' title='Delete' data-id=$record->idjmk  ;'><span class='far fa-trash-alt'></span></a>
-            <a href='javascript:void(0)' class='badge badge-warning edit_jenismatkul' data-placement='bottom' title='Edit' data-id=$record->idjmk ;'><span class='far fa-edit'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapuspararelmatkul' data-placement='bottom' title='Delete' data-id=$record->idjmk  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_pararelmatkul' data-placement='bottom' title='Edit' data-id=$record->idjmk ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -1289,37 +1289,36 @@ public function getJenisMatkulMaster($postData=null)
     return $response;
 }
 
-public function addjenismatkul($saveJMK)
+public function addpararelmatkul($savePMK)
 {
-    $this->db->insert('jenis_matakuliah', $saveJMK);
+    $this->db->insert('pararel', $savePMK);
 }
 
-public function getJenisMatKulbyKode($idjmk)
+public function getPararelMatKulbyKode($idjmk)
 {
-    $hsl=$this->db->query("SELECT * FROM jenis_matakuliah WHERE idjmk='$idjmk'");
+    $hsl=$this->db->query("SELECT * FROM pararel WHERE idjmk='$idjmk'");
     if($hsl->num_rows()>0){
         foreach ($hsl->result() as $data) {
             $hasil=array(
-                'nama_jenismk' => $data->nama_jenismk,
-                'ket_jenismk' => $data->ket_jenismk,
+                'keterangan' => $data->keterangan,
             );
         }
     }
     return $hasil;  
 }
 
-public function delljenismatkul($idjmk)
+public function dellpararelmatkul($idjmk)
 {
-    $hasil=$this->db->query("DELETE FROM jenis_matakuliah WHERE idjmk='$idjmk'");
+    $hasil=$this->db->query("DELETE FROM pararel WHERE idjmk='$idjmk'");
     return $hasil;
 }
 
-public function saveeditjenmatkul($idjmk, $saveeditjenismatkul)
+public function saveeditparmatkul($idjmk, $saveeditpararelmatkul)
 {
     $this->db->where('idjmk', $idjmk);
-    $this->db->update('jenis_matakuliah', $saveeditjenismatkul);
+    $this->db->update('pararel', $saveeditpararelmatkul);
 }
-// end MASTER JENIS MATA KULIAH
+// end MASTER PARAREL MATA KULIAH
 
 // start MASTER prodi
 public function getProdiMaster($postData=null)
