@@ -103,19 +103,92 @@ class Proses_model extends CI_Model
 		return $query;  
 	}
 
+	public function getP()
+	{
+		$this->db->select('*');
+		$this->db->FROM('peminjam');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getH()
+	{
+		$this->db->select('*');
+		$this->db->FROM('hari');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getR()
+	{
+		$this->db->select('*');
+		$this->db->FROM('ruang');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getSE()
+	{
+		$this->db->select('*');
+		$this->db->FROM('semester_tipe');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getJ()
+	{
+		$this->db->select('*');
+		$this->db->FROM('jam');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getD()
+	{
+		$this->db->select('*');
+		$this->db->FROM('guru');
+		$query = $this->db->get();
+		return $query;  
+	}
+
 	public function getMK($kode)
 	{
 		$hsl=$this->db->query("SELECT * FROM matapelajaran WHERE kode='$kode'");
 		if($hsl->num_rows()>0){
 			foreach ($hsl->result() as $data) {
 				$hasil=array(
-					'nama' => $data->nama,
-					
+					'nama' => $data->nama,				
 				);
 			}
 		}
 		return $hasil;
+	}
 
+	public function getPJ($kode_p)
+	{
+		$hsl=$this->db->query("SELECT * FROM peminjam WHERE kode_p='$kode_p'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil=array(
+					'kegiatan' => $data->kegiatan,				
+				);
+			}
+		}
+		return $hasil;
+	}
+
+	public function getJSE($kode)
+	{
+		$hsl=$this->db->query("SELECT * FROM jam WHERE kode='$kode'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil=array(
+					'start' => $data->start,
+					'end' => $data->end,				
+				);
+			}
+		}
+		return $hasil;
 	}
 
 	

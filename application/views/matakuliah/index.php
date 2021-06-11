@@ -209,7 +209,7 @@
                                 <select class="form-control" name="kelmkkk" id="kelmkkk" required>
                                     <option value="">-- Selected --</option>
                                     <?php foreach($kelom as $kp):?>
-                                      <option value="<?= $kp['idk']; ?>"><?= $kp['idk']; ?><?= $kp['nama_kelompok_mk']; ?></option>
+                                      <option value="<?= $kp['idk']; ?>"><?= $kp['nama_kelompok_mk']; ?></option>
                                   <?php endforeach;?>
                               </select>
                           </div>
