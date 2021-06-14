@@ -77,8 +77,8 @@ class Proses_model extends CI_Model
 	    		"tipe_semester"=>$record->tipe_semester,
 	    		"tgl_pr"=> date('d-m-Y', strtotime($record->tgl_pr)),
 	    		"Aksi" => "
-	    		<a href='javascript:void(0)' class='badge badge-danger item_hapusjurusan' data-placement='bottom' title='Delete' data-id=$record->id_pemakaian  ;'><span class='far fa-trash-alt'></span></a>
-	    		<a href='javascript:void(0)' class='badge badge-warning edit_jurusan' data-placement='bottom' title='Edit' data-id=$record->id_pemakaian ;'><span class='far fa-edit'></span></a>
+	    		<a href='javascript:void(0)' class='badge badge-danger item_hapuspemakaian' data-placement='bottom' title='Delete' data-id=$record->id_pemakaian  ;'><span class='far fa-trash-alt'></span></a>
+	    		<a href='javascript:void(0)' class='badge badge-warning edit_pemakaian' data-placement='bottom' title='Edit' data-id=$record->id_pemakaian ;'><span class='far fa-edit'></span></a>
 	    		"
 	    	); 
 
@@ -210,6 +210,27 @@ class Proses_model extends CI_Model
 		// var_dump($insertdataPP);
 		// die;
 		$this->db->insert('pemakaian_ruangan', $insertdataPP);
+	}
+
+	public function getPemakaianbyKode($id_pemakaian)
+	{
+		$hsl=$this->db->query("SELECT * FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode WHERE id_pemakaian='$id_pemakaian'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil=array(
+					'id_pemakaian' => $data->id_pemakaian,
+					'kode_ruangan' => $data->kode_ruangan,
+					'nama' => $data->nama,
+				);
+			}
+		}
+		return $hasil;
+	}
+
+	public function dellP($id_pemakaian)
+	{
+		$hasil=$this->db->query("DELETE FROM pemakaian_ruangan WHERE id_pemakaian='$id_pemakaian'");
+		return $hasil;
 	}
 
 	

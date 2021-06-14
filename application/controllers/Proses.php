@@ -118,6 +118,24 @@ class Proses extends CI_Controller
 
 	}
 
+	public function pemakaiangetEdit($id_pemakaian='')
+	{
+		$id_pemakaian=$this->input->post('id_pemakaian');
+
+		$data=$this->Proses_model->getPemakaianbyKode($id_pemakaian);
+		echo json_encode($data);
+
+	}
+
+	public function pemakaiandelete()
+	{
+		$id_pemakaian=$this->input->post('id_pemakaian');
+		$data=$this->Proses_model->dellP($id_pemakaian);
+		echo json_encode($data); 
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+       // redirect('data/jam');
+	}
+
 	
 	// END CONTROLLER PROSES INPUT PEMAKAIAN
 
