@@ -71,10 +71,11 @@ class Proses_model extends CI_Model
 	    		"namaruang"=>$record->namaruang,
 	    		"namamp"=>$record->namamp,
 	    		"namahari"=>$record->namahari,
+	    		"kapasitas" => $record->kapasitas,
 	    		"start"=>$record->start,
 	    		"end"=>$record->end,
 	    		"tipe_semester"=>$record->tipe_semester,
-	    		"tgl_pr"=>$record->tgl_pr,
+	    		"tgl_pr"=> date('d-m-Y', strtotime($record->tgl_pr)),
 	    		"Aksi" => "
 	    		<a href='javascript:void(0)' class='badge badge-danger item_hapusjurusan' data-placement='bottom' title='Delete' data-id=$record->id_pemakaian  ;'><span class='far fa-trash-alt'></span></a>
 	    		<a href='javascript:void(0)' class='badge badge-warning edit_jurusan' data-placement='bottom' title='Edit' data-id=$record->id_pemakaian ;'><span class='far fa-edit'></span></a>
@@ -189,6 +190,26 @@ class Proses_model extends CI_Model
 			}
 		}
 		return $hasil;
+	}
+
+	public function getNR($kode)
+	{
+		$hsl=$this->db->query("SELECT * FROM ruang WHERE kode='$kode'");
+		if($hsl->num_rows()>0){
+			foreach ($hsl->result() as $data) {
+				$hasil=array(
+					'kapasitas' => $data->kapasitas,				
+				);
+			}
+		}
+		return $hasil;
+	}
+
+	public function addpemakaian($insertdataPP)
+	{
+		// var_dump($insertdataPP);
+		// die;
+		$this->db->insert('pemakaian_ruangan', $insertdataPP);
 	}
 
 	

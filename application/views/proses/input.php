@@ -21,6 +21,7 @@
  								<th>Peminjam</th>
  								<th>Ruangan</th>
  								<th>Nama Matakuliah</th>
+ 								<th>Kapasitas</th>
  								<th>Hari</th>
  								<th>Start</th>
  								<th>End</th>
@@ -59,6 +60,8 @@
  			</div>
  			<form action="<?= base_url('proses/pemakaian'); ?>" method="post">
  				<div class="modal-body">
+ 					
+ 					<input type="hidden" class="form-control" name="namauser" id="namauser" required="required" readonly="" visible value="<?= $user['name']; ?>">
 
  					<div class="row">
  						<div class="col">
@@ -86,13 +89,6 @@
  								</div>
  							</div>
 
- 							<div class="row mb-2">
- 								<label class="col-sm-4 col-form-label">Tgl Pemakaian</label>
- 								<div class="col-sm-8">
- 									<input type="date" class="form-control" id="tpem" name="tpem" placeholder="Tanggal Surat Peminjaman">
- 								</div>
- 							</div>
-
  							<div id="ilang1" class="row mb-2">
  								<label class="col-sm-4 col-form-label">Nama Ruangan</label>
  								<div class="col-sm-8">
@@ -106,41 +102,21 @@
  							</div>
 
  							<div class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Tgl Pemakaian</label>
+ 								<div class="col-sm-8">
+ 									<input type="date" class="form-control" id="tpem" name="tpem" placeholder="Tanggal Surat Peminjaman">
+ 								</div>
+ 							</div>
+
+ 							
+
+ 							<div class="row mb-2">
  								<label class="col-sm-4 col-form-label">Dosen</label>
  								<div class="col-sm-8">
  									<select class="form-control" name="nd" id="nd" required>
  										<option value="">-- Selected --</option>
  										<?php foreach($dosen as $ds):?>
  											<option value="<?= $ds['kode']; ?>"><?= $ds['nama']; ?></option>
- 										<?php endforeach;?>
- 									</select>
- 								</div>
- 							</div>
-
- 						</div>
-
- 						<div class="col">
- 							<div id="ilang" class="row mb-2">
- 								<label class="col-sm-4 col-form-label">Nama Matakuliah</label>
- 								<div class="col-sm-8">
- 									<input type="text" class="form-control" id="namamk" name="namamk" visible readonly="" placeholder="Nama Matakuliah">
- 								</div>
- 							</div>
-
- 							<div id="ilang3" class="row mb-2">
- 								<label class="col-sm-4 col-form-label">Nama Kegiatan</label>
- 								<div class="col-sm-8">
- 									<textarea class="form-control" id="keg" name="keg" placeholder="Nama Kegiatan" visible  readonly=""></textarea>
- 								</div>
- 							</div>
-
- 							<div class="row mb-2">
- 								<label class="col-sm-4 col-form-label">Hari</label>
- 								<div class="col-sm-8">
- 									<select class="form-control" name="har" id="har" required>
- 										<option value="">-- Selected --</option>
- 										<?php foreach($hari as $hr):?>
- 											<option value="<?= $hr['kode']; ?>"><?= $hr['nama']; ?></option>
  										<?php endforeach;?>
  									</select>
  								</div>
@@ -157,6 +133,45 @@
  									</select>
  								</div>
  							</div>
+
+ 						</div>
+
+ 						<div class="col">
+ 							<div id="ilang" class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Nama Matakuliah</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" id="namamk" name="namamk" visible readonly="" placeholder="Nama Matakuliah">
+ 								</div>
+ 							</div>
+
+ 							
+
+ 							<div id="ilang3" class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Nama Kegiatan</label>
+ 								<div class="col-sm-8">
+ 									<textarea class="form-control" id="keg" name="keg" placeholder="Nama Kegiatan" visible  readonly=""></textarea>
+ 								</div>
+ 							</div>
+
+ 							<div id="ilang2" class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Kapasitas</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" id="kapas" name="kapas" visible readonly="" placeholder="Kapasitas">
+ 								</div>
+ 							</div>
+
+ 							<div class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Hari</label>
+ 								<div class="col-sm-8">
+ 									<select class="form-control" name="har" id="har" required>
+ 										<option value="">-- Selected --</option>
+ 										<?php foreach($hari as $hr):?>
+ 											<option value="<?= $hr['kode']; ?>"><?= $hr['nama']; ?></option>
+ 										<?php endforeach;?>
+ 									</select>
+ 								</div>
+ 							</div>
+
 
  							<div class="row mb-2">
  								<label class="col-sm-4 col-form-label">Jam</label>

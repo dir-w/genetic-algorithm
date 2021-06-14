@@ -15,16 +15,18 @@ $('#inputTable').DataTable({
   { data: null,"sortable": false, render: function (data, type, row, meta){
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
+
  { data: 'nama_kode' },
  { data: 'pj' },
  { data: 'namaruang' },
  { data: 'namamp' },
+ { data: 'kapasitas' },
  { data: 'namahari' },
  { data: 'start' },
  { data: 'end' },
  { data: 'tipe_semester' },
  { data: 'tgl_pr' },
- { data : 'Aksi'},
+ { data: 'Aksi'},
  ]
 });
 
@@ -44,7 +46,7 @@ $(function(){
         dataType: 'JSON',
         success: function(data) {
           $('#namamk').val(data.nama);
-        // $('#se').val(data.gab);
+          $('#kapas').val(data.kapasitas);
         // $('#ModalHapus').modal('show');
         // console.log(data);
       }
@@ -71,25 +73,23 @@ $(function(){
   });
 });
 
-// $("#ilang3").hide();  
-// $(function(){
-//   $('#ja').on('click', function(){
-//     const id =$('#ja').val();
-//     $("#ilang3").show();
+$("#ilang2").hide();  
+$(function(){
+  $('#nruang').on('click', function(){
+    const id =$('#nruang').val();
+    $("#ilang2").show();
 
-//     $.ajax({
-//       url : "dataJSE",
-//       data: {kode : id},
-//       method: 'POST',
-//       dataType: 'JSON',
-//       success: function(data) {
-//         $('#jstart').val(data.start);
-//         $('#jend').val(data.end);
-
-//       }
-//     });
-//   });
-// });
+    $.ajax({
+      url : "dataNR",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#kapas').val(data.kapasitas);
+      }
+    });
+  });
+});
 
 
 
