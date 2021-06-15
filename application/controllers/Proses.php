@@ -136,6 +136,31 @@ class Proses extends CI_Controller
        // redirect('data/jam');
 	}
 
+	public function editPR()
+	{
+		$id_pemakaian = $this->input->post('id_pemakaian');
+		$saveedipr = [
+			'kode_mk' => $this->input->post('kode_mk')
+			// 'kode_peminjam' => $this->input->post('kode_peminjam'),
+			// 'kode_ruangan' => $this->input->post('kode_ruangan'),
+			// 'kode_jam' => $this->input->post('kode_jam'),
+			// 'kode_hari' => $this->input->post('kode_hari'),
+			// 'kode_dosen' => $this->input->post('kode_dosen'),
+			// 'kode_semester' => $this->input->post('kode_semester'),
+			// 'tgl_pr' => $this->input->post('tgl_pr'),
+			// 'update_by' => $this->input->post('update_by'),
+			// 'update_at' => time()
+		];
+
+		// var_dump($saveeditpr);
+		// die;
+		$data = $this->Proses_model->saveeditpru($id_pemakaian,$saveedipr);
+		echo json_encode($data);
+		$this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+	}
+
+	// http://localhost:82/genetic-algorithm/proses/pemakaian?id_pemakaian=1&nama_user=wend&kode_mk=1&p_jawab=1&n_ruang=1&n_d=1&semester=1&nama_mk=Pendidikan+Agama+Islam&kegiatan=kjlkj&kapasitas=1&hari=1&jam=1
+
 	
 	// END CONTROLLER PROSES INPUT PEMAKAIAN
 

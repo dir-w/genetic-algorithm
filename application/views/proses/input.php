@@ -8,6 +8,14 @@
  		<div class="card-header">
  			<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newInputModal">Add</a>
 
+ 			<div class="col-2">
+ 				<div class="form-group">
+
+ 					<!-- <label>Tanggal (DatePicker)</label> -->
+ 					<!-- <input type="text" class="form-control datetimepicker-input" id="tglpemakaian" name="tglpemakaian" data-toggle="datetimepicker" data-target="#datepicker" placeholder="Tanggal Pemakaian Ruangan"> -->
+ 					<!-- <input type="text" id="datepicker" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datepicker" autocomplete="off" /> -->
+ 				</div>
+ 			</div>
 
  		</div>
  		<div class="card-body">
@@ -60,7 +68,8 @@
  			</div>
  			<form action="<?= base_url('proses/pemakaian'); ?>" method="post">
  				<div class="modal-body">
- 					
+
+
  					<input type="hidden" class="form-control" name="namauser" id="namauser" required="required" readonly="" visible value="<?= $user['name']; ?>">
 
  					<div class="row">
@@ -104,7 +113,7 @@
  							<div class="row mb-2">
  								<label class="col-sm-4 col-form-label">Tgl Pemakaian</label>
  								<div class="col-sm-8">
- 									<input type="date" class="form-control" id="tpem" name="tpem" placeholder="Tanggal Surat Peminjaman">
+ 									<input type="date" class="form-control" id="tpem" name="tpem" placeholder="Tanggal Pemakaian Ruangan">
  								</div>
  							</div>
 
@@ -231,101 +240,158 @@
  <!--END MODAL HAPUS-->
 
  <!-- modal edit data -->
- <div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditPeminjam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
- 	<div class="modal-dialog" role="document">
+ <div class="modal fade bs-example-modal-lg modal-edit" id="ModalEditPemakaian" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ 	<div class="modal-dialog modal-xl" role="document">
  		<div class="modal-content">
  			<div class="modal-content">
  				<div class="modal-header">
- 					<h5 class="modal-title text-danger" id="EditPeminjamModalLabel">EDIT MASTER PEMINJAM</h5>
+ 					<h5 class="modal-title text-danger" id="EditPemakaianModalLabel">EDIT MASTER PEMAKAIAN</h5>
 
  				</div>
  				<form class="form-horizontal">
  					<div class="modal-body">
  						<div class="form-group">
  							<!-- <label for="range">Kode</label>                    -->
- 							<input type="hidden" class="form-control" name="kode_p" id="kode_p" required="required" readonly="" >
+ 							<input type="text" class="form-control" name="id_pemakaian" id="id_pemakaian" required="required" readonly="" >
  						</div>
 
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">No Surat PPKU</label>
- 							<div class="col-sm-8">
- 								<input type="text" class="form-control" id="no_ppku" name="no_ppku" placeholder="No Surat PPKU">
+
+ 						<input type="hidden" class="form-control" name="nama_user" id="nama_user" required="required" readonly="" visible value="<?= $user['name']; ?>">
+
+ 						<div class="row">
+ 							<div class="col">
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Kode Matakuliah</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="kode_mk" id="kode_mk" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($matakuliah as $mk):?>
+ 												<option value="<?= $mk['kode']; ?>"><?= $mk['nama_kode']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Peminjam</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="p_jawab" id="p_jawab" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($pemin as $pm):?>
+ 												<option value="<?= $pm['kode_p']; ?>"><?= $pm['pj']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
+ 								<div id="ilang1" class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Nama Ruangan</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="n_ruang" id="n_ruang" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($ruangan as $ru):?>
+ 												<option value="<?= $ru['kode']; ?>"><?= $ru['nama']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Tgl Pemakaian</label>
+ 									<div class="col-sm-8">
+ 										<!-- <input type="text" class="form-control" id="datepicker" name="datepicker" data-target="#datepicker" placeholder="Tanggal Pemakaian Ruangan"> -->
+ 										<!-- <input type="text" id="datepicker" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datepicker" autocomplete="off" /> -->
+ 										<input type="text" id="tgl" class="form-control datepicker-input" data-toggle="datetimepicker" data-target="#tgl" autocomplete="off" />
+ 										<!-- <input type="text" id="datepicker" class="form-control datetimepicker-input" data-toggle="datepicker" data-target="#datepicker" autocomplete="off" /> -->
+ 									</div>
+ 								</div>
+
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Dosen</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="n_d" id="n_d" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($dosen as $ds):?>
+ 												<option value="<?= $ds['kode']; ?>"><?= $ds['nama']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Semester</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="semester" id="semester" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($semestertipe as $st):?>
+ 												<option value="<?= $st['kode']; ?>"><?= $st['tipe_semester']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
+ 							</div>
+
+ 							<div class="col">
+ 								<div id="ilang" class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Nama Matakuliah</label>
+ 									<div class="col-sm-8">
+ 										<input type="text" class="form-control" id="nama_mk" name="nama_mk" visible readonly="" placeholder="Nama Matakuliah">
+ 									</div>
+ 								</div>
+
+
+
+ 								<div id="ilang3" class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Nama Kegiatan</label>
+ 									<div class="col-sm-8">
+ 										<textarea class="form-control" id="kegiatan" name="kegiatan" placeholder="Nama Kegiatan" visible  readonly=""></textarea>
+ 									</div>
+ 								</div>
+
+ 								<div id="ilang2" class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Kapasitas</label>
+ 									<div class="col-sm-8">
+ 										<input type="text" class="form-control" id="kapasitas" name="kapasitas" visible readonly="" placeholder="Kapasitas">
+ 									</div>
+ 								</div>
+
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Hari</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="hari" id="hari" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($hari as $hr):?>
+ 												<option value="<?= $hr['kode']; ?>"><?= $hr['nama']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
+
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Jam</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="jam" id="jam" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($jam as $jm):?>
+ 												<option value="<?= $jm['kode']; ?>"><?= $jm['start'].'-'.$jm['end']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
  							</div>
  						</div>
 
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">No Peminjaman</label>
- 							<div class="col-sm-8">
- 								<input type="text" class="form-control" id="no_peminjam" name="no_peminjam" placeholder="No Surat Peminjaman">
- 							</div>
- 						</div>
-
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">Nama Kegiatan</label>
- 							<div class="col-sm-8">
- 								<input type="text" class="form-control" id="kegiatan" name="kegiatan" placeholder="Nama Kegiatan">
- 							</div>
- 						</div>
-
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">Tgl Surat Peminj</label>
- 							<div class="col-sm-8">
- 								<input type="date" class="form-control" id="tglsp" name="tglsp" placeholder="Tanggal Surat Peminjaman">
- 							</div>
- 						</div>
-
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">Hari</label>
- 							<div class="col-sm-8">
- 								<!-- <input type="text" class="form-control" id="hari" name="hari" placeholder="Hari"> -->
- 								<select class="form-control" name="hari" id="hari" required>
- 									<option value="">-- Selected --</option>
-
- 									<option value="Senin">Senin</option>
- 									<option value="Selasa">Selasa</option>
- 									<option value="Rabu">Rabu</option>
- 									<option value="Kamis">Kamis</option>
- 									<option value="Jum'at">Jum'at</option>
- 									<option value="Sabtu">Sabtu</option>
- 									<option value="Minggu">Minggu</option>
-
- 								</select>
- 							</div>
- 						</div>
-
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">Tgl Kegiatan</label>
- 							<div class="col-sm-8">
- 								<input type="date" class="form-control" id="tglkeg" name="tglkeg" placeholder="Tanggal Kegiatan">
- 							</div>
- 						</div>
-
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">Fasilitas</label>
- 							<div class="col-sm-8">
- 								<!-- <input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas"> -->
- 								<select class="form-control" name="fasilitas" id="fasilitas" required>
- 									<option value="">-- Selected --</option>
- 									<?php foreach($fasi as $fa):?>
- 										<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
- 									<?php endforeach;?>
- 								</select>
- 							</div>
- 						</div>
-
- 						<div class="row mb-3">
- 							<label class="col-sm-4 col-form-label">Penanggung Jawab</label>
- 							<div class="col-sm-8">
- 								<input type="text" class="form-control" id="penanggungj" name="penanggungj" placeholder="Penanggung Jawab">
- 							</div>
- 						</div>
+ 						
 
 
  					</div>             
 
  					<div class="modal-footer">
  						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
- 						<button class="btn_edit btn btn-danger" id="btn_editpeminjam">Save</button>
+ 						<button class="btn_edit btn btn-danger" id="btn_editpemakaian">Save</button>
  					</div>
  				</form>
  			</div>

@@ -74,7 +74,7 @@ $.ajax({
     $('#kode').val(id);
     $('#range_jamm').val(data.start);
     $('#range_jammm').val(data.end);
-    console.log(data);
+    // console.log(data);
     $('#ModalEdit').modal('show');
   }
 });

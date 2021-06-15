@@ -214,13 +214,23 @@ class Proses_model extends CI_Model
 
 	public function getPemakaianbyKode($id_pemakaian)
 	{
-		$hsl=$this->db->query("SELECT * FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode WHERE id_pemakaian='$id_pemakaian'");
+		$hsl=$this->db->query("SELECT pemakaian_ruangan.*, ruang.*, peminjam.*, matapelajaran.nama as napel FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode JOIN matapelajaran on pemakaian_ruangan.kode_mk=matapelajaran.kode JOIN peminjam on pemakaian_ruangan.kode_peminjam=peminjam.kode_p WHERE id_pemakaian='$id_pemakaian'");
 		if($hsl->num_rows()>0){
 			foreach ($hsl->result() as $data) {
 				$hasil=array(
 					'id_pemakaian' => $data->id_pemakaian,
 					'kode_ruangan' => $data->kode_ruangan,
 					'nama' => $data->nama,
+					'kode_mk' => $data->kode_mk,
+					'napel' => $data->napel,
+					'kode_peminjam' => $data->kode_peminjam,
+					'kode_jam' => $data->kode_jam,
+					'kode_hari' => $data->kode_hari,
+					'kode_dosen' => $data->kode_dosen,
+					'kode_semester' => $data->kode_semester,
+					'kapasitas' => $data->kapasitas,
+					'kegiatan' => $data->kegiatan,
+					'tgl_pr' => date('d/m/Y', strtotime($data->tgl_pr)),
 				);
 			}
 		}
@@ -231,6 +241,12 @@ class Proses_model extends CI_Model
 	{
 		$hasil=$this->db->query("DELETE FROM pemakaian_ruangan WHERE id_pemakaian='$id_pemakaian'");
 		return $hasil;
+	}
+
+	public function saveeditpru($id_pemakaian,$saveedipr)
+	{
+		$this->db->where('id_pemakaian', $id_pemakaian);
+		$this->db->update('pemakaian_ruangan', $saveedipr);
 	}
 
 	
