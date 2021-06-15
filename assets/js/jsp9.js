@@ -219,13 +219,14 @@ $(function(){
   });
 });
 
+
+
+//text input rubah menjadi text=date modal edit
 $("#tglpem").hide();
 $(function(){
   $('#tgl').on('click', function(){
     $("#tgl").hide();
     $("#tglpem").show();
-
-    
   });
 });
 
