@@ -8,14 +8,12 @@
  		<div class="card-header">
  			<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newInputModal">Add</a>
 
- 			<div class="col-2">
+ 			<!-- <div class="col-2">
  				<div class="form-group">
 
- 					<!-- <label>Tanggal (DatePicker)</label> -->
- 					<!-- <input type="text" class="form-control datetimepicker-input" id="tglpemakaian" name="tglpemakaian" data-toggle="datetimepicker" data-target="#datepicker" placeholder="Tanggal Pemakaian Ruangan"> -->
- 					<!-- <input type="text" id="datepicker" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datepicker" autocomplete="off" /> -->
+ 					<input type="date" id="datepicker" />
  				</div>
- 			</div>
+ 			</div> -->
 
  		</div>
  		<div class="card-body">
@@ -298,11 +296,12 @@
 
  								<div class="row mb-2">
  									<label class="col-sm-4 col-form-label">Tgl Pemakaian</label>
- 									<div class="col-sm-8">
- 										<!-- <input type="text" class="form-control" id="datepicker" name="datepicker" data-target="#datepicker" placeholder="Tanggal Pemakaian Ruangan"> -->
+ 									<div class="col-sm-8" >
+ 										<!-- <input type="text" class="form-control" id="tgl" name="tgl" placeholder="Tanggal Pemakaian Ruangan"> -->
  										<!-- <input type="text" id="datepicker" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datepicker" autocomplete="off" /> -->
  										<input type="text" id="tgl" class="form-control datepicker-input" data-toggle="datetimepicker" data-target="#tgl" autocomplete="off" />
  										<!-- <input type="text" id="datepicker" class="form-control datetimepicker-input" data-toggle="datepicker" data-target="#datepicker" autocomplete="off" /> -->
+ 										<input type="date" class="form-control" id="tglpem" name="tglpem" placeholder="Tanggal Pemakaian Ruangan">
  									</div>
  								</div>
 

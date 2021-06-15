@@ -131,9 +131,7 @@ $('#btn_hapuspemakaian').on('click',function(){
  $(function(){
   $('#inputTable').on('click','.edit_pemakaian', function(){
     const id = $(this).data('id');
-    $('#tgl').datepicker({
-      dateFormat : "yyyy-mm-dd",
-    });
+
 // console.log(id);
 $.ajax({
   url:"pemakaiangetEdit",
@@ -221,21 +219,15 @@ $(function(){
   });
 });
 
-// tgl
-// setDatePicker("#tgl")
-// $(function(){
-//   $("#tgl").datepicker({
-//     dateFormat : 'yyyy-mm-dd',
-//   });
-// });
+$("#tglpem").hide();
+$(function(){
+  $('#tgl').on('click', function(){
+    $("#tgl").hide();
+    $("#tglpem").show();
 
-// $(function(){
-//   $('#tgl')({
-//     dateFormat : "dd-mm-yyyy"
-//   });
-
-
-// });
+    
+  });
+});
 
 
 
@@ -251,15 +243,15 @@ $(function(){
     var kode_hari =$('#hari').val();
     var kode_dosen =$('#n_d').val();
     var kode_semester =$('#semester').val();
-    var tgl_pr =$('#tgl').val();
+    var tgl_pr =$('#tglpem').val();
     var update_by =$('#nama_user').val();
     // alert(tgl_pr);
     $.ajax({
       method : 'POST',
       url : 'editPR',
       dataType : 'JSON',
-      // data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk, kode_peminjam:kode_peminjam, kode_ruangan:kode_ruangan, kode_jam:kode_jam, kode_hari:kode_hari, kode_dosen:kode_dosen, kode_semester:kode_semester, update_by:update_by},
-      data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk},
+      data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk, kode_peminjam:kode_peminjam, kode_ruangan:kode_ruangan, kode_jam:kode_jam, kode_hari:kode_hari, kode_dosen:kode_dosen, kode_semester:kode_semester, tgl_pr:tgl_pr, update_by:update_by},
+      // data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk},
 
       success: function(data){
         // console.log(data);
@@ -269,7 +261,7 @@ $(function(){
         $('#hari').val("");
         $('#n_d').val("");
         $('#semester').val("");
-        $('#datepicker').val("");
+        $('#tgl').val("");
         $('#nama_user').val("");
           // $('#n_ruang').val("");
           $('#ModalEditPemakaian').modal('hide');

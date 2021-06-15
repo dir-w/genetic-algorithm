@@ -40,18 +40,9 @@
 </div>
 
 
-
-
 <!-- Bootstrap core JavaScript-->
-<!-- <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script> -->
-<script src="<?= base_url('assets1/'); ?>js/jquery.min.js"></script>
-<script src="<?= base_url('assets1/'); ?>js/bootstrap.min.js"></script>
-<script src="<?= base_url('assets1/'); ?>libraries/moment/moment.min.js"></script>
-
-<script src="<?= base_url('assets1/'); ?>libraries/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src="<?= base_url('assets1/'); ?>js/custom.js"></script>
-
-<!-- <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -65,15 +56,10 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-
-
 
 <script src="<?= base_url('assets/'); ?>js/vhs6.js"></script>
 <script src="<?= base_url('assets/'); ?>js/jsf.js"></script>
 <script src="<?= base_url('assets/'); ?>js/jsp9.js"></script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
 <!-- <script>
     addEventListener('load', function myfuntion(){
@@ -83,25 +69,6 @@
         console.log('jalan ketika load');
     }
     init();
-</script> -->
-<!-- Date Picker -->
-<!-- <script type="text/javascript">
-    $(function(){
-      $("#datepicker").datepicker({
-       dateFormat:"dd-mm-yy",
-   });
-  });
-</script> -->
-<!-- <script>
-    $(document).ready(function(){
-        setDatePicker("#datepicker")
-        dateFormat:"dd-mm-yy",
-        // startDate: '-3d'
-        // setDateRangePicker("#startdate", "#enddate")
-        // setMonthPicker("#monthpicker")
-        // setYearPicker("#yearpicker")
-        // setYearRangePicker("#startyear", "#endyear")
-    })
 </script> -->
 
 <script>

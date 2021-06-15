@@ -140,16 +140,16 @@ class Proses extends CI_Controller
 	{
 		$id_pemakaian = $this->input->post('id_pemakaian');
 		$saveedipr = [
-			'kode_mk' => $this->input->post('kode_mk')
-			// 'kode_peminjam' => $this->input->post('kode_peminjam'),
-			// 'kode_ruangan' => $this->input->post('kode_ruangan'),
-			// 'kode_jam' => $this->input->post('kode_jam'),
-			// 'kode_hari' => $this->input->post('kode_hari'),
-			// 'kode_dosen' => $this->input->post('kode_dosen'),
-			// 'kode_semester' => $this->input->post('kode_semester'),
-			// 'tgl_pr' => $this->input->post('tgl_pr'),
-			// 'update_by' => $this->input->post('update_by'),
-			// 'update_at' => time()
+			'kode_mk' => $this->input->post('kode_mk'),
+			'kode_peminjam' => $this->input->post('kode_peminjam'),
+			'kode_ruangan' => $this->input->post('kode_ruangan'),
+			'kode_jam' => $this->input->post('kode_jam'),
+			'kode_hari' => $this->input->post('kode_hari'),
+			'kode_dosen' => $this->input->post('kode_dosen'),
+			'kode_semester' => $this->input->post('kode_semester'),
+			'tgl_pr' => $this->input->post('tgl_pr'),
+			'update_by' => $this->input->post('update_by'),
+			'update_at' => time()
 		];
 
 		// var_dump($saveeditpr);
