@@ -74,7 +74,7 @@ $.ajax({
     $('#kode').val(id);
     $('#range_jamm').val(data.start);
     $('#range_jammm').val(data.end);
-    console.log(data);
+    // console.log(data);
     $('#ModalEdit').modal('show');
   }
 });
@@ -1107,7 +1107,7 @@ $('#pararelmatkulTable').DataTable ({
 $(function(){
   $('#pararelmatkulTable').on('click','.item_hapuspararelmatkul', function(){
     const id = $(this).data('id');
-    console.log(id);
+    // console.log(id);
     $.ajax({
       url: "targetPararelMatKul",
       data: {idjmk : id},
@@ -1145,7 +1145,7 @@ $(function(){
 $(function(){
   $('#pararelmatkulTable').on('click','.edit_pararelmatkul', function(){
     const id = $(this).data('id');
-    console.log(id);
+    // console.log(id);
     $.ajax({
       url:"targetPararelMatKul",
       data: {idjmk : id},

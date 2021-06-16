@@ -17,10 +17,13 @@
 
     <!-- Custom styles for this template-->
     <!-- <link href="<?= base_url('assets/'); ?>css/bootstrap.min.css" rel="stylesheet"> -->
-     <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- table -->
     <link href="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+
+    <!-- costum css -->
+    <link href="<?= base_url('assets/'); ?>costumcss/my.css" rel="stylesheet"/>
 
     
 
@@ -29,5 +32,5 @@
 <!-- <body id="page-top" oncontextmenu="return false;" onkeydown="return false;" onmousedown="return false;"> -->
     <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper"> 
+        <!-- Page Wrapper -->
+        <div id="wrapper"> 
