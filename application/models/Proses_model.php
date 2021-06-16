@@ -79,6 +79,7 @@ class Proses_model extends CI_Model
 	    		"Aksi" => "
 	    		<a href='javascript:void(0)' class='badge badge-danger item_hapuspemakaian' data-placement='bottom' title='Delete' data-id=$record->id_pemakaian  ;'><span class='far fa-trash-alt'></span></a>
 	    		<a href='javascript:void(0)' class='badge badge-warning edit_pemakaian' data-placement='bottom' title='Edit' data-id=$record->id_pemakaian ;'><span class='far fa-edit'></span></a>
+	    		<a href='javascript:void(0)' class='badge badge-primary detail_pemakaian' data-placement='bottom' title='Detail' data-id=$record->id_pemakaian ;'><span class='fas fa-info-circle'></span></a>
 	    		"
 	    	); 
 
@@ -214,7 +215,7 @@ class Proses_model extends CI_Model
 
 	public function getPemakaianbyKode($id_pemakaian)
 	{
-		$hsl=$this->db->query("SELECT pemakaian_ruangan.*, ruang.*, peminjam.*, matapelajaran.nama as napel FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode JOIN matapelajaran on pemakaian_ruangan.kode_mk=matapelajaran.kode JOIN peminjam on pemakaian_ruangan.kode_peminjam=peminjam.kode_p WHERE id_pemakaian='$id_pemakaian'");
+		$hsl=$this->db->query("SELECT pemakaian_ruangan.*, ruang.*, ruang.id_ruang as idr, ruang.nama as namar, peminjam.*, matapelajaran.*, matapelajaran.nama as napel, typepelajaran.*, pararel.*, jam.* FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode JOIN matapelajaran on pemakaian_ruangan.kode_mk=matapelajaran.kode JOIN peminjam on pemakaian_ruangan.kode_peminjam=peminjam.kode_p JOIN typepelajaran ON matapelajaran.id_type=typepelajaran.idtpel JOIN pararel on matapelajaran.id_pararel=pararel.idjmk JOIN jam ON pemakaian_ruangan.kode_jam=jam.kode WHERE id_pemakaian='$id_pemakaian'");
 		if($hsl->num_rows()>0){
 			foreach ($hsl->result() as $data) {
 				$hasil=array(
@@ -230,6 +231,14 @@ class Proses_model extends CI_Model
 					'kode_semester' => $data->kode_semester,
 					'kapasitas' => $data->kapasitas,
 					'kegiatan' => $data->kegiatan,
+					'nama_kode' => $data->nama_kode,
+					'pj' => $data->pj,
+					'namar' => $data->namar,
+					'id_ruang' => $data->id_ruang,
+					'nama_typemk' => $data->nama_typemk,
+					'keterangan' => $data->keterangan,
+					'start' => $data->start,
+					'end' => $data->end,
 					'tgl_pr' => date('d/m/Y', strtotime($data->tgl_pr)),
 				);
 			}

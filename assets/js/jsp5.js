@@ -21,10 +21,10 @@ $('#inputTable').DataTable({
  { data: 'namaruang' },
  { data: 'namamp' },
  { data: 'kapasitas' },
- { data: 'namahari' },
- { data: 'start' },
- { data: 'end' },
- { data: 'tipe_semester' },
+ // { data: 'namahari' },
+ // { data: 'start' },
+ // { data: 'end' },
+ // { data: 'tipe_semester' },
  { data: 'tgl_pr' },
  { data: 'Aksi'},
  ]
@@ -272,6 +272,39 @@ $(function(){
       // alert(kode);
       // console.log(range);
     });
+});
+
+//GET UPDATE
+$(function(){
+  $('#inputTable').on('click','.detail_pemakaian', function(){
+    const id = $(this).data('id');
+
+    
+    $.ajax({
+      url:"pemakaiangetEdit",
+      data: {id_pemakaian : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // $('#dkoderi').html('kkkk');
+        $('#idpemakaian').val(data.kode_ruangan);
+        $('#dkoder').html(data.id_ruang);
+        $('#dnamapeminjam').html(data.pj);
+        $('#dnamar').html(data.namar);
+        $('#dkodemk').html(data.nama_kode);
+        $('#dnamamk').html(data.nama);
+        $('#dkegiatan').html(data.kegiatan);
+        $('#dnamatypemk').html(data.nama_typemk);
+        $('#dketeranganp').html(data.keterangan);
+        $('#dhari').html(data.kode_hari);
+        $('#djam').html('Start : ' + data.start + '       End : ' + data.end);
+        $('#ModalDetailPemakaian').modal('show');
+
+
+    // alert(kmk);
+  }
+});
+  });
 });
 
 

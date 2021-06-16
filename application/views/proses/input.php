@@ -28,12 +28,12 @@
  								<th>Ruangan</th>
  								<th>Nama Matakuliah</th>
  								<th>Kapasitas</th>
- 								<th>Hari</th>
- 								<th>Start</th>
+ 								<!-- <th>Hari</th> -->
+ 								<!-- <th>Start</th>
  								<th>End</th>
- 								<th>Semester</th>
+ 								<th>Semester</th> -->
  								<th>Tgl Pemakaian</th>
- 								<th width="45px">Aksi</th>
+ 								<th width="60px">Aksi</th>
  							</tr>
  						</thead>
 
@@ -61,7 +61,7 @@
  	<div class="modal-dialog modal-xl" role="document">
  		<div class="modal-content">
  			<div class="modal-header">
- 				<h5 class="modal-title text-danger" id="newInputModalLabel">INPUT DATA PEMAKAIAN RUANGAN</h5>
+ 				<h5 class="modal-title text-danger" id="newInputModalLabel">INPUT PEMAKAIAN RUANGAN</h5>
 
  			</div>
  			<form action="<?= base_url('proses/pemakaian'); ?>" method="post">
@@ -215,7 +215,7 @@
  		<div class="modal-content">
  			<div class="modal-content">
  				<div class="modal-header">
- 					<h5 class="modal-title text-danger" id="hapusPemakaianModalLabel">WARNING MASTER PEMAKAIAN</h5>
+ 					<h5 class="modal-title text-danger" id="hapusPemakaianModalLabel">WARNING PEMAKAIAN RUANGAN</h5>
  				</div>
  				<form class="form-horizontal">
  					<div class="modal-body">
@@ -243,7 +243,7 @@
  		<div class="modal-content">
  			<div class="modal-content">
  				<div class="modal-header">
- 					<h5 class="modal-title text-danger" id="EditPemakaianModalLabel">EDIT MASTER PEMAKAIAN</h5>
+ 					<h5 class="modal-title text-danger" id="EditPemakaianModalLabel">EDIT PEMAKAIAN RUANGAN</h5>
 
  				</div>
  				<form class="form-horizontal">
@@ -398,3 +398,84 @@
  	</div>
  </div>
 <!--END MODAL EDIT
+
+	<!--MODAL DETAIL-->
+	<div class="modal fade" id="ModalDetailPemakaian" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title text-danger" id="DetailPemakaianModalLabel">DETAIL PEMAKAIAN RUANGAN</h5>
+					</div>
+					<form class="form-horizontal">
+						<div class="modal-body">
+
+							<input type="text" name="idpemakaian" id="idpemakaian" value="" readonly="" visible>
+							
+							
+
+							<div class="card mb-3 col-lg-12">
+								<div class="row no-gutters">
+									<!-- <tr>
+										<td>Kode Ruangan</td>
+										<td width="1px">:</td>
+										<td id="dkoder1"></td>
+									</tr> -->
+
+									<div class="col-md-4">
+										<div class="card-body">
+											<h5 class="card-title">Kode Ruangan</h5>
+											<p class="card-text">Nama Ruangan</p>
+											<p class="card-text"><small class="text-muted">Nama Peminjam</small></p>
+											<p class="card-text"><small class="text-muted">Kegiatan</small></p>
+											<p class="card-text"><small class="text-muted">Kode Matakuliah</small></p>
+											<p class="card-text"><small class="text-muted">Nama Matakuliah</small></p>
+											<p class="card-text"><small class="text-muted">Type Matakuliah</small></p>
+											<p class="card-text"><small class="text-muted">Pararel</small></p>
+											<p class="card-text"><small class="text-muted">Hari</small></p>
+											<p class="card-text"><small class="text-muted">Jam</small></p>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<div class="card-body">
+											<h5 class="card-title">:</h5>
+											<p class="card-text">:</p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text"><small class="text-muted">:</small></p>
+										</div>
+									</div>
+									<div class="col-md-7">
+										<div class="card-body">
+											
+											<h5 class="card-title" id="dkoder"></h5>
+											<p class="card-text" id="dnamar"></p>
+											<p class="card-text"><small class="text-muted" id="dnamapeminjam"></small></p>
+											<p class="card-text"><small class="text-muted" id="dkegiatan"></small></p>
+											<p class="card-text"><small class="text-muted" id="dkodemk"></small></p>
+											<p class="card-text"><small class="text-muted" id="dnamamk"></small></p>
+											<p class="card-text"><small class="text-muted" id="dnamatypemk"></small></p>
+											<p class="card-text"><small class="text-muted" id="dketeranganp"></small></p>
+											<p class="card-text"><small class="text-muted" id="dhari"></small></p>
+											<p class="card-text"><small class="text-muted" id="djam"></small></p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<!-- <button class="btn_hapus btn btn-danger" id="btn_hapuspemakaian">Delete</button> -->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+ <!--END MODAL DETAIL-->
