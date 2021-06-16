@@ -298,6 +298,7 @@ $(function(){
         $('#dketeranganp').html(data.keterangan);
         $('#dhari').html(data.kode_hari);
         $('#djam').html('Start : ' + data.start + '       End : ' + data.end);
+        $('#dtglpr').html(data.tgl_pr);
         $('#ModalDetailPemakaian').modal('show');
 
 

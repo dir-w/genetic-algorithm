@@ -22,6 +22,9 @@
     <!-- table -->
     <link href="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"/>
 
+    <!-- costum css -->
+    <link href="<?= base_url('assets/'); ?>costumcss/my.css" rel="stylesheet"/>
+
     
 
 </head>

@@ -410,7 +410,7 @@
 					<form class="form-horizontal">
 						<div class="modal-body">
 
-							<input type="text" name="idpemakaian" id="idpemakaian" value="" readonly="" visible>
+							<input type="hidden" name="idpemakaian" id="idpemakaian" value="" readonly="" visible>
 							
 							
 
@@ -425,44 +425,47 @@
 									<div class="col-md-4">
 										<div class="card-body">
 											<h5 class="card-title">Kode Ruangan</h5>
-											<p class="card-text">Nama Ruangan</p>
-											<p class="card-text"><small class="text-muted">Nama Peminjam</small></p>
-											<p class="card-text"><small class="text-muted">Kegiatan</small></p>
-											<p class="card-text"><small class="text-muted">Kode Matakuliah</small></p>
-											<p class="card-text"><small class="text-muted">Nama Matakuliah</small></p>
-											<p class="card-text"><small class="text-muted">Type Matakuliah</small></p>
-											<p class="card-text"><small class="text-muted">Pararel</small></p>
-											<p class="card-text"><small class="text-muted">Hari</small></p>
-											<p class="card-text"><small class="text-muted">Jam</small></p>
+											<p class="card-text jarak">Nama Ruangan</p>
+											<p class="card-text jarak"><small class="text-muted">Nama Peminjam</small></p>
+											<p class="card-text jarak"><small class="text-muted">Kegiatan</small></p>
+											<p class="card-text jarak"><small class="text-muted">Tanggal Pemakaian Ruangan</small></p>
+											<p class="card-text jarak"><small class="text-muted">Kode Matakuliah</small></p>
+											<p class="card-text jarak"><small class="text-muted">Nama Matakuliah</small></p>
+											<p class="card-text jarak"><small class="text-muted">Type Matakuliah</small></p>
+											<p class="card-text jarak"><small class="text-muted">Pararel</small></p>
+											<p class="card-text jarak"><small class="text-muted">Hari</small></p>
+											<p class="card-text jarak"><small class="text-muted">Jam</small></p>
 										</div>
 									</div>
 									<div class="col-md-1">
 										<div class="card-body">
 											<h5 class="card-title">:</h5>
-											<p class="card-text">:</p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
-											<p class="card-text"><small class="text-muted">:</small></p>
+											<p class="card-text jarak">:</p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
 										</div>
 									</div>
 									<div class="col-md-7">
 										<div class="card-body">
 											
 											<h5 class="card-title" id="dkoder"></h5>
-											<p class="card-text" id="dnamar"></p>
-											<p class="card-text"><small class="text-muted" id="dnamapeminjam"></small></p>
-											<p class="card-text"><small class="text-muted" id="dkegiatan"></small></p>
-											<p class="card-text"><small class="text-muted" id="dkodemk"></small></p>
-											<p class="card-text"><small class="text-muted" id="dnamamk"></small></p>
-											<p class="card-text"><small class="text-muted" id="dnamatypemk"></small></p>
-											<p class="card-text"><small class="text-muted" id="dketeranganp"></small></p>
-											<p class="card-text"><small class="text-muted" id="dhari"></small></p>
-											<p class="card-text"><small class="text-muted" id="djam"></small></p>
+											<p class="card-text jarak" id="dnamar"></p>
+											<p class="card-text jarak"><small class="text-muted" id="dnamapeminjam"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dkegiatan"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dtglpr"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dkodemk"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dnamamk"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dnamatypemk"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dketeranganp"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dhari"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="djam"></small></p>
 										</div>
 									</div>
 								</div>
