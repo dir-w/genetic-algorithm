@@ -64,7 +64,6 @@
                         <label class="col-sm-4 col-form-label">Kode Prodi</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="koprod" name="koprod" placeholder="Kode Prodi">
-                            <!-- <?= form_error('koprod', '<small class="text-danger pl-3">', '</small>'); ?> -->
                         </div>
                     </div>
 
@@ -147,6 +146,13 @@
                             <!-- <label for="range">Kode</label>                    -->
                             <input type="hidden" class="form-control" name="kode" id="kode" required="required" readonly="" >
                         </div>
+
+                        <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Kode Prodi</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="koprodi" name="koprodi" placeholder="Kode Prodi">
+                        </div>
+                    </div>
 
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Nama Prodi</label>

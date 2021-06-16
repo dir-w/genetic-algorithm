@@ -1254,8 +1254,10 @@ $(function(){
       success: function(data) {
         // console.log(data);
         $('#kode').val(id);
+        // $('#koprodi').val(id_prodi);
         $('#nama_prodi').val(data.nama_prodi);
         $('#jurusan').val(data.kode_jurusan);
+        $('#koprodi').val(data.id_prodi);
         $('#ModalEditProdi').modal('show');
         
       }
@@ -1268,16 +1270,18 @@ $(function(){
     var kode =$('#kode').val();
     var nama_prodi =$('#nama_prodi').val();
     var kode_jurusan =$('#jurusan').val();
+    var id_prodi =$('#koprodi').val();
     // alert(kode_jurusan);
     $.ajax({
       method: 'POST',
       url: 'editProdi',
       dataType: 'JSON',
-      data: {kode:kode, nama_prodi:nama_prodi, kode_jurusan:kode_jurusan},
+      data: {kode:kode, nama_prodi:nama_prodi, kode_jurusan:kode_jurusan, id_prodi:id_prodi},
       success: function(data){
         $('#kode').val("");
         $('#nama_prodi').val("");
         $('#jurusan').val("");
+        $('#koprodi').val("");
         $('#ModalEditProdi').modal('hide');
       }
     });
