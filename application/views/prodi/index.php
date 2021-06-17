@@ -25,7 +25,7 @@
                         <th width="7px">No</th>
                         <th width="8px">ID Prodi</th>
                         <th>Nama Prodi</th>
-                        <th>Jurusan</th>
+                        <th>Fakultas</th>
                         <th width="45px">Aksi</th>
                     </tr>
                 </thead>
@@ -77,12 +77,12 @@
 
 
                     <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label">Jurusan</label>
+                        <label class="col-sm-4 col-form-label">Nama Fakultas</label>
                         <div class="col-sm-8">
-                            <select class="form-control" name="jur" id="jur" required>
+                            <select class="form-control" name="fak" id="fak" required>
                                 <option value="">-- Selected --</option>
-                                <?php foreach($jurus as $ju):?>
-                                    <option value="<?= $ju['kode']; ?>"><?= $ju['nama_jurusan']; ?></option>
+                                <?php foreach($fakul as $fa):?>
+                                    <option value="<?= $fa['kode']; ?>"><?= $fa['nama_fakultas']; ?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
@@ -148,11 +148,11 @@
                         </div>
 
                         <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label">Kode Prodi</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="koprodi" name="koprodi" placeholder="Kode Prodi">
+                            <label class="col-sm-4 col-form-label">Kode Prodi</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="koprodi" name="koprodi" placeholder="Kode Prodi">
+                            </div>
                         </div>
-                    </div>
 
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label">Nama Prodi</label>
@@ -163,12 +163,12 @@
 
 
                         <div class="row mb-3">
-                            <label class="col-sm-4 col-form-label">Jurusan</label>
+                            <label class="col-sm-4 col-form-label">Fakultas</label>
                             <div class="col-sm-8">
-                                <select class="form-control" name="jurusan" id="jurusan" required>
+                                <select class="form-control" name="kode_fakultas" id="kode_fakultas" required>
                                     <option value="">-- Selected --</option>
-                                    <?php foreach($jurus as $ju):?>
-                                        <option value="<?= $ju['kode']; ?>"><?= $ju['nama_jurusan']; ?></option>
+                                    <?php foreach($fakul as $faku):?>
+                                        <option value="<?= $faku['kode']; ?>"><?= $faku['nama_fakultas']; ?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
