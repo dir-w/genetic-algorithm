@@ -1198,7 +1198,7 @@ $('#prodiTable').DataTable ({
  }   },
  { data: 'id_prodi'},
  { data: 'nama_prodi'},
- { data: 'nama_jurusan' },
+ { data: 'nama_fakultas' },
  
  { data : 'Aksi'},
  ]
@@ -1254,8 +1254,10 @@ $(function(){
       success: function(data) {
         // console.log(data);
         $('#kode').val(id);
+        // $('#koprodi').val(id_prodi);
         $('#nama_prodi').val(data.nama_prodi);
-        $('#jurusan').val(data.kode_jurusan);
+        $('#kode_fakultas').val(data.kode_fakultas);
+        $('#koprodi').val(data.id_prodi);
         $('#ModalEditProdi').modal('show');
         
       }
@@ -1267,17 +1269,19 @@ $(function(){
   $('#btn_editprodi').on('click', function(){
     var kode =$('#kode').val();
     var nama_prodi =$('#nama_prodi').val();
-    var kode_jurusan =$('#jurusan').val();
+    var kode_fakultas =$('#kode_fakultas').val();
+    var id_prodi =$('#koprodi').val();
     // alert(kode_jurusan);
     $.ajax({
       method: 'POST',
       url: 'editProdi',
       dataType: 'JSON',
-      data: {kode:kode, nama_prodi:nama_prodi, kode_jurusan:kode_jurusan},
+      data: {kode:kode, nama_prodi:nama_prodi, kode_fakultas:kode_fakultas, id_prodi:id_prodi},
       success: function(data){
         $('#kode').val("");
         $('#nama_prodi').val("");
-        $('#jurusan').val("");
+        $('#kode_fakultas').val("");
+        $('#koprodi').val("");
         $('#ModalEditProdi').modal('hide');
       }
     });
@@ -1300,7 +1304,7 @@ $('#jurusanTable').DataTable ({
   { data: null,"sortable": false, render: function (data, type, row, meta){
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
- { data: 'nama_jurusan' },
+ { data: 'nama_fakkultas' },
  { data : 'Aksi'},
  ]
 });
