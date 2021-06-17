@@ -1290,39 +1290,39 @@ $(function(){
 // end MASTER PRODI
 
 // start MASTER JURUSAN
-$('#jurusanTable').DataTable ({
+$('#fakultasTable').DataTable ({
   'processing' : true,
   'serverSide' : true,
   'serverMethod' : 'post',
   'ajax' : {
 
     type : "POST",
-    url:"jurusanList"
+    url:"fakultasList"
 
   },
   'columns' : [
   { data: null,"sortable": false, render: function (data, type, row, meta){
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
- { data: 'nama_fakkultas' },
+ { data: 'nama_fakultas' },
  { data : 'Aksi'},
  ]
 });
 
-//GET DATA HAPUS JURUSAN
+//GET DATA HAPUS
 $(function(){
-  $('#jurusanTable').on('click','.item_hapusjurusan', function(){
+  $('#fakultasTable').on('click','.item_hapusfakultas', function(){
     const id = $(this).data('id');
     // console.log(id);
     $.ajax({
-      url: "tagetJurusan",
+      url: "targetFakultas",
       data: {kode : id},
       method: 'POST',
       dataType: 'JSON',
       success: function(data) {
         $('#ko').val(id);
-        $('#nama_jur').val(data.nama_jurusan);
-        $('#ModalHapusJurusan').modal('show');
+        $('#nama_fak').val('Nama Fakultas : ' + data.nama_fakultas);
+        $('#ModalHapusFakultas').modal('show');
         // console.log(data);
       }
     });
@@ -1330,17 +1330,17 @@ $(function(){
 });
 
 $(function(){
-  $('#btn_hapusjurusan').on('click',function(){
+  $('#btn_hapusfakultas').on('click',function(){
     var kode=$('#ko').val();
     $.ajax({
       type : "POST",
-      url  : "jurusandelete",
+      url  : "fakultasdelete",
       dataType : "JSON",
       data : {kode: kode},
       success: function(data){
         // console.log(data);
-        $('#ModalHapusJurusan').modal('hide');
-        window.location.assign('jurusan');
+        $('#ModalHapusFakultas').modal('hide');
+        window.location.assign('fakultas');
       }
     });
     return false;
@@ -1349,18 +1349,18 @@ $(function(){
 
 //GET UPDATE
 $(function(){
-  $('#jurusanTable').on('click','.edit_jurusan', function(){
+  $('#fakultasTable').on('click','.edit_fakultas', function(){
     const id = $(this).data('id');
     $.ajax({
-      url:"tagetJurusan",
+      url:"targetFakultas",
       data: {kode : id},
       method: 'POST',
       dataType: 'JSON',
       success: function(data) {
         // console.log(data);
         $('#kode').val(id);
-        $('#nama_jurusan').val(data.nama_jurusan);
-        $('#ModalEditJurusan').modal('show');
+        $('#nama_fakultas').val(data.nama_fakultas);
+        $('#ModalEditFakultas').modal('show');
         
       }
     });
@@ -1368,19 +1368,19 @@ $(function(){
 });
 
 $(function(){
-  $('#btn_editjurusan').on('click', function(){
+  $('#btn_editfakultas').on('click', function(){
     var kode =$('#kode').val();
-    var nama_jurusan =$('#nama_jurusan').val();
+    var nama_fakultas =$('#nama_fakultas').val();
     // alert(kode_jurusan);
     $.ajax({
       method: 'POST',
-      url: 'editJurusan',
+      url: 'editFakultas',
       dataType: 'JSON',
-      data: {kode:kode, nama_jurusan:nama_jurusan},
+      data: {kode:kode, nama_fakultas:nama_fakultas},
       success: function(data){
         $('#kode').val("");
-        $('#nama_jurusan').val("");
-        $('#ModalEditJurusan').modal('hide');
+        $('#nama_fakultas').val("");
+        $('#ModalEditFakultas').modal('hide');
       }
     });
   });

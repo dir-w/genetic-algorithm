@@ -1456,7 +1456,7 @@ public function saveeditprodi($kode,  $saveeditprod)
 // end MASTER PRODI
 
 // start MASTER JURUSAN
-public function getJurusanMaster($postData=null)
+public function getFakultasMaster($postData=null)
 {
     $response = array();
 
@@ -1472,20 +1472,20 @@ public function getJurusanMaster($postData=null)
      ## Search 
     $searchQuery = "";
     if($searchValue != ''){
-        $searchQuery = " (nama_jurusan like '%".$searchValue."%') ";
+        $searchQuery = " (nama_fakultas like '%".$searchValue."%') ";
     }
 
      ## Total number of records without filtering
     $this->db->select('count(*) as allcount');
 
-    $records = $this->db->get('jurusan')->result();
+    $records = $this->db->get('fakultas')->result();
     $totalRecords = $records[0]->allcount;
 
      ## Total number of record with filtering
     $this->db->select('count(*) as allcount');
     if($searchQuery != '')
         $this->db->where($searchQuery);
-    $records = $this->db->get('jurusan')->result();
+    $records = $this->db->get('fakultas')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
     ## Fetch records
@@ -1495,8 +1495,8 @@ public function getJurusanMaster($postData=null)
         $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
-    $this->db->select('jurusan.*');
-    $this->db->from('jurusan');
+    $this->db->select('fakultas.*');
+    $this->db->from('fakultas');
     
 
     $records = $this->db->get()->result();
@@ -1508,11 +1508,10 @@ public function getJurusanMaster($postData=null)
 
         $data[] = array( 
             "no"=>$no++,
-            
-            "nama_jurusan"=>$record->nama_jurusan,
+            "nama_fakultas"=>$record->nama_fakultas,
             "Aksi" => "
-            <a href='javascript:void(0)' class='badge badge-danger item_hapusjurusan' data-placement='bottom' title='Delete' data-id=$record->kode  ;'><span class='far fa-trash-alt'></span></a>
-            <a href='javascript:void(0)' class='badge badge-warning edit_jurusan' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapusfakultas' data-placement='bottom' title='Delete' data-id=$record->kode  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_fakultas' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -1530,36 +1529,36 @@ public function getJurusanMaster($postData=null)
     return $response;
 }
 
-public function addjurusan($insertdataJurusan)
+public function addfakultas($insertdataFakultas)
 {
-    $this->db->insert('jurusan', $insertdataJurusan);
+    $this->db->insert('fakultas', $insertdataFakultas);
 }
 
-public function getJurusanbyKode($kode)
+public function getFakultasbyKode($kode)
 {
-    $hsl=$this->db->query("SELECT * FROM jurusan WHERE kode='$kode'");
+    $hsl=$this->db->query("SELECT * FROM fakultas WHERE kode='$kode'");
     if($hsl->num_rows()>0){
         foreach ($hsl->result() as $data) {
             $hasil=array(
-                'nama_jurusan' => $data->nama_jurusan,
+                'nama_fakultas' => $data->nama_fakultas,
             );
         }
     }
     return $hasil;  
 }
 
-public function delljurusan($kode)
+public function dellfakultas($kode)
 {
-    $hasil=$this->db->query("DELETE FROM jurusan WHERE kode='$kode'");
+    $hasil=$this->db->query("DELETE FROM fakultas WHERE kode='$kode'");
     return $hasil;
 }
 
-public function saveeditjurusan($kode, $saveeditjur)
+public function saveeditfakultas($kode, $saveeditfak)
 {
     $this->db->where('kode', $kode);
-    $this->db->update('jurusan', $saveeditjur);
+    $this->db->update('fakultas', $saveeditfak);
 }
-// end MASTER JURUSAN
+// end MASTER FAKULTAS
 
 
 

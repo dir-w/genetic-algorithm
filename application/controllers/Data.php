@@ -931,71 +931,74 @@ public function editProdi()
 }
 // end MASTER PRODI
 
-// start MASTER JURUSAN
-public function jurusan()
+// start MASTER FAKULTAS
+public function fakultas()
 {
-    $data['title'] = 'Master Jurusan';
+    $data['title'] = 'Master Fakultas';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-
-    $this->form_validation->set_rules('jur', 'Jurusan', 'required');
+    $this->form_validation->set_rules('fak', 'Nama Fakultas', 'required|trim|is_unique[fakultas.nama_fakultas]', [
+        'is_unique' => '<div class="alert alert-danger">This Nama Fakultas has already!</div>'
+    ]);
+    // $this->form_validation->set_rules('fak', 'Jurusan', 'required');
     if ($this->form_validation->run() == false)
     {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('jurusan/index', $data);
+        $this->load->view('fakultas/index', $data);
         $this->load->view('templates/footer');
     } else {
-        $insertdataJurusan = [
-            'nama_jurusan' => $this->input->post('jur')
+        $insertdataFakultas = [
+            'nama_fakultas' => $this->input->post('fak')
         ];
-        $this->Data_model->addjurusan($insertdataJurusan);
+        $this->Data_model->addfakultas($insertdataFakultas);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-        redirect('data/jurusan');
+        redirect('data/fakultas');
     }
 }
 
-public function jurusanList()
+public function fakultasList()
 {
         // POST data dari view
     $postData = $this->input->post();
 
         // get data dari model
-    $data = $this->Data_model->getJurusanMaster($postData);
+    $data = $this->Data_model->getFakultasMaster($postData);
 
     echo json_encode($data);
 }
 
-public function tagetJurusan($kode='')
+public function TargetFakultas($kode='')
 {
     $kode=$this->input->post('kode');
-    $data=$this->Data_model->getJurusanbyKode($kode);
+    $data=$this->Data_model->getFakultasbyKode($kode);
     echo json_encode($data);  
 }
 
-public function jurusandelete()
+public function fakultasdelete()
 {
    $kode=$this->input->post('kode');
-   $data=$this->Data_model->delljurusan($kode);
+   $data=$this->Data_model->dellfakultas($kode);
    echo json_encode($data); 
    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
-public function editJurusan()
+public function editFakultas()
 {
     $kode = $this->input->post('kode');
-    $saveeditjur = [
-        'nama_jurusan' => $this->input->post('nama_jurusan')
+    $saveeditfak = [
+        'nama_fakultas' => $this->input->post('nama_fakultas')
     ];
-    $data = $this->Data_model->saveeditjurusan($kode, $saveeditjur);
+    $data = $this->Data_model->saveeditfakultas($kode, $saveeditfak);
 
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
+
 }
-// end MASTER JURUSAN
+// end MASTER FAKULTAS
 
 
 
