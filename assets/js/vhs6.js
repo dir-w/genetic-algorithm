@@ -312,6 +312,109 @@ $(function(){
 
 // end tahun AJARAN
 
+// start STATUS Dosen
+
+$('#statusdosenTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
+
+    type : "POST",
+    url:"statusdosenList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'status' },
+ { data: 'Aksi'},
+ ]
+});
+
+//GET DATA HAPUS
+$(function(){
+  $('#statusdosenTable').on('click','.item_hapusstatusdosen', function(){
+    const id = $(this).data('id');
+    console.log(id);
+    $.ajax({
+      url:"targetStatusDosen",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#kode').val(id);
+        $('#namas').val('Nama Fakultas : ' + data.status);
+
+        $('#ModalHapusStatusDosen').modal('show');
+      }
+    });
+  });
+});
+
+//Hapus
+$(function(){
+  $('#btn_hapusstatusdosen').on('click',function(){
+    var kode=$('#kode').val();
+    $.ajax({
+      type : "POST",
+      url  : "statusdosendelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusStatusDosen').modal('hide');
+        window.location.assign('statusdosen');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#statusdosenTable').on('click','.edit_statusdosen', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url:"targetStatusDosen",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#skode').val(id);
+        $('#namastat').val(data.status);
+        $('#ModalEditStatusDosen').modal('show');
+      }
+    });
+  });
+});
+
+// / edit save
+$(function(){
+  $('#btn_editstatusdosen').on('click', function(){
+    var kode =$('#skode').val();
+    var status =$('#namastat').val();
+    // console.log(status);
+    $.ajax({
+      method: 'POST',
+      url: 'editStatusDosen',
+      dataType: 'JSON',
+      data: {kode:kode, status:status},
+      success: function(data){
+        $('#skode').val("");
+        $('#namastat').val("");
+        
+        $('#ModalEditStatusDosen').modal('hide');
+      }
+    });
+  });
+});
+
+
+// end STATUS DOSEN
+
 
 // start Dosen
 
@@ -1289,7 +1392,7 @@ $(function(){
 });
 // end MASTER PRODI
 
-// start MASTER JURUSAN
+// start MASTER FAKULTAS
 $('#fakultasTable').DataTable ({
   'processing' : true,
   'serverSide' : true,

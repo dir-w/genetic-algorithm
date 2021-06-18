@@ -92,7 +92,7 @@ public function editJam()
     // $start = $this->input->post('r1');
     $data = $this->Data_model->saveeditjam($kode,$saveeditj);
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
     // end jam
@@ -233,10 +233,81 @@ public function editTA()
     $tahun = $this->input->post('tahun');
     $data = $this->Data_model->saveeditta($kode,$tahun);
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end Tahun ajaran 
+
+// start MASTER STATUS DOSEN
+public function statusdosen()
+{
+
+    $data['title'] = 'Master Status Dosen';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    
+    $this->form_validation->set_rules('stat_dosen', 'Status Dosen', 'required');
+    if ($this->form_validation->run() == false)
+    {
+        // echo "OK";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dosen/status_dosen', $data);
+        $this->load->view('templates/footer');  
+    } else {
+        $insertStatusDosen = [
+            'status ' => $this->input->post('stat_dosen')
+        ];
+
+        $this->Data_model->addstatusdosen($insertStatusDosen);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/statusdosen');
+
+    }
+}
+
+public function statusdosenList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getstatusDosenMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function targetStatusDosen($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getStatusDosenbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function statusdosendelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellstatusdosen($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+           // redirect('data/jam');
+}
+
+public function editStatusDosen()
+{
+    $kode = $this->input->post('kode');
+    $saveeditsd = [
+        'status' => $this->input->post('status') 
+    ];
+    // $status = $this->input->post('status');
+    
+    $data = $this->Data_model->saveeditSD($kode, $saveeditsd);
+    // var_dump($saveeditsd);
+    // die;
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
+}
+// end MASTER STATUS DOSEN
 
 // start Master DOSEN
 
@@ -306,7 +377,7 @@ public function editDosen()
     $data = $this->Data_model->saveeditdosen($kode, $nip, $nama, $alamat, $telp, $status_dosen);
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 
@@ -400,7 +471,7 @@ public function editRuangan()
     $data = $this->Data_model->saveeditruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id_jenis, $id_ruang);
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end Master Ruangan
@@ -473,7 +544,7 @@ public function editjenisRuangan()
 
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end master JENIS RUANGAN
@@ -541,7 +612,7 @@ public function edittypeRuangan()
 
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end MASTER TYPE RUANGAN
@@ -610,7 +681,7 @@ public function edittypeMatKul()
 
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end MASTER TYPE MATA KULIAH
@@ -705,7 +776,7 @@ public function editMatKul()
 // data: {kode:kode, id_kelompok:id_kelompok, nama_kode:nama_kode, nama:nama, id_type:id_type, id_jenis_mk:id_jenis_mk, semester:semester, kode_prodi:kode_prodi, jumlah_jam:jumlah_jam},
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end MASTER MATA KULIAH
@@ -773,7 +844,7 @@ public function editpararelMatKul()
 
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 // end MASTER JENIS MATA KULIAH
 
@@ -841,7 +912,7 @@ public function editkelMatKul()
 
     
     echo json_encode($data);
-    $this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
 }
 
 // end MASTER KELOMPOK MATA KULIAH
