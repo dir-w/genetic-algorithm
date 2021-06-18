@@ -342,6 +342,115 @@ public function saveeditta($kode,$tahun)
 
 // end tahun ajaran
 
+// start STATUS DOSEN
+
+public function getstatusDosenMaster($postData=null)
+{
+    $response = array();
+
+     ## Read value
+    $draw = $postData['draw'];
+    $start = $postData['start'];
+     $rowperpage = $postData['length']; // Rows display per page
+     $columnIndex = $postData['order'][0]['column']; // Column index
+     $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+     $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+     $searchValue = $postData['search']['value']; // Search value
+
+     ## Search 
+     $searchQuery = "";
+     if($searchValue != ''){
+        $searchQuery = " (status like '%".$searchValue."%') ";
+    }
+
+     ## Total number of records without filtering
+    $this->db->select('count(*) as allcount');
+
+    $records = $this->db->get('status_dosen')->result();
+    $totalRecords = $records[0]->allcount;
+
+     ## Total number of record with filtering
+    $this->db->select('count(*) as allcount');
+    if($searchQuery != '')
+        $this->db->where($searchQuery);
+    $records = $this->db->get('status_dosen')->result();
+    $totalRecordwithFilter = $records[0]->allcount;
+
+    
+     ## Fetch records
+    $this->db->select('*');
+     // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
+    if($searchQuery != '')
+        $this->db->where($searchQuery);
+    $this->db->order_by($columnName, $columnSortOrder);
+    $this->db->limit($rowperpage, $start);
+ // $this->db->select('*');
+ // $this->db->from('status_dosen');
+ // $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
+ // $records = $this->db->get()->result();
+    $records = $this->db->get('status_dosen')->result();
+
+    $data = array();
+
+    $no = 1;
+    foreach($records as $record ){
+
+        $data[] = array( 
+           "no"=>$no++,
+           "kode"=>$record->kode,
+           "status"=>$record->status,
+
+
+           "Aksi" => "
+           <a href='javascript:void(0)' class='badge badge-danger item_hapusstatusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+           <a href='javascript:void(0)' class='badge badge-warning edit_statusdosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
+       ); 
+
+    }
+
+     ## Response 
+    $response = array(
+       "draw" => intval($draw),
+       "iTotalRecords" => $totalRecords,
+       "iTotalDisplayRecords" => $totalRecordwithFilter,
+       "aaData" => $data
+   );
+    return $response;
+}
+
+public function addstatusdosen($insertStatusDosen)
+{
+    $this->db->insert('status_dosen', $insertStatusDosen);
+}
+
+public function getStatusDosenbyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM status_dosen WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'status' => $data->status,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellstatusdosen($kode)
+{
+    $hasil=$this->db->query("DELETE FROM status_dosen WHERE kode='$kode'");
+    return $hasil;
+}
+
+public function saveeditSD($kode, $saveeditsd)
+{
+  // $hasil=$this->db->query("UPDATE status_dosen SET status='$status' WHERE kode='$kode'");
+  // return $hasil;
+    $this->db->where('kode', $kode);
+    $this->db->update('status_dosen', $saveeditsd);
+}
+// end STATUS DOSEN
+
 
 // start DOSEN
 public function getDosenMaster($postData=null)
