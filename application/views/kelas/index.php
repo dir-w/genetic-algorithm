@@ -145,7 +145,6 @@
                         </div>
 
                     </div>             
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_edit btn btn-danger" id="btn_editkelkelas">Save</button>
