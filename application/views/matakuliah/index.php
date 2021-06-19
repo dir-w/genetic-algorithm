@@ -7,8 +7,12 @@
     <div class="card">
         <div class="card-header">
             <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newMapelModal">Add</a>
-
-
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <?= validation_errors(); ?>
+                <?= $this->session->flashdata('message'); ?>
+            </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -17,7 +21,7 @@
                     <thead class="thead-light">
                       <tr> 
                         <th width="7px">No</th>
-                        <th width="8px">Kelompok</th>
+                        <th width="8px">Kelompok Kelas</th>
                         <th>Kode MatKul</th>
                         <th>Nama</th>
                         <th>Type</th>
@@ -58,12 +62,12 @@
                 <div class="modal-body">
 
                     <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label">Kelompok</label>
+                        <label class="col-sm-4 col-form-label">Kelompok Kelas</label>
                         <div class="col-sm-8">
                             <select class="form-control" name="kel" id="kel" required>
                                 <option value="">-- Selected --</option>
                                 <?php foreach($kelom as $kp):?>
-                                  <option value="<?= $kp['idk']; ?>"><?= $kp['nama_kelompok_mk']; ?></option>
+                                  <option value="<?= $kp['idk']; ?>"><?= $kp['nama_kelompok_kelas']; ?></option>
                               <?php endforeach;?>
                           </select>
                       </div>
@@ -134,7 +138,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-4 col-form-label">Jumlah Jam</label>
                     <div class="col-sm-8">
-                       <select class="form-control" name="jj" id="jj">
+                     <select class="form-control" name="jj" id="jj">
                         <option value="">-- Selected --</option>
                         <?php
                         for ($i = 1; $i < 11; $i++){
@@ -280,7 +284,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-4 col-form-label">Jumlah Jam</label>
                     <div class="col-sm-8">
-                       <select class="form-control" name="jjmkk" id="jjmkk">
+                     <select class="form-control" name="jjmkk" id="jjmkk">
                         <option value="">-- Selected --</option>
                         <?php
                         for ($i = 1; $i < 11; $i++){

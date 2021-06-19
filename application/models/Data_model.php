@@ -1091,7 +1091,7 @@ public function getMatkulMaster($postData=null)
     $this->db->select('matapelajaran.*');
     $this->db->from('matapelajaran', 'kelompokmk.*', 'typepelajaran.*', 'pararel.*', 'prodi.*', 'semester_tipe.*');
     $this->db->join('typepelajaran', 'matapelajaran.id_type=typepelajaran.idtpel', "left");
-    $this->db->join('kelompokmk', 'matapelajaran.id_kelompok=kelompokmk.idk');
+    $this->db->join('kelompokkelas', 'matapelajaran.id_kelompok=kelompokkelas.idk');
     $this->db->join('pararel', 'matapelajaran.id_pararel=pararel.idjmk');
     $this->db->join('prodi', 'matapelajaran.kode_prodi=prodi.kode');
     $this->db->join('semester_tipe', 'matapelajaran.id_semester_tipe=semester_tipe.kode');
@@ -1105,7 +1105,7 @@ public function getMatkulMaster($postData=null)
 
         $data[] = array( 
             "no"=>$no++,
-            "nama_kelompok_mk"=>$record->nama_kelompok_mk,
+            "nama_kelompok_kelas"=>$record->nama_kelompok_kelas,
             "nama_kode"=>$record->nama_kode,
             "nama"=>$record->nama,
 
@@ -1138,10 +1138,10 @@ public function getMatkulMaster($postData=null)
     return $response;
 }
 
-public function getKelompoMK()
+public function getKelompoKelas()
 {
     $this->db->select('*');
-    $this->db->FROM('kelompokmk');
+    $this->db->FROM('kelompokkelas');
     $query = $this->db->get();
     return $query;  
 }

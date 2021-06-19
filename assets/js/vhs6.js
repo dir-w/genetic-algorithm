@@ -22,7 +22,7 @@ $('#jamTable').DataTable({
  ]
 }); 
 
-//GET DATA HAPUS JURUSAN
+//GET DATA HAPUS 
 $(function(){
   $('#jamTable').on('click','.item_hapus', function(){
     const id = $(this).data('id');
@@ -969,7 +969,7 @@ $('#matkulTable').DataTable ({
   { data: null,"sortable": false, render: function (data, type, row, meta){
    return meta.row + meta.settings._iDisplayStart + 1;
  }   },
- { data: 'nama_kelompok_mk'},
+ { data: 'nama_kelompok_kelas'},
  { data: 'nama_kode' },
  { data: 'nama' },
 
