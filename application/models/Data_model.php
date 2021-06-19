@@ -60,18 +60,18 @@ class Data_model extends CI_Model
     foreach($records as $record ){
 
         $data[] = array( 
-           "no"=>$no++,
-           "kode"=>$record->kode,
-           "start"=>$record->start,
-           "end"=>$record->end,
+         "no"=>$no++,
+         "kode"=>$record->kode,
+         "start"=>$record->start,
+         "end"=>$record->end,
 
 
 
-           "Aksi" => "
-           <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='Modal' data-placement='bottom' title='Delete' data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-           <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='Modal' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
-           "
-       ); 
+         "Aksi" => "
+         <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-toggle='Modal' data-placement='bottom' title='Delete' data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-warning tampilModaleditjam' data-toggle='Modal' data-target='#ModalEdit' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
+         "
+     ); 
         
     }
 
@@ -175,16 +175,16 @@ public function getHariMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-           "no"=>$no++,
-           "kode"=>$record->kode,
-           "nama"=>$record->nama,
+         "no"=>$no++,
+         "kode"=>$record->kode,
+         "nama"=>$record->nama,
 
 
-           "Aksi" => "
-           <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-           <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
-           "
-       ); 
+         "Aksi" => "
+         <a href='javascript:void(0)' class='badge badge-danger item_hapus' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode  ;'><span class='far fa-edit'></span></a>
+         "
+     ); 
         
     }
 
@@ -285,16 +285,16 @@ public function getTAMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-           "no"=>$no++,
-           "kode"=>$record->kode,
-           "tahun"=>$record->tahun,
+         "no"=>$no++,
+         "kode"=>$record->kode,
+         "tahun"=>$record->tahun,
 
 
-           "Aksi" => "
-           <a href='javascript:void(0)' class='badge badge-danger item_hapusta' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-           <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
-           "
-       ); 
+         "Aksi" => "
+         <a href='javascript:void(0)' class='badge badge-danger item_hapusta' data-placement='bottom' title='Delete' data=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-warning edit_hari' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
+         "
+     ); 
         
     }
 
@@ -396,25 +396,25 @@ public function getstatusDosenMaster($postData=null)
     foreach($records as $record ){
 
         $data[] = array( 
-           "no"=>$no++,
-           "kode"=>$record->kode,
-           "status"=>$record->status,
+         "no"=>$no++,
+         "kode"=>$record->kode,
+         "status"=>$record->status,
 
 
-           "Aksi" => "
-           <a href='javascript:void(0)' class='badge badge-danger item_hapusstatusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-           <a href='javascript:void(0)' class='badge badge-warning edit_statusdosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
-       ); 
+         "Aksi" => "
+         <a href='javascript:void(0)' class='badge badge-danger item_hapusstatusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+         <a href='javascript:void(0)' class='badge badge-warning edit_statusdosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
+     ); 
 
     }
 
      ## Response 
     $response = array(
-       "draw" => intval($draw),
-       "iTotalRecords" => $totalRecords,
-       "iTotalDisplayRecords" => $totalRecordwithFilter,
-       "aaData" => $data
-   );
+     "draw" => intval($draw),
+     "iTotalRecords" => $totalRecords,
+     "iTotalDisplayRecords" => $totalRecordwithFilter,
+     "aaData" => $data
+ );
     return $response;
 }
 
@@ -490,46 +490,46 @@ public function getDosenMaster($postData=null)
     $this->db->select('*');
      // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
     if($searchQuery != '')
-     $this->db->where($searchQuery);
- $this->db->order_by($columnName, $columnSortOrder);
- $this->db->limit($rowperpage, $start);
- $this->db->select('guru.*', 'status_dosen.kode as kd', 'status_dosen.status');
- $this->db->from('guru');
- $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
- $records = $this->db->get()->result();
+       $this->db->where($searchQuery);
+   $this->db->order_by($columnName, $columnSortOrder);
+   $this->db->limit($rowperpage, $start);
+   $this->db->select('guru.*', 'status_dosen.kode as kd', 'status_dosen.status');
+   $this->db->from('guru');
+   $this->db->join('status_dosen', 'guru.status_dosen=status_dosen.kode');
+   $records = $this->db->get()->result();
 
- $data = array();
+   $data = array();
 
- $no = 1;
- foreach($records as $record ){
+   $no = 1;
+   foreach($records as $record ){
 
     $data[] = array( 
-       "no"=>$no++,
-       "kode"=>$record->kode,
-       "nip"=>$record->nip,
-       "nama"=>$record->nama,
-       "alamat"=>$record->alamat,
-       "telp"=>$record->telp,
-       "status_dosen"=> $record->status,
+     "no"=>$no++,
+     "kode"=>$record->kode,
+     "nip"=>$record->nip,
+     "nama"=>$record->nama,
+     "alamat"=>$record->alamat,
+     "telp"=>$record->telp,
+     "status_dosen"=> $record->status,
            // "status_dosen"=> if ($record->status_dosen == "1") {"11"} else {"22"
              # code...
            // },
 
            // $record->status_dosen,           
 
-       "Aksi" => "
-       <a href='javascript:void(0)' class='badge badge-danger item_hapusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
-       <a href='javascript:void(0)' class='badge badge-warning edit_dosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
-   ); 
+     "Aksi" => "
+     <a href='javascript:void(0)' class='badge badge-danger item_hapusdosen' data-placement='bottom' title='Delete' data=$record->kode data-id=$record->kode ;'><span class='far fa-trash-alt'></span></a>
+     <a href='javascript:void(0)' class='badge badge-warning edit_dosen' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>"
+ ); 
 
 }
 
      ## Response 
 $response = array(
-   "draw" => intval($draw),
-   "iTotalRecords" => $totalRecords,
-   "iTotalDisplayRecords" => $totalRecordwithFilter,
-   "aaData" => $data
+ "draw" => intval($draw),
+ "iTotalRecords" => $totalRecords,
+ "iTotalDisplayRecords" => $totalRecordwithFilter,
+ "aaData" => $data
 );
 return $response;
 }
@@ -1218,7 +1218,7 @@ public function saveeditMatKul($kode, $saveeditmatkul)
 
 // end MASTER MATA KULIAH
 
-// start MASTER KELOMPOK MATA KULIAH
+// start MASTER KELOMPOK KELAS
 
 public function getKelMatkulMaster($postData=null)
 {
@@ -1236,20 +1236,20 @@ public function getKelMatkulMaster($postData=null)
      ## Search 
     $searchQuery = "";
     if($searchValue != ''){
-        $searchQuery = " (nama_kelompok_mk like '%".$searchValue."%') ";
+        $searchQuery = " (nama_kelompok_kelas like '%".$searchValue."%') ";
     }
 
      ## Total number of records without filtering
     $this->db->select('count(*) as allcount');
 
-    $records = $this->db->get('kelompokmk')->result();
+    $records = $this->db->get('kelompokkelas')->result();
     $totalRecords = $records[0]->allcount;
 
      ## Total number of record with filtering
     $this->db->select('count(*) as allcount');
     if($searchQuery != '')
         $this->db->where($searchQuery);
-    $records = $this->db->get('kelompokmk')->result();
+    $records = $this->db->get('kelompokkelas')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
     
@@ -1260,7 +1260,7 @@ public function getKelMatkulMaster($postData=null)
         $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
-    $records = $this->db->get('kelompokmk')->result();
+    $records = $this->db->get('kelompokkelas')->result();
 
 
     $data = array();
@@ -1270,11 +1270,11 @@ public function getKelMatkulMaster($postData=null)
 
         $data[] = array( 
             "no"=>$no++,
-            "nama_kelompok_mk"=>$record->nama_kelompok_mk,
+            "nama_kelompok_kelas"=>$record->nama_kelompok_kelas,
             "ket_kelompok"=>$record->ket_kelompok,
             "Aksi" => "
-            <a href='javascript:void(0)' class='badge badge-danger item_hapuskelmatkul' data-placement='bottom' title='Delete' data-id=$record->idk  ;'><span class='far fa-trash-alt'></span></a>
-            <a href='javascript:void(0)' class='badge badge-warning edit_kelmatkul' data-placement='bottom' title='Edit' data-id=$record->idk ;'><span class='far fa-edit'></span></a>
+            <a href='javascript:void(0)' class='badge badge-danger item_hapuskelkelas' data-placement='bottom' title='Delete' data-id=$record->idk  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_kelkelas' data-placement='bottom' title='Edit' data-id=$record->idk ;'><span class='far fa-edit'></span></a>
             "
         ); 
 
@@ -1292,18 +1292,18 @@ public function getKelMatkulMaster($postData=null)
     return $response;
 }
 
-public function addkelmatkul($insertdataKelMatkul)
+public function addkelkelas($insertdataKelKelas)
 {
-    $this->db->insert('kelompokmk', $insertdataKelMatkul);
+    $this->db->insert('kelompokkelas', $insertdataKelKelas);
 }
 
-public function getKelMatKulbyKode($idk)
+public function getKelKelasbyKode($idk)
 {
-    $hsl=$this->db->query("SELECT * FROM kelompokmk WHERE idk='$idk'");
+    $hsl=$this->db->query("SELECT * FROM kelompokkelas WHERE idk='$idk'");
     if($hsl->num_rows()>0){
         foreach ($hsl->result() as $data) {
             $hasil=array(
-                'nama_kelompok_mk' => $data->nama_kelompok_mk,
+                'nama_kelompok_kelas' => $data->nama_kelompok_kelas,
                 'ket_kelompok' => $data->ket_kelompok,
             );
         }
@@ -1311,19 +1311,19 @@ public function getKelMatKulbyKode($idk)
     return $hasil;  
 }
 
-public function dellkelmatkul($idk)
+public function dellkelkelas($idk)
 {
-    $hasil=$this->db->query("DELETE FROM kelompokmk WHERE idk='$idk'");
+    $hasil=$this->db->query("DELETE FROM kelompokkelas WHERE idk='$idk'");
     return $hasil;
 }
 
-public function saveeditkelmatkul($idk, $saveeditkelmatkul)
+public function saveeditkelkelas($idk, $saveeditkk)
 {
     $this->db->where('idk', $idk);
-    $this->db->update('kelompokmk', $saveeditkelmatkul);
+    $this->db->update('kelompokkelas', $saveeditkk);
 }
 
-// end MASTER KELOMPOK MATA KULIAH
+// end MASTER KELOMPOK KELAS
 
 // start MASTER PARAREL MATA KULIAH
 public function getPararelMatkulMaster($postData=null)

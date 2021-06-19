@@ -848,11 +848,11 @@ public function editpararelMatKul()
 }
 // end MASTER JENIS MATA KULIAH
 
-// start MASTER KELOMPOK MATA KULIAH
+// start MASTER KELOMPOK KELAS
 
 public function kelkelas()
 {
-    $data['title'] = 'Master Kelompok Matakuliah';
+    $data['title'] = 'Master Kelompok Kelas';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     $this->form_validation->set_rules('nama_kel', 'Kelompok Matakuliah', 'required');
     $this->form_validation->set_rules('ket_kel', 'Keterangan Matakuliah', 'required');
@@ -862,16 +862,16 @@ public function kelkelas()
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('matakuliah/kelompok_matakuliah', $data);
+        $this->load->view('kelas/index', $data);
         $this->load->view('templates/footer');
     } else {
-        $insertdataKelMatkul = [
-            'nama_kelompok_mk' => $this->input->post('nama_kel'),
+        $insertdataKelKelas = [
+            'nama_kelompok_kelas' => $this->input->post('nama_kel'),
             'ket_kelompok' => $this->input->post('ket_kel')
         ];
-        $this->Data_model->addkelmatkul($insertdataKelMatkul);
+        $this->Data_model->addkelkelas($insertdataKelKelas);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
-        redirect('data/kelmatkul');
+        redirect('data/kelkelas');
     }
 }
 
@@ -886,29 +886,29 @@ public function kelmatkulList()
     echo json_encode($data);
 }
 
-public function tagetKelMatKul($idk='')
+public function targetKelKelas($idk='')
 {
     $idk=$this->input->post('idk');
-    $data=$this->Data_model->getKelMatKulbyKode($idk);
+    $data=$this->Data_model->getKelKelasbyKode($idk);
     echo json_encode($data);  
 }
 
-public function kelmatkuldelete()
+public function kelkelasdelete()
 {
  $idk=$this->input->post('idk');
- $data=$this->Data_model->dellkelmatkul($idk);
+ $data=$this->Data_model->dellkelkelas($idk);
  echo json_encode($data); 
  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
 }
 
-public function editkelMatKul()
+public function editkelKelas()
 {
     $idk = $this->input->post('idk');
-    $saveeditkelmatkul = [
-        'nama_kelompok_mk' => $this->input->post('nama_kelompok_mk'),
+    $saveeditkk = [
+        'nama_kelompok_kelas' => $this->input->post('nama_kelompok_kelas'),
         'ket_kelompok' => $this->input->post('ket_kelompok')
     ];
-    $data = $this->Data_model->saveeditkelmatkul($idk, $saveeditkelmatkul);
+    $data = $this->Data_model->saveeditkelkelas($idk, $saveeditkk);
 
     
     echo json_encode($data);
