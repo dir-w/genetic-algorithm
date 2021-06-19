@@ -7,14 +7,11 @@
  	<div class="card"> 
  		<div class="card-header">
  			<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newInputModal">Add</a>
-
- 			<!-- <div class="col-2">
- 				<div class="form-group">
-
- 					<input type="date" id="datepicker" />
- 				</div>
- 			</div> -->
-
+ 		</div>
+ 		<div class="row">
+ 			<div class="col-lg">
+ 				<?= $this->session->flashdata('message'); ?>
+ 			</div>
  		</div>
  		<div class="card-body">
  			<div class="table-responsive">
@@ -227,7 +224,7 @@
 
  					</div>
  					<div class="modal-footer">
- 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+ 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
  						<button class="btn_hapus btn btn-danger" id="btn_hapuspemakaian">Delete</button>
  					</div>
  				</form>
@@ -389,7 +386,7 @@
  					</div>             
 
  					<div class="modal-footer">
- 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+ 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
  						<button class="btn_edit btn btn-danger" id="btn_editpemakaian">Save</button>
  					</div>
  				</form>
@@ -397,25 +394,25 @@
  		</div>
  	</div>
  </div>
-<!--END MODAL EDIT
+ <!-- END MODAL EDIT -->
 
-	<!--MODAL DETAIL-->
-	<div class="modal fade" id="ModalDetailPemakaian" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title text-danger" id="DetailPemakaianModalLabel">DETAIL PEMAKAIAN RUANGAN</h5>
-					</div>
-					<form class="form-horizontal">
-						<div class="modal-body">
+ <!-- MODAL DETAIL -->
+ <div class="modal fade" id="ModalDetailPemakaian" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ 	<div class="modal-dialog modal-lg" role="document">
+ 		<div class="modal-content">
+ 			<div class="modal-content">
+ 				<div class="modal-header">
+ 					<h5 class="modal-title text-danger" id="DetailPemakaianModalLabel">DETAIL PEMAKAIAN RUANGAN</h5>
+ 				</div>
+ 				<form class="form-horizontal">
+ 					<div class="modal-body">
 
-							<input type="hidden" name="idpemakaian" id="idpemakaian" value="" readonly="" visible>
-							
-							
+ 						<input type="hidden" name="idpemakaian" id="idpemakaian" value="" readonly="" visible>
+ 						
+ 						
 
-							<div class="card mb-3 col-lg-12">
-								<div class="row no-gutters">
+ 						<div class="card mb-3 col-lg-12">
+ 							<div class="row no-gutters">
 									<!-- <tr>
 										<td>Kode Ruangan</td>
 										<td width="1px">:</td>

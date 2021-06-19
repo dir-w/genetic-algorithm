@@ -6,11 +6,14 @@
 
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Add</a>
-
-
-     </div>
-     <div class="card-body">
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newJenisRuanganModal">Add</a>
+       </div>
+       <div class="row">
+        <div class="col-lg">
+            <?= $this->session->flashdata('message'); ?>
+        </div>
+    </div>
+    <div class="card-body">
       <div class="table-responsive">
           <table id="jenisruangTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
             <!-- <table id="empTable" class="display"> -->
@@ -100,7 +103,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button class="btn_hapus btn btn-danger" id="btn_hapusjenisruangan">Delete</button>
                 </div>
             </form>
@@ -145,7 +148,7 @@
                     </div>             
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_edit btn btn-danger" id="btn_editjenisruangan">Save</button>
                     </div>
                 </form>

@@ -7,8 +7,11 @@
 	<div class="card">
 		<div class="card-header">
 			<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newPeminjamModal">Add</a>
-
-
+		</div>
+		<div class="row">
+			<div class="col-lg">
+				<?= $this->session->flashdata('message'); ?>
+			</div>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -163,7 +166,7 @@
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 						<button class="btn_hapus btn btn-danger" id="btn_hapuspeminjam">Delete</button>
 					</div>
 				</form>
@@ -222,17 +225,17 @@
 							<div class="col-sm-8">
 								<!-- <input type="text" class="form-control" id="hari" name="hari" placeholder="Hari"> -->
 								<select class="form-control" name="hari" id="hari" required>
-								<option value="">-- Selected --</option>
-								
-								<option value="Senin">Senin</option>
-								<option value="Selasa">Selasa</option>
-								<option value="Rabu">Rabu</option>
-								<option value="Kamis">Kamis</option>
-								<option value="Jum'at">Jum'at</option>
-								<option value="Sabtu">Sabtu</option>
-								<option value="Minggu">Minggu</option>
-								
-							</select>
+									<option value="">-- Selected --</option>
+
+									<option value="Senin">Senin</option>
+									<option value="Selasa">Selasa</option>
+									<option value="Rabu">Rabu</option>
+									<option value="Kamis">Kamis</option>
+									<option value="Jum'at">Jum'at</option>
+									<option value="Sabtu">Sabtu</option>
+									<option value="Minggu">Minggu</option>
+
+								</select>
 							</div>
 						</div>
 
@@ -248,11 +251,11 @@
 							<div class="col-sm-8">
 								<!-- <input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas"> -->
 								<select class="form-control" name="fasilitas" id="fasilitas" required>
-								<option value="">-- Selected --</option>
-								<?php foreach($fasi as $fa):?>
-									<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
-								<?php endforeach;?>
-							</select>
+									<option value="">-- Selected --</option>
+									<?php foreach($fasi as $fa):?>
+										<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
+									<?php endforeach;?>
+								</select>
 							</div>
 						</div>
 
@@ -267,7 +270,7 @@
 					</div>             
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 						<button class="btn_edit btn btn-danger" id="btn_editpeminjam">Save</button>
 					</div>
 				</form>

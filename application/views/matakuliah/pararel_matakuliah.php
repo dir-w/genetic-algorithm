@@ -8,8 +8,11 @@
     <div class="card">
         <div class="card-header">
             <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newPararelMKModal">Add</a>
-
-
+        </div>
+        <div class="row">
+            <div class="col-lg">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -94,7 +97,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_hapus btn btn-danger" id="btn_hapustpararelmatkkul">Delete</button>
                     </div>
                 </form>
@@ -131,7 +134,7 @@
                     </div>             
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_edit btn btn-danger" id="btn_editpararelmatakuliah">Save</button>
                     </div>
                 </form>

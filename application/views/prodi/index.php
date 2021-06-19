@@ -8,8 +8,6 @@
         <div class="card-header">
             <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newProdiModal">Add</a>
         </div>
-        
-        
         <div class="row">
             <div class="col-lg">
                 <?= validation_errors(); ?>

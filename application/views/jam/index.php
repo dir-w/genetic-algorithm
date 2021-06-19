@@ -114,7 +114,7 @@
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button class="btn_hapus btn btn-danger" id="btn_hapus">Delete</button>
                 </div>
             </form>
@@ -159,7 +159,7 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_edit btn btn-danger" id="btn_edit">Save</button>
                     </div>
                 </form>

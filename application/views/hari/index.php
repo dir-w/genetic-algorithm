@@ -6,30 +6,34 @@
     
     <div class="card">
         <div class="card-header">
-           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Add</a>
-
-       </div>
-       <div class="card-body">
-          <div class="table-responsive">
-              <table id="hariTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
-                <!-- <table id="empTable" class="display"> -->
-                    <thead class="thead-light">
-                      <tr> 
-                        <th width="10px">No</th>
-                        <th>Nama hari</th>
-
-                        <th width="50px">Aksi</th>
-                    </tr>
-                </thead>
-
-                <!-- load barang -->
-
-
-            </table>
+         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Add</a>
+     </div>
+     <div class="row">
+        <div class="col-lg">
+            <?= $this->session->flashdata('message'); ?>
         </div>
-
-
     </div>
+    <div class="card-body">
+      <div class="table-responsive">
+          <table id="hariTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+            <!-- <table id="empTable" class="display"> -->
+                <thead class="thead-light">
+                  <tr> 
+                    <th width="10px">No</th>
+                    <th>Nama hari</th>
+
+                    <th width="50px">Aksi</th>
+                </tr>
+            </thead>
+
+            <!-- load barang -->
+
+
+        </table>
+    </div>
+
+
+</div>
 </div>
 
 
@@ -98,7 +102,7 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_hapus btn btn-danger" id="btn_hapushari">Delete</button>
                     </div>
                 </form>
@@ -155,7 +159,7 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button class="btn_edit btn btn-danger" id="btn_edithari">Save</button>
                     </div>
                 </form>
