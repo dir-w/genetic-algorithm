@@ -54,12 +54,18 @@
 <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
+<!-- touchspin JS 
+    ============================================ -->
+    <script src="<?php echo base_url('') ?>assets/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="<?php echo base_url('') ?>assets/js/touchspin/touchspin-active.js"></script>
 
-<script src="<?= base_url('assets/'); ?>js/vhs6.js"></script>
-<script src="<?= base_url('assets/'); ?>js/jsf.js"></script>
-<script src="<?= base_url('assets/'); ?>js/jsp1.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
+
+    <script src="<?= base_url('assets/'); ?>js/vhs6.js"></script>
+    <script src="<?= base_url('assets/'); ?>js/jsf.js"></script>
+    <script src="<?= base_url('assets/'); ?>js/jsp2.js"></script>
+    <!-- <script src="<?= base_url('assets/'); ?>js/jspro.js"></script> -->
 
 <!-- <script>
     addEventListener('load', function myfuntion(){

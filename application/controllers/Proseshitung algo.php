@@ -188,15 +188,66 @@ class Proses extends CI_Controller
 		$crossOver = $this->input->post('crossover');
 		$mutasi = $this->input->post('mutasi');
 		$jumlah_generasi = $this->input->post('generasi');
-		$pro = $this->input->post('prodi');
 
 		// $data['pilihan']=$this->Proses_model->getMKWhereId($dat);
-		if($pro == true){
-			echo "benar";
-		} else {
-			echo "salah";
+
+		//fungsikombinasi=jumlahkromosom
+		$n=count($this->input->post('prodi'));
+		$nfak = $this->faktorial($n);
+
+		$r=$this->input->post('populasi');
+		$rfak = $this->faktorial($r);
+		$d = $n-$r;
+		$dfak = $this->faktorial($d);
+		$jmlkrm = $this->kombinasi($nfak,$rfak,$dfak);
+		$data['jmlkrm'] = $this->kombinasi($nfak,$rfak,$dfak);
+
+		//inisialisasipopulasi
+		$arr = $this->input->post('prodi');
+		foreach (new Combinations($arr, $r) as $comb){
+			$bar[] = implode(" ", $comb);
 		}
 
+		//crossover
+		$cros=$this->input->post('crossover');
+		//mutasi
+		$mut=$this->input->post('mutasi');
+
+		if($n < 3 || $r < 2 || $cros<0 || $mut<0 || $cros>=1 || $mut>=1){
+			echo "kurang Lengkap";
+			// $this->load->view('optimasibelum', $data);
+		}else{
+			//proses optimasi
+			list($populasi, $popofffortebb) = $this->proses($bar, $kode_semester, $cros, $jmlkrm, $mut, $r, $arr);
+
+			foreach($populasi as $key => $value) {
+				foreach ($value as $ke => $val) {
+					$ky[] = $ke;
+					$vl[] = $val;
+				}
+			}
+			$kyvl=array_combine($ky, $vl);
+			asort($kyvl);
+			foreach($kyvl as $key => $value) {
+				$kak = $key;//keprint yg terakhir yaitu yg tertinggi fitnessnya
+				$fal = $value;
+			}
+			$exkak = explode(" ", $kak);
+			$ka = $exkak;
+			$data['hasil'] = $this->Proses_model->getMKWhereId($ka);
+			$data['fitnesstertinggi'] = $fal;
+
+			$data['populs'] = $populasi;
+			$data['populsfortab'] = $popofffortebb;
+			// echo "<pre/>";
+			// var_dump($popofffortebb);
+			// var_dump($populasi);
+			// proses model
+			$data['idmaxhistori'] = $this->M_history->maxIdHistori();
+			$data['idmaxhistoribmt'] = $this->M_history->maxIdHistoriBmt();
+			$data['idmaxhistorirekom'] = $this->M_history->maxIdHistoriRekom();
+			$data['jmlgnrs'] = sizeof($populasi);
+		}
 
 	}
 

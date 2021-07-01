@@ -6,9 +6,9 @@
     
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Add</a>
-     </div>
-     <div class="row">
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Add</a>
+       </div>
+       <div class="row">
         <div class="col-lg">
             <?= $this->session->flashdata('message'); ?>
         </div>

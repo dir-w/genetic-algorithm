@@ -25,12 +25,16 @@
     <!-- costum css -->
     <link href="<?= base_url('assets/'); ?>costumcss/my.css" rel="stylesheet"/>
 
-    
+    <!-- touchspin CSS 
+        ============================================ -->
+        <link rel="stylesheet" href="<?php echo base_url('') ?>assets/css/touchspin/jquery.bootstrap-touchspin.min.css">
 
-</head>
+        
 
-<!-- <body id="page-top" oncontextmenu="return false;" onkeydown="return false;" onmousedown="return false;"> -->
-    <body id="page-top">
+    </head>
 
-        <!-- Page Wrapper -->
-        <div id="wrapper"> 
+    <!-- <body id="page-top" oncontextmenu="return false;" onkeydown="return false;" onmousedown="return false;"> -->
+        <body id="page-top">
+
+            <!-- Page Wrapper -->
+            <div id="wrapper"> 
