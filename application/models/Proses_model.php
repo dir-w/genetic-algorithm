@@ -262,4 +262,44 @@ class Proses_model extends CI_Model
 	// end Model PROSES INPUT
 
 
+	// start Model PROSES ALGORITMA
+	public function getsemester()
+	{
+		$this->db->select('*');
+		$this->db->FROM('semester_tipe');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function gettahunakademik()
+	{
+		$this->db->select('*');
+		$this->db->FROM('tahun_akademik');
+		$this->db->order_by('tahun', 'DESC');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getprodi()
+	{
+		$this->db->select('*');
+		$this->db->FROM('prodi');
+		// $this->db->order_by('tahun', 'DESC');
+		$query = $this->db->get();
+		return $query;  
+	}
+
+	public function getMKWhereId($where)
+	{
+		$this->db->select('*');
+		$this->db->from('matapelajaran');
+		$this->db->where_in('kode', $where);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	
+	// end Model PROSES ALGORITMA
+
+
 }
