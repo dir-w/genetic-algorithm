@@ -1564,7 +1564,7 @@ public function saveeditprodi($kode,  $saveeditprod)
 }
 // end MASTER PRODI
 
-// start MASTER JURUSAN
+// start MASTER FAKULTAS
 public function getFakultasMaster($postData=null)
 {
     $response = array();
@@ -1669,6 +1669,131 @@ public function saveeditfakultas($kode, $saveeditfak)
 }
 // end MASTER FAKULTAS
 
+// start MASTER SEMESTER
+public function getSemesterMaster($postData=null)
+{
+    $response = array();
+
+     ## Read value
+    $draw = $postData['draw'];
+    $start = $postData['start'];
+    $rowperpage = $postData['length']; // Rows display per page
+    $columnIndex = $postData['order'][0]['column']; // Column index
+    $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+    $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+    $searchValue = $postData['search']['value']; // Search value
+
+     ## Search 
+    $searchQuery = "";
+    if($searchValue != ''){
+        $searchQuery = " (nama_semester like '%".$searchValue."%' or tipe_semester  like '%".$searchValue."%') ";
+    }
+
+     ## Total number of records without filtering
+    $this->db->select('count(*) as allcount');
+    $this->db->select('semester.*', 'semester_tipe.*');
+    $this->db->from('semester');
+    $this->db->join('semester_tipe', 'semester.semester_tipe=semester_tipe.kode', "left");
+    $records = $this->db->get()->result();
+    // $records = $this->db->get('semester')->result();
+    $totalRecords = $records[0]->allcount;
+
+     ## Total number of record with filtering
+    $this->db->select('count(*) as allcount');
+    if($searchQuery != '')
+        $this->db->where($searchQuery);
+    $this->db->select('count(*) as allcount');
+    $this->db->select('semester.*', 'semester_tipe.*');
+    $this->db->from('semester');
+    $this->db->join('semester_tipe', 'semester.semester_tipe=semester_tipe.kode', "left");
+    $records = $this->db->get()->result();
+    $totalRecordwithFilter = $records[0]->allcount;
+
+    ## Fetch records
+    $this->db->select('*');
+     // $this->db->select("CONCAT(' ', FirstName, LastName) AS Name");
+    if($searchQuery != '')
+        $this->db->where($searchQuery);
+    $this->db->order_by($columnName, $columnSortOrder);
+    $this->db->limit($rowperpage, $start);
+    // $this->db->select('semester.*');
+    // $this->db->from('semester');
+    $this->db->select('semester.*', 'semester_tipe.*');
+    $this->db->from('semester');
+    $this->db->join('semester_tipe', 'semester.semester_tipe=semester_tipe.kode', "left");
+    
+
+    $records = $this->db->get()->result();
+
+    $data = array();
+
+    $no = 1;
+    foreach($records as $record ){
+
+        $data[] = array( 
+            "no"=>$no++,
+            "nama_semester"=>$record->nama_semester,
+            "tipe_semester"=>$record->tipe_semester,
+            "Aksi" => "
+            <a href='javascript:void(0)' class='badge badge-danger item_hapussemester' data-placement='bottom' title='Delete' data-id=$record->kode  ;'><span class='far fa-trash-alt'></span></a>
+            <a href='javascript:void(0)' class='badge badge-warning edit_semester' data-placement='bottom' title='Edit' data-id=$record->kode ;'><span class='far fa-edit'></span></a>
+            "
+        ); 
+
+    }
+
+     ## Response 
+    $response = array(
+        "draw" => intval($draw),
+        "iTotalRecords" => $totalRecords,
+        "iTotalDisplayRecords" => $totalRecordwithFilter,
+        "aaData" => $data
+    );
+
+
+    return $response;
+}
+
+public function getSemesterTipe()
+{
+    $this->db->select('*');
+    $this->db->FROM('semester_tipe');
+    $query = $this->db->get();
+    return $query;  
+}
+
+public function addSemester($insertdataSemester)
+{
+    $this->db->insert('semester', $insertdataSemester);
+}
+
+public function getSemesterbyKode($kode)
+{
+    $hsl=$this->db->query("SELECT * FROM semester WHERE kode='$kode'");
+    if($hsl->num_rows()>0){
+        foreach ($hsl->result() as $data) {
+            $hasil=array(
+                'nama_semester' => $data->nama_semester,
+                'semester_tipe' => $data->semester_tipe,
+            );
+        }
+    }
+    return $hasil;  
+}
+
+public function dellsemester($kode)
+{
+    $hasil=$this->db->query("DELETE FROM semester WHERE kode='$kode'");
+    return $hasil;
+}
+
+public function saveeditSemester($kode, $saveeditS)
+{
+    $this->db->where('kode', $kode);
+    $this->db->update('semester', $saveeditS);
+}
+
+// end MODEL MASTER SEMESTER
 
 
 

@@ -1490,7 +1490,107 @@ $(function(){
 });
 // end MASTER JURUSAN
 
+// start MASTER SEMESTER
+$('#semesterTable').DataTable ({
+  'processing' : true,
+  'serverSide' : true,
+  'serverMethod' : 'post',
+  'ajax' : {
 
+    type : "POST",
+    url:"semesterList"
+
+  },
+  'columns' : [
+  { data: null,"sortable": false, render: function (data, type, row, meta){
+   return meta.row + meta.settings._iDisplayStart + 1;
+ }   },
+ { data: 'nama_semester' },
+ { data: 'tipe_semester' },
+ { data : 'Aksi'},
+ ]
+});
+
+//GET DATA HAPUS
+$(function(){
+  $('#semesterTable').on('click','.item_hapussemester', function(){
+    const id = $(this).data('id');
+    // console.log(id);
+    $.ajax({
+      url: "targetSemester",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        $('#ko').val(id);
+        $('#nama_smst').val('Nama Semester : ' + data.nama_semester);
+        $('#ModalHapusSemester').modal('show');
+        // console.log(data);
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_hapussemester').on('click',function(){
+    var kode=$('#ko').val();
+    $.ajax({
+      type : "POST",
+      url  : "semesterdelete",
+      dataType : "JSON",
+      data : {kode: kode},
+      success: function(data){
+        // console.log(data);
+        $('#ModalHapusSemester').modal('hide');
+        window.location.assign('semester');
+      }
+    });
+    return false;
+  }); 
+});
+
+//GET UPDATE
+$(function(){
+  $('#semesterTable').on('click','.edit_semester', function(){
+    const id = $(this).data('id');
+    $.ajax({
+      url:"targetSemester",
+      data: {kode : id},
+      method: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        // console.log(data);
+        $('#kode').val(id);
+        $('#nama_semester').val(data.nama_semester);
+        $('#semester_tipe').val(data.semester_tipe);
+        $('#ModalEditSemester').modal('show');
+        
+      }
+    });
+  });
+});
+
+$(function(){
+  $('#btn_editsemester').on('click', function(){
+    var kode =$('#kode').val();
+    var nama_semester =$('#nama_semester').val();
+    var semester_tipe =$('#semester_tipe').val();
+    // alert(kode_jurusan);
+    $.ajax({
+      method: 'POST',
+      url: 'editSemester',
+      dataType: 'JSON',
+      data: {kode:kode, nama_semester:nama_semester, semester_tipe:semester_tipe},
+      success: function(data){
+        $('#kode').val("");
+        $('#nama_semester').val("");
+        $('#semester_tipe').val("");
+        $('#ModalEditSemester').modal('hide');
+      }
+    });
+  });
+});
+// end MASTER SEMESTER
 
 
 

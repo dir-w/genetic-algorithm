@@ -868,7 +868,7 @@ public function kelkelas()
         $insertdataKelKelas = [
             'nama_kelompok_kelas' => $this->input->post('nama_kel'),
             'ket_kelompok' => $this->input->post('ket_kel')
-        ];
+        ]; 
         $this->Data_model->addkelkelas($insertdataKelKelas);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
         redirect('data/kelkelas');
@@ -1071,6 +1071,85 @@ public function editFakultas()
 }
 // end MASTER FAKULTAS
 
+// start Controller MATER Semester
+public function semester()
+{
+    $data['title'] = 'Master Semester';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+    // $this->form_validation->set_rules('fak', 'Nama Fakultas', 'required|trim|is_unique[fakultas.nama_fakultas]', [
+    //     'is_unique' => '<div class="alert alert-danger">This Nama Fakultas has already!</div>'
+    // ]);
+
+    $this->form_validation->set_rules('nama_sms', 'Nama Semester', 'required|max_length[3]', ['max_length' => '<div class="alert alert-danger">Nama Semester cannot exceed 3 characters in length.</div>']);
+    $this->form_validation->set_rules('smst', 'Semester Tipe', 'required');
+    $data['smst'] = $this->Data_model->getSemesterTipe()->result_array();
+    // $this->form_validation->set_rules('fak', 'Jurusan', 'required');
+
+    if ($this->form_validation->run() == false)
+    {
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('semester/index', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $ids = $this->Nomor_model->getNosemester();
+        $insertdataSemester = [
+            'nama_semester' => $this->input->post('nama_sms'),
+            'semester_tipe' => $this->input->post('smst'),
+            'id_semester' => $ids
+        ];
+        $this->Data_model->addSemester($insertdataSemester);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/semester');
+    }
+}
+
+public function semesterList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getSemesterMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function TargetSemester($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getSemesterbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function semesterdelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellsemester($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function editSemester()
+{
+    $kode = $this->input->post('kode');
+    $saveeditS = [
+        'nama_semester' => $this->input->post('nama_semester'),
+        'semester_tipe' => $this->input->post('semester_tipe')
+    ];
+    $data = $this->Data_model->saveeditSemester($kode, $saveeditS);
+
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
+
+}
+
+
+// end Controller MASTER Semester
 
 
 
