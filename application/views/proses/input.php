@@ -69,6 +69,8 @@
 
  					<div class="row">
  						<div class="col">
+
+
  							<div class="row mb-2">
  								<label class="col-sm-4 col-form-label">Kode Matakuliah</label>
  								<div class="col-sm-8">
@@ -88,6 +90,18 @@
  										<option value="">-- Selected --</option>
  										<?php foreach($pemin as $pm):?>
  											<option value="<?= $pm['kode_p']; ?>"><?= $pm['pj']; ?></option>
+ 										<?php endforeach;?>
+ 									</select>
+ 								</div>
+ 							</div>
+
+ 							<div class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Tahun Akademik</label>
+ 								<div class="col-sm-8">
+ 									<select class="form-control" name="ta" id="ta" required>
+ 										<option value="">-- Selected --</option>
+ 										<?php foreach($takademik as $tak):?>
+ 											<option value="<?= $tak['kode']; ?>"><?= $tak['tahun']; ?></option>
  										<?php endforeach;?>
  									</select>
  								</div>
@@ -127,7 +141,7 @@
  							</div>
 
  							<div class="row mb-2">
- 								<label class="col-sm-4 col-form-label">Semester</label>
+ 								<label class="col-sm-4 col-form-label">Semester Tipe</label>
  								<div class="col-sm-8">
  									<select class="form-control" name="set" id="set" required>
  										<option value="">-- Selected --</option>
@@ -161,6 +175,18 @@
  								<label class="col-sm-4 col-form-label">Kapasitas</label>
  								<div class="col-sm-8">
  									<input type="text" class="form-control" id="kapas" name="kapas" visible readonly="" placeholder="Kapasitas">
+ 								</div>
+ 							</div>
+
+ 							<div class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Semester</label>
+ 								<div class="col-sm-8">
+ 									<select class="form-control" name="smst" id="smst" required>
+ 										<option value="">-- Selected --</option>
+ 										<?php foreach($semester as $smst):?>
+ 											<option value="<?= $smst['kode']; ?>"><?= $smst['nama_semester']; ?></option>
+ 										<?php endforeach;?>
+ 									</select>
  								</div>
  							</div>
 
@@ -247,7 +273,7 @@
  					<div class="modal-body">
  						<div class="form-group">
  							<!-- <label for="range">Kode</label>                    -->
- 							<input type="text" class="form-control" name="id_pemakaian" id="id_pemakaian" required="required" readonly="" >
+ 							<input type="hidden" class="form-control" name="id_pemakaian" id="id_pemakaian" required="required" readonly="" >
  						</div>
 
 
@@ -426,10 +452,12 @@
 											<p class="card-text jarak"><small class="text-muted">Nama Peminjam</small></p>
 											<p class="card-text jarak"><small class="text-muted">Kegiatan</small></p>
 											<p class="card-text jarak"><small class="text-muted">Tanggal Pemakaian Ruangan</small></p>
+											<p class="card-text jarak"><small class="text-muted">Tahun Akademik</small></p>
 											<p class="card-text jarak"><small class="text-muted">Kode Matakuliah</small></p>
 											<p class="card-text jarak"><small class="text-muted">Nama Matakuliah</small></p>
 											<p class="card-text jarak"><small class="text-muted">Type Matakuliah</small></p>
 											<p class="card-text jarak"><small class="text-muted">Pararel</small></p>
+											<p class="card-text jarak"><small class="text-muted">Semester tipe</small></p>
 											<p class="card-text jarak"><small class="text-muted">Hari</small></p>
 											<p class="card-text jarak"><small class="text-muted">Jam</small></p>
 										</div>
@@ -438,6 +466,8 @@
 										<div class="card-body">
 											<h5 class="card-title">:</h5>
 											<p class="card-text jarak">:</p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
@@ -456,11 +486,13 @@
 											<p class="card-text jarak" id="dnamar"></p>
 											<p class="card-text jarak"><small class="text-muted" id="dnamapeminjam"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dkegiatan"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dta"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dtglpr"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dkodemk"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dnamamk"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dnamatypemk"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dketeranganp"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dsemtipe"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dhari"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="djam"></small></p>
 										</div>
