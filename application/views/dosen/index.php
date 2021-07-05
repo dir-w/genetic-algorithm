@@ -55,10 +55,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-danger" id="newDosenModalLabel">ADD MASTER DOSEN</h5>
+        <h5 class="modal-title text-danger" id="newDosenModalLabel">ADD DATA DOSEN</h5>
 
       </div>
-      <form action="<?= base_url('data/Dosen'); ?>" method="post">
+      <form action="<?= base_url('input/Dosen'); ?>" method="post">
         <div class="modal-body">
 
           <div class="row mb-3">
@@ -118,7 +118,7 @@
     <div class="modal-content">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-danger" id="hapusdosenModalLabel">WARNING MASTER DOSEN</h5>
+          <h5 class="modal-title text-danger" id="hapusdosenModalLabel">WARNING DATA DOSEN</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button> -->
@@ -149,7 +149,7 @@
             <div class="modal-content">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title text-danger" id="EditdosenModalLabel">EDIT MASTER DOSEN</h5>
+                  <h5 class="modal-title text-danger" id="EditdosenModalLabel">EDIT DATA DOSEN</h5>
 
                 </div>
                 <form class="form-horizontal">

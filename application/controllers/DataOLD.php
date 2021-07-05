@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Data extends CI_Controller
-{ 
+{
 
     public function __construct()
     {
@@ -309,7 +309,172 @@ public function editStatusDosen()
 }
 // end MASTER STATUS DOSEN
 
+// start Master DOSEN
 
+public function dosen()
+{
+
+    $data['title'] = 'Master Dosen';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $idd = $this->Nomor_model->getiddosen();
+    $data['stat'] = $this->Data_model->getstatusDosen()->result_array();
+
+
+    $this->form_validation->set_rules('nip', 'No Induk Pegawai', 'required');
+    $this->form_validation->set_rules('nama', 'Nama Pegawai', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat Pegawai', 'required');
+    $this->form_validation->set_rules('telp', 'Telp/HP Pegawai', 'required|alpha_numeric');
+    $this->form_validation->set_rules('status_dosen', 'Status Pegawai', 'required');
+    if ($this->form_validation->run() == false)
+    {
+        // echo "OK";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dosen/index', $data);
+        $this->load->view('templates/footer');  
+    } else {
+        $insertdataDosen = [
+            'nip' => $this->input->post('nip'),
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'telp' => $this->input->post('telp'),
+            'status_dosen ' => $this->input->post('status_dosen'),
+            'id_guru' => $idd
+        ];
+
+        $this->Data_model->adddosen($insertdataDosen);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/dosen');
+
+    }
+}
+
+public function tagetDeleteDosen($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getDosenbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function dosendelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->delldosen($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+           // redirect('data/jam');
+}
+
+public function editDosen()
+{
+    $kode = $this->input->post('kode');
+    $nip = $this->input->post('nip');
+    $nama = $this->input->post('nama');
+    $alamat = $this->input->post('alamat');
+    $telp = $this->input->post('telp');
+    $status_dosen = $this->input->post('status_dosen');
+    $data = $this->Data_model->saveeditdosen($kode, $nip, $nama, $alamat, $telp, $status_dosen);
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
+}
+
+
+public function dosenList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getDosenMaster($postData);
+
+    echo json_encode($data);
+}
+
+// end dosen
+
+// Start Master RUANGAN
+
+public function ruangan()
+{
+    $data['title'] = 'Master Ruangan';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['ruang'] = $this->Data_model->getjenisRuangan()->result_array();
+    $data['typer'] = $this->Data_model->getstatustype()->result_array();
+
+    $this->form_validation->set_rules('id', 'ID Ruangan', 'required');
+    $this->form_validation->set_rules('nama', 'Nama Ruangan', 'required');
+    $this->form_validation->set_rules('kapasitas', 'Kapasitas Ruangan', 'required|alpha_numeric');
+    $this->form_validation->set_rules('type', 'Type Ruangan', 'required');
+    $this->form_validation->set_rules('jenis_ruangan', 'Jenis Ruangan', 'required');
+    $this->form_validation->set_rules('lantai', 'Lantai Ruangan', 'required');
+    if ($this->form_validation->run() == false)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('ruangan/index', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $insertdataRuangan = [
+            'id_ruang' => $this->input->post('id'),
+            'nama' => $this->input->post('nama'),
+            'kapasitas' => $this->input->post('kapasitas'),
+            'id_type' => $this->input->post('type'),
+            'id_jenis' => $this->input->post('jenis_ruangan'),
+            'lantai' => $this->input->post('lantai')
+        ];
+
+        $this->Data_model->addruangan($insertdataRuangan);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/ruangan');
+    }
+}
+
+public function ruangList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getRuangMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function tagetDeleteRuangan($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getRuanganbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function ruangandelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellruangan($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function editRuangan()
+{
+    $kode = $this->input->post('kode');
+    $id_ruang = $this->input->post('id_ruang');
+    $nama = $this->input->post('nama');
+    $kapasitas = $this->input->post('kapasitas');
+    $id_type = $this->input->post('id_type');
+    $id_jenis = $this->input->post('id_jenis');
+    $lantai = $this->input->post('lantai');
+
+    $data = $this->Data_model->saveeditruangan($kode, $nama, $kapasitas, $id_type, $lantai, $id_jenis, $id_ruang);
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
+}
+
+// end Master Ruangan
 
 
 // Start master JENIS RUANGAN
@@ -521,6 +686,100 @@ public function edittypeMatKul()
 
 // end MASTER TYPE MATA KULIAH
 
+// start MASTER MATA KULIAH
+
+public function matkul()
+{
+    $data['title'] = 'Master Matakuliah';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['kelom'] = $this->Data_model->getKelompoKelas()->result_array();
+    $data['typ'] = $this->Data_model->getTypeMK()->result_array();
+    $data['par'] = $this->Data_model->getPMK()->result_array();
+    $data['prod'] = $this->Data_model->getProdi()->result_array();
+    $data['smes'] = $this->Data_model->getsmester()->result_array();
+    $this->form_validation->set_rules('kel', 'Kelompok Matakuliah', 'required');
+    $this->form_validation->set_rules('kodemk', 'Kode Matakuliah', 'required');
+    $this->form_validation->set_rules('namamk', 'Nama Matakuliah', 'required');
+    $this->form_validation->set_rules('typemk', 'Type Matakuliah', 'required');
+    $this->form_validation->set_rules('parmk', 'Pararel Matakuliah', 'required');
+    $this->form_validation->set_rules('smk', 'Semester Matakuliah', 'required');
+    $this->form_validation->set_rules('prod', 'Prodi', 'required');
+    $this->form_validation->set_rules('jj', 'Prodi', 'required');
+    if ($this->form_validation->run() == false)
+    {
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('matakuliah/index', $data);
+        $this->load->view('templates/footer');
+    } else {
+        $saveMK = [
+            'id_kelompok' => $this->input->post('kel'),
+            'nama_kode' => $this->input->post('kodemk'),
+            'nama' => $this->input->post('namamk'),
+            'id_type' => $this->input->post('typemk'),
+            'id_pararel' => $this->input->post('parmk'),
+            'id_semester_tipe' => $this->input->post('smk'),
+            'kode_prodi' => $this->input->post('prod'),
+            'jumlah_jam' => $this->input->post('jj')
+        ];
+        $this->Data_model->addmatkul($saveMK);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/matkul');
+
+    }
+
+}
+
+public function matkulList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getMatkulMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function tagetMatKul($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getMatKulbyKode($kode);
+    echo json_encode($data);  
+}
+
+public function matkuldelete()
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->dellmatkul($kode);
+    echo json_encode($data); 
+    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function editMatKul()
+{
+    $kode = $this->input->post('kode');
+    $saveeditmatkul = [
+        'nama' => $this->input->post('nama'),
+        'id_kelompok' => $this->input->post('id_kelompok'),
+        'nama_kode' => $this->input->post('nama_kode'),
+        'id_type' => $this->input->post('id_type'),
+        'id_pararel' => $this->input->post('id_pararel'),
+        'id_semester_tipe' => $this->input->post('id_semester_tipe'),
+        'kode_prodi' => $this->input->post('kode_prodi'),
+        'jumlah_jam' => $this->input->post('jumlah_jam')
+    ];
+    // var_dump($saveeditmatkul);
+    // die;
+    $data = $this->Data_model->saveeditMatKul($kode, $saveeditmatkul);
+// data: {kode:kode, id_kelompok:id_kelompok, nama_kode:nama_kode, nama:nama, id_type:id_type, id_jenis_mk:id_jenis_mk, semester:semester, kode_prodi:kode_prodi, jumlah_jam:jumlah_jam},
+    
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been update..</div>');
+}
+
+// end MASTER MATA KULIAH
 
 // start MASTER PARAREL MATA KULIAH
 public function pararelmatkul()
@@ -657,6 +916,91 @@ public function editkelKelas()
 }
 
 // end MASTER KELOMPOK MATA KULIAH
+
+// Start MASTER PRODI
+public function prodi()
+{
+    $data['title'] = 'Master Prodi';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['fakul'] = $this->Data_model->getFakultas()->result_array();
+    $idp = $this->Nomor_model->getidProdi();
+
+    $this->form_validation->set_rules('koprod', 'Kode Prodi', 'required|trim|is_unique[prodi.id_prodi]', [
+        'is_unique' => '<div class="alert alert-danger">This Kode has already!</div>'
+    ]);
+    $this->form_validation->set_rules('nama_pro', 'Nama Prodi', 'required');
+    $this->form_validation->set_rules('fak', 'Nama Fakultas', 'required');
+    if ($this->form_validation->run() == false)
+    {
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('prodi/index', $data);
+        $this->load->view('templates/footer');
+
+    } else {
+
+        $insertdataProdi = [
+            'id_prodi' => $this->input->post('koprod'),
+            'nama_prodi' => $this->input->post('nama_pro'),
+            'kode_fakultas' => $this->input->post('fak')
+            // 'id_prodi' => $idp
+        ];
+        $this->Data_model->addprodi($insertdataProdi);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+        redirect('data/prodi');
+
+    }
+}
+
+
+public function prodiList()
+{
+        // POST data dari view
+    $postData = $this->input->post();
+
+        // get data dari model
+    $data = $this->Data_model->getProdiMaster($postData);
+
+    echo json_encode($data);
+}
+
+public function tagetProdi($kode='')
+{
+    $kode=$this->input->post('kode');
+    $data=$this->Data_model->getKelProdibyKode($kode);
+    echo json_encode($data);  
+}
+
+public function prodidelete()
+{
+   $kode=$this->input->post('kode');
+   $data=$this->Data_model->dellprodi($kode);
+   echo json_encode($data); 
+   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+}
+
+public function editProdi()
+{
+
+    $kode = $this->input->post('kode');
+    
+    $saveeditprod = [
+
+        'nama_prodi' => $this->input->post('nama_prodi'),
+        'kode_fakultas' => $this->input->post('kode_fakultas'),
+        'id_prodi' => $this->input->post('id_prodi')
+    ];
+
+    $data = $this->Data_model->saveeditprodi($kode, $saveeditprod);
+    
+
+    echo json_encode($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been Update..</div>');
+    
+}
+// end MASTER PRODI
 
 // start MASTER FAKULTAS
 public function fakultas()

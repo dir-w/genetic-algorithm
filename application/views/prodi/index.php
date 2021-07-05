@@ -55,7 +55,7 @@
                 <h5 class="modal-title text-danger" id="newMapelModalLabel">ADD MASTER PRODI</h5>
                 
             </div>
-            <form action="<?= base_url('data/prodi'); ?>" method="post">
+            <form action="<?= base_url('input/prodi'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="row mb-3">
@@ -104,7 +104,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="hapusProdiModalLabel">WARNING MASTER PRODI</h5>
+                    <h5 class="modal-title text-danger" id="hapusProdiModalLabel">WARNING DATA PRODI</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> -->
@@ -135,7 +135,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditProdiModalLabel">EDIT MASTER PRODI</h5>
+                    <h5 class="modal-title text-danger" id="EditProdiModalLabel">EDIT DATA PRODI</h5>
                     
                 </div>
                 <form class="form-horizontal">

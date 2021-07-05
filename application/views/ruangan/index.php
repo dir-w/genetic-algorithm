@@ -6,9 +6,9 @@
     
     <div class="card">
         <div class="card-header">
-         <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Add</a>
-     </div>
-     <div class="row">
+           <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newRuanganModal">Add</a>
+       </div>
+       <div class="row">
         <div class="col-lg">
             <?= $this->session->flashdata('message'); ?>
         </div>
@@ -58,7 +58,7 @@
                 <h5 class="modal-title text-danger" id="newRuanganModalLabel">ADD MASTER RUANGAN</h5>
                 
             </div>
-            <form action="<?= base_url('data/ruangan'); ?>" method="post">
+            <form action="<?= base_url('input/ruangan'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="row mb-3">
@@ -138,7 +138,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="hapusRuanganModalLabel">WARNING MASTER RUANGAN</h5>
+                    <h5 class="modal-title text-danger" id="hapusRuanganModalLabel">WARNING DATA RUANGAN</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> -->
@@ -170,7 +170,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditRuanganModalLabel">EDIT MASTER RUANGAN</h5>
+                    <h5 class="modal-title text-danger" id="EditRuanganModalLabel">EDIT DATA RUANGAN</h5>
                     
                 </div>
                 <form class="form-horizontal">
