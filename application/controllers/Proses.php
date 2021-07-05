@@ -153,6 +153,8 @@ class Proses extends CI_Controller
 			'kode_dosen' => $this->input->post('kode_dosen'),
 			'kode_semester_tipe' => $this->input->post('kode_semester_tipe'),
 			'tgl_pr' => $this->input->post('tgl_pr'),
+			'kode_tahun_akademik' => $this->input->post('kode_tahun_akademik'),
+			'kode_semester' => $this->input->post('kode_semester'),
 			'update_by' => $this->input->post('update_by'),
 			'update_at' => time()
 		];

@@ -64,7 +64,7 @@
 
     <script src="<?= base_url('assets/'); ?>js/vhs3.js"></script>
     <script src="<?= base_url('assets/'); ?>js/jsf.js"></script>
-    <script src="<?= base_url('assets/'); ?>js/jsp3.js"></script>
+    <script src="<?= base_url('assets/'); ?>js/jsp5.js"></script>
     <!-- <script src="<?= base_url('assets/'); ?>js/jspro.js"></script> -->
 
 <!-- <script>

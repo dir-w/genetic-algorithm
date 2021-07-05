@@ -232,7 +232,7 @@ class Proses_model extends CI_Model
 
 	public function getPemakaianbyKode($id_pemakaian)
 	{
-		$hsl=$this->db->query("SELECT pemakaian_ruangan.*, ruang.*, ruang.id_ruang as idr, ruang.nama as namar, peminjam.*, matapelajaran.*, tahun_akademik.*,  matapelajaran.nama as napel, typepelajaran.*, pararel.*, jam.*, semester_tipe.tipe_semester as smst FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode JOIN matapelajaran on pemakaian_ruangan.kode_mk=matapelajaran.kode JOIN peminjam on pemakaian_ruangan.kode_peminjam=peminjam.kode_p JOIN typepelajaran ON matapelajaran.id_type=typepelajaran.idtpel JOIN pararel on matapelajaran.id_pararel=pararel.idjmk JOIN jam ON pemakaian_ruangan.kode_jam=jam.kode JOIN semester_tipe ON pemakaian_ruangan.kode_semester_tipe=semester_tipe.kode JOIN tahun_akademik ON pemakaian_ruangan.kode_tahun_akademik=tahun_akademik.kode  WHERE id_pemakaian='$id_pemakaian'");
+		$hsl=$this->db->query("SELECT pemakaian_ruangan.*, ruang.*, ruang.id_ruang as idr, ruang.nama as namar, peminjam.*, matapelajaran.*, tahun_akademik.*,  matapelajaran.nama as napel, typepelajaran.*, pararel.*, jam.*, semester_tipe.tipe_semester as smst, semester.* FROM pemakaian_ruangan JOIN ruang on pemakaian_ruangan.kode_ruangan=ruang.kode JOIN matapelajaran on pemakaian_ruangan.kode_mk=matapelajaran.kode JOIN peminjam on pemakaian_ruangan.kode_peminjam=peminjam.kode_p JOIN typepelajaran ON matapelajaran.id_type=typepelajaran.idtpel JOIN pararel on matapelajaran.id_pararel=pararel.idjmk JOIN jam ON pemakaian_ruangan.kode_jam=jam.kode JOIN semester_tipe ON pemakaian_ruangan.kode_semester_tipe=semester_tipe.kode JOIN semester ON pemakaian_ruangan.kode_semester=semester.kode JOIN tahun_akademik ON pemakaian_ruangan.kode_tahun_akademik=tahun_akademik.kode  WHERE id_pemakaian='$id_pemakaian'");
 		if($hsl->num_rows()>0){
 			foreach ($hsl->result() as $data) {
 				$hasil=array(
@@ -246,6 +246,7 @@ class Proses_model extends CI_Model
 					'kode_hari' => $data->kode_hari,
 					'kode_dosen' => $data->kode_dosen,
 					'kode_semester_tipe' => $data->kode_semester_tipe,
+					'kode_semester' => $data->kode_semester,
 					'kapasitas' => $data->kapasitas,
 					'kegiatan' => $data->kegiatan,
 					'nama_kode' => $data->nama_kode,
@@ -257,7 +258,11 @@ class Proses_model extends CI_Model
 					'keterangan' => $data->keterangan,
 					'start' => $data->start,
 					'end' => $data->end,
+					'kode_tahun_akademik' => $data->kode_tahun_akademik,
 					'tahun' => $data->tahun,
+					'nama_semester' => $data->nama_semester,
+					'keterangan_typemk' => $data->keterangan_typemk,
+					'hari' => $data->hari,
 					'tgl_pr' => date('d/m/Y', strtotime($data->tgl_pr)),
 				);
 			}
