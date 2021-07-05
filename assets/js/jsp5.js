@@ -146,12 +146,14 @@ $.ajax({
     $('#n_ruang').val(data.kode_ruangan);
     $('#tgl').val(data.tgl_pr);
     $('#n_d').val(data.kode_dosen);
-    $('#semester').val(data.kode_semester);
+    $('#semester').val(data.kode_semester_tipe);
     $('#hari').val(data.kode_hari);
     $('#jam').val(data.kode_jam);
     $('#kapasitas').val(data.kapasitas);
     $('#nama_mk').val(data.napel);
     $('#kegiatan').val(data.kegiatan);
+    $('#tha').val(data.kode_tahun_akademik);
+    $('#smstr').val(data.kode_semester);
     // console.log(data);
     $('#ModalEditPemakaian').modal('show');
   }
@@ -220,7 +222,6 @@ $(function(){
 });
 
 
-
 //text input rubah menjadi text=date modal edit
 $("#tglpem").hide();
 $(function(){
@@ -229,8 +230,6 @@ $(function(){
     $("#tglpem").show();
   });
 });
-
-
 
 
 // edit save
@@ -243,15 +242,17 @@ $(function(){
     var kode_jam =$('#jam').val();
     var kode_hari =$('#hari').val();
     var kode_dosen =$('#n_d').val();
-    var kode_semester =$('#semester').val();
+    var kode_semester_tipe =$('#semester').val();
     var tgl_pr =$('#tglpem').val();
+    var kode_tahun_akademik =$('#tha').val();
+    var kode_semester =$('#smstr').val();
     var update_by =$('#nama_user').val();
     // alert(tgl_pr);
     $.ajax({
       method : 'POST',
       url : 'editPR',
       dataType : 'JSON',
-      data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk, kode_peminjam:kode_peminjam, kode_ruangan:kode_ruangan, kode_jam:kode_jam, kode_hari:kode_hari, kode_dosen:kode_dosen, kode_semester:kode_semester, tgl_pr:tgl_pr, update_by:update_by},
+      data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk, kode_peminjam:kode_peminjam, kode_ruangan:kode_ruangan, kode_jam:kode_jam, kode_hari:kode_hari, kode_dosen:kode_dosen, kode_semester_tipe:kode_semester_tipe, tgl_pr:tgl_pr, kode_tahun_akademik:kode_tahun_akademik, kode_semester:kode_semester, update_by:update_by},
       // data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk},
 
       success: function(data){
@@ -264,6 +265,8 @@ $(function(){
         $('#semester').val("");
         $('#tgl').val("");
         $('#nama_user').val("");
+        $('#tha').val("");
+        $('#smstr').val("");
           // $('#n_ruang').val("");
           $('#ModalEditPemakaian').modal('hide');
           // window.location.assign('jam');
@@ -274,7 +277,7 @@ $(function(){
     });
 });
 
-//GET UPDATE
+//GET DETAIL
 $(function(){
   $('#inputTable').on('click','.detail_pemakaian', function(){
     const id = $(this).data('id');
@@ -288,15 +291,19 @@ $(function(){
       success: function(data) {
         // $('#dkoderi').html('kkkk');
         $('#idpemakaian').val(data.kode_ruangan);
+        $('#dta').html(data.tahun);
         $('#dkoder').html(data.id_ruang);
         $('#dnamapeminjam').html(data.pj);
         $('#dnamar').html(data.namar);
         $('#dkodemk').html(data.nama_kode);
         $('#dnamamk').html(data.nama);
         $('#dkegiatan').html(data.kegiatan);
-        $('#dnamatypemk').html(data.nama_typemk);
+        $('#dnamatypemk').html(data.keterangan_typemk);
         $('#dketeranganp').html(data.keterangan);
-        $('#dhari').html(data.kode_hari);
+        $('#dsemtipe').html(data.smst);
+        $('#dsem').html(data.nama_semester);
+        $('#dhari').html(data.hari);
+        $('#dta').html(data.tahun);
         $('#djam').html('Start : ' + data.start + '       End : ' + data.end);
         $('#dtglpr').html(data.tgl_pr);
         $('#ModalDetailPemakaian').modal('show');

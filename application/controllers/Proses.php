@@ -21,14 +21,17 @@ class Proses extends CI_Controller
 		
 		$namauser = $data;
 		// $idh = $this->Nomor_model->getNohari();
-
+		$data['takademik'] = $this->Proses_model->getTA()->result_array();
 		$data['matakuliah'] = $this->Proses_model->getMatakuliah()->result_array();
 		$data['pemin'] = $this->Proses_model->getP()->result_array();
 		$data['hari'] = $this->Proses_model->getH()->result_array();
 		$data['ruangan'] = $this->Proses_model->getR()->result_array();
 		$data['semestertipe'] = $this->Proses_model->getSE()->result_array();
+		$data['semester'] = $this->Proses_model->getSEM()->result_array();
 		$data['jam'] = $this->Proses_model->getJ()->result_array();
 		$data['dosen'] = $this->Proses_model->getD()->result_array();
+		$this->form_validation->set_rules('ta', 'Tahun Akademik', 'required');
+		$this->form_validation->set_rules('smst', 'Semester', 'required');
 		$this->form_validation->set_rules('kodemk', 'Kode Matakuliah', 'required');
 		$this->form_validation->set_rules('pjawab', 'Peminjam', 'required');
 		$this->form_validation->set_rules('nruang', 'Nama Ruangan', 'required');
@@ -50,13 +53,15 @@ class Proses extends CI_Controller
 		} else { 
 
 			$insertdataPP = [
+				'kode_tahun_akademik' => $this->input->post('ta'),
 				'kode_mk' => $this->input->post('kodemk'),
 				'kode_peminjam' => $this->input->post('pjawab'),
 				'kode_ruangan' => $this->input->post('nruang'),
 				'kode_jam' => $this->input->post('ja'),
 				'kode_hari' => $this->input->post('har'),
 				'kode_dosen' => $this->input->post('nd'),
-				'kode_semester' => $this->input->post('set'),
+				'kode_semester_tipe' => $this->input->post('set'),
+				'kode_semester' => $this->input->post('smst'),
 				'tgl_pr' => $this->input->post('tpem'),
 				'create_at' => time(),
 				'create_by' => $this->input->post('namauser')
@@ -146,8 +151,10 @@ class Proses extends CI_Controller
 			'kode_jam' => $this->input->post('kode_jam'),
 			'kode_hari' => $this->input->post('kode_hari'),
 			'kode_dosen' => $this->input->post('kode_dosen'),
-			'kode_semester' => $this->input->post('kode_semester'),
+			'kode_semester_tipe' => $this->input->post('kode_semester_tipe'),
 			'tgl_pr' => $this->input->post('tgl_pr'),
+			'kode_tahun_akademik' => $this->input->post('kode_tahun_akademik'),
+			'kode_semester' => $this->input->post('kode_semester'),
 			'update_by' => $this->input->post('update_by'),
 			'update_at' => time()
 		];
