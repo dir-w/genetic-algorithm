@@ -9,6 +9,7 @@ class Input extends CI_Controller
 		parent::__construct();
 		is_logged_in();
 		$this->load->model('Data_model');
+		$this->load->model('Proses_model');
 		$this->load->model('Nomor_model');
 		$this->load->library('form_validation');
 	}
