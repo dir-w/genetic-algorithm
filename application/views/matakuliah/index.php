@@ -55,10 +55,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-danger" id="newMapelModalLabel">ADD MASTER MATAKULIAH</h5>
+                <h5 class="modal-title text-danger" id="newMapelModalLabel">ADD DATA MATAKULIAH</h5>
                 
             </div>
-            <form action="<?= base_url('data/matkul'); ?>" method="post">
+            <form action="<?= base_url('input/matkul'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="row mb-3">
@@ -138,7 +138,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-4 col-form-label">Jumlah Jam</label>
                     <div class="col-sm-8">
-                     <select class="form-control" name="jj" id="jj">
+                       <select class="form-control" name="jj" id="jj">
                         <option value="">-- Selected --</option>
                         <?php
                         for ($i = 1; $i < 11; $i++){
@@ -166,7 +166,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="hapusMatKulModalLabel">WARNING MASTER MATAKULIAH</h5>
+                    <h5 class="modal-title text-danger" id="hapusMatKulModalLabel">WARNING DATA MATAKULIAH</h5>
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button> -->
@@ -197,7 +197,7 @@
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="EditMatkulModalLabel">EDIT MASTER MATAKULIAH</h5>
+                    <h5 class="modal-title text-danger" id="EditMatkulModalLabel">EDIT DATA MATAKULIAH</h5>
                     
                 </div>
                 <form class="form-horizontal">
@@ -284,7 +284,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-4 col-form-label">Jumlah Jam</label>
                     <div class="col-sm-8">
-                     <select class="form-control" name="jjmkk" id="jjmkk">
+                       <select class="form-control" name="jjmkk" id="jjmkk">
                         <option value="">-- Selected --</option>
                         <?php
                         for ($i = 1; $i < 11; $i++){

@@ -36,13 +36,13 @@ class Auth extends CI_Controller
         $password = $this->input->post('password');
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
-
+        // $user = $this->db->query("SELECT * from user where email='$email'")->row_array();
         // jika usernya ada
         if ($user) {
             // jika usernya aktif 
             if ($user['is_active'] == 1) {
                 // var_dump($user);
-// die;
+                // die;
                 // cek password
                 if (password_verify($password, $user['password'])) {
                     $data = [
@@ -196,7 +196,7 @@ class Auth extends CI_Controller
         }
     }
 
- 
+
     public function logout()
     {
         $this->session->unset_userdata('email');

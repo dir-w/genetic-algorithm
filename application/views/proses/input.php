@@ -61,7 +61,7 @@
  				<h5 class="modal-title text-danger" id="newInputModalLabel">INPUT PEMAKAIAN RUANGAN</h5>
 
  			</div>
- 			<form action="<?= base_url('proses/pemakaian'); ?>" method="post">
+ 			<form action="<?= base_url('input/pemakaian'); ?>" method="post">
  				<div class="modal-body">
 
 
