@@ -29,7 +29,7 @@ class Proses extends CI_Controller
 		$kode_semester_tipe=$this->input->post('semester');
 		$ta=$this->input->post('tahun_akademik');
 		$dat=$this->input->post('populasi');
-		$crossOver = $this->input->post('crossover');
+		$crossOver = $this->input->post('crossover'); 
 		$mutasi = $this->input->post('mutasi');
 		$jumlah_generasi = $this->input->post('generasi');
 		$pro = $this->input->post('prodi');
