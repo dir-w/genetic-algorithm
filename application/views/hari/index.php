@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid"> 
 
     <!-- Page Heading -->
     <h1 id="h1" class="h3 mb-4 text-primary"><?= $title; ?></h1>
@@ -134,7 +134,8 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <select class="form-control" name="nhari" id="nhari" required>
+                                    <input type="text" class="form-control" name="nhari" id="nhari">
+                                    <!-- <select class="form-control" name="nhari" id="nhari" required>
                                         <option value="">-- Selected --</option>
 
                                         <option value="Senin">Senin</option>
@@ -143,7 +144,7 @@
                                         <option value="Kamis">Kamis</option>
                                         <option value="Jum'at">Jum'at</option>
                                         <option value="Sabtu">Sabtu</option>
-                                        <option value="Minggu">Minggu</option>
+                                        <option value="Minggu">Minggu</option> -->
 
                                     </select>
                                 </div>

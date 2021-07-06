@@ -1,50 +1,75 @@
- <!-- Begin Page Content -->
- <div class="container-fluid">
 
- 	<!-- Page Heading -->
- 	<h1 id="h1" class="h3 mb-4 text-primary"><?= $title; ?></h1>
 
- 	<div class="card">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
- 		<div class="card-header">
- 			<!-- <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newInputModal">Add</a> -->
- 			<?php echo form_open_multipart("proses/algo"); ?>
- 			<form>
- 				<div class="row">
- 					<div class="col-6"> 
- 						<div class="form-group row mb-2">
- 							<label class="col-sm-8 col-form-label">Semester</label>
- 							<div class="col-sm-4">
- 								<select class="form-control" name="semester" id="semester" required>
- 									<option value="">-- Selected --</option>
- 									<?php foreach($smst as $sm):?>
- 										<option value="<?= $sm['kode']; ?>"><?= $sm['tipe_semester']; ?></option>
- 									<?php endforeach;?>
- 								</select>
- 								<!-- <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester"> -->
- 							</div>
- 						</div>
- 						<div class="form-group row mb-2">
+	<!-- Page Heading -->
+	<h1 id="h1" class="h3 mb-4 text-primary"><?= $title; ?></h1>
+
+	<div class="card">
+
+		<div class="card-header">
+			<!-- <a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newInputModal">Add</a> -->
+			<!-- <?php echo form_open_multipart("proses/algo"); ?> -->
+			<!-- <form> -->
+
+				<form action="<?= base_url('proses/algoritmagenetik'); ?>" method="post">
+					<div class="row">
+						<div class="col-6"> 
+							<div class="form-group row mb-2">
+								<label class="col-sm-8 col-form-label">Semester</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="semester" id="semester">
+										<option value="<?= set_value('semester'); ?>">-- Selected --</option>
+										<?php foreach($smst as $sm):?>
+											<option value="<?= $sm['kode']; ?>"><?= $sm['tipe_semester']; ?></option>
+										<?php endforeach;?>
+									</select>					
+									<!-- <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester"> -->
+								</div>
+							</div>
+
+ 						<!-- <div class="form-group row mb-2">
  							<label class="col-sm-8 col-form-label">Prodi</label>
  							<div class="col-sm-4">
- 								<select class="form-control" name="prodi" id="prodi" required>
+ 								<select class="form-control" name="prodi" id="prodi">
  									<option value="">-- Selected --</option>
  									<?php foreach($prod as $pro):?>
  										<option value="<?= $pro['kode']; ?>"><?= $pro['nama_prodi']; ?></option>
  									<?php endforeach;?>
  								</select>
  							</div>
+ 						</div> -->
+
+ 						<div class="form-group row mb-2">
+ 							<label class="col-sm-8 col-form-label">Prodi</label>
+ 							<div class="col-sm-4">
+ 								<select class="form-control" name="prodi" id="prodi">
+ 									<option value="0">-- Selected --</option>
+ 									<?php foreach($prod as $pro):?>
+ 										<option value="<?= $pro['kode']; ?>"><?= $pro['nama_prodi']; ?></option>
+ 									<?php endforeach;?>
+ 								</select>
+ 							</div>
  						</div>
+
+
  						<div class="form-group row mb-2">
  							<label class="col-sm-8 col-form-label">Jumlah Populasi</label>
  							<div class="col-sm-4">
- 								<input type="text" class="touchspin1" id="populasi" name="populasi" placeholder="Nilai">
+ 								<input type="text" class="touchspin1" id="populasi" name="populasi" placeholder="Nilai" value="<?= set_value('populasi'); ?>">
+ 							</div>
+ 							<div align="right" class="col-sm-12">
+ 								<?= form_error('populasi', '<small class="text-danger pl-3">', '</small>'); ?>
  							</div>
  						</div>
  						<div class="form-group row mb-2">
  							<label class="col-sm-8 col-form-label">Probabilitas Crossover</label>
  							<div class="col-sm-4">
- 								<input type="text" class="touchspin2" id="crossover" name="crossover" placeholder="Nilai">
+ 								<input type="text" class="touchspin2" id="crossover" name="crossover" placeholder="Nilai" value="<?= set_value('crossover'); ?>">
+ 							</div>
+ 							<div align="right" class="col-sm-12">
+ 								<?= form_error('crossover', '<small class="text-danger pl-3">', '</small>'); ?>
  							</div>
  						</div>
  					</div>
@@ -53,7 +78,7 @@
  						<div class="form-group row mb-2">
  							<label class="col-sm-8 col-form-label">Tahun Akademik</label>
  							<div class="col-sm-4">
- 								<select class="form-control" name="tahun_akademik" id="tahun_akademik" required>
+ 								<select class="form-control" name="tahun_akademik" id="tahun_akademik" >
  									<option value="">-- Selected --</option>
  									<?php foreach($taka as $ta):?>
  										<option value="<?= $ta['kode']; ?>"><?= $ta['tahun']; ?></option>
@@ -65,13 +90,21 @@
  						<div class="form-group row mb-2">
  							<label class="col-sm-8 col-form-label">Probabilitas Mutasi</label>
  							<div class="col-sm-4">
- 								<input type="text" class="touchspin2" id="mutasi" name="mutasi" placeholder="Nilai">
+ 								<input type="text" class="touchspin2" id="mutasi" name="mutasi" placeholder="Nilai" value="<?= set_value('mutasi'); ?>">
+ 							</div>
+ 							<div align="right" class="col-sm-12">
+ 								<?= form_error('mutasi', '<small class="text-danger pl-3">', '</small>'); ?>
  							</div>
  						</div>
  						<div class="form-group row mb-2">
  							<label class="col-sm-8 col-form-label">Jumlah Generasi</label>
  							<div class="col-sm-4">
- 								<input type="text" class="touchspin1" id="generasi" name="generasi" placeholder="Nilai">
+ 								<input type="text" class="touchspin1" id="generasi" name="generasi" placeholder="Nilai" value="<?= set_value('generasi'); ?>">
+ 							</div>
+ 							<!-- <div class="col-sm-6"></div> -->
+ 							<div align="right" class="col-sm-12">
+ 								<?= form_error('generasi', '<small class="text-danger pl-3">', '</small>'); ?>
+ 								
  							</div>
  						</div>
  					</div>
@@ -82,8 +115,11 @@
  					<a class="btn btn btn-outline-success" href="" data-toggle="modal" data-target="#newHariModal">Save</a>
  					<a class="btn btn btn-outline-danger" href="" data-toggle="modal" data-target="#newHariModal">Delete</a>
  					<!-- </div> -->
+ 					<!-- <div class="col-lg">
+ 						<?= $this->session->flashdata('message'); ?>
+ 					</div> -->
  				</form>
- 				<?php echo form_close(); ?>
+ 				<!-- <?php echo form_close(); ?> -->
 
  			</div>
 
@@ -95,20 +131,20 @@
 
 
  			<div class="card-body">
- 				<div class="row">
- 					<div class="col-6"> Sebelum
+ 				<!-- <div class="row">
+ 					<div class="col-6"> -->
  						<div class="table-responsive">
- 							<table id="algoTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
- 								<!-- <table id="empTable" class="display"> -->
- 									<thead class="thead-light">
- 										<tr> 
- 											<th width="7px">No</th>
- 											<th>Kode Matakuliah</th>
- 											<th>Peminjam</th>
- 											<th>Ruangan</th>
- 											<th>Nama Matakuliah</th>
- 											<th>Kapasitas</th>
- 											<!-- <th>Hari</th> -->
+ 							<table id="algoaTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
+ 								
+ 								<thead class="thead-light">
+ 									<tr> 
+ 										<th width="7px">No</th>
+ 										<th>Kode Matakuliah</th>
+ 										<th>Peminjam</th>
+ 										<th>Ruangan</th>
+ 										<th>Nama Matakuliah</th>
+ 										<th>Kapasitas</th>
+ 										<!-- <th>Hari</th> -->
  								<!-- <th>Start</th>
  								<th>End</th>
  								<th>Semester</th> -->
@@ -122,50 +158,23 @@
 
  					</table>
  					
- 				</div>
+ 				<!-- </div>
+ 				</div> -->
+
+
+
  			</div>
 
- 			<div class="col-6"> Sesudah
- 				<div class="table-responsive">
- 					<table id="algoTable" class="table table-bordeless table-hover" width="100%"cellspacing="0">
- 						<!-- <table id="empTable" class="display"> -->
- 							<thead class="thead-light">
- 								<tr> 
- 									<th width="7px">No</th>
- 									<th>Kode Matakuliah</th>
- 									<th>Peminjam</th>
- 									<th>Ruangan</th>
- 									<th>Nama Matakuliah</th>
- 									<th>Kapasitas</th>
- 									<!-- <th>Hari</th> -->
- 								<!-- <th>Start</th>
- 								<th>End</th>
- 								<th>Semester</th> -->
- 								<th>Tgl Pemakaian</th>
- 								<th width="60px">Aksi</th>
- 							</tr>
- 						</thead>
-
- 						<!-- load barang -->
 
 
- 					</table>
- 					
- 				</div>
- 			</div>
-
+ 			<!-- zzz -->
  		</div>
-
-
-
- 		<!-- zzz -->
  	</div>
+
+
+
  </div>
-
-
-
-</div>
-<!-- /.container-fluid -->
+ <!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content --> 
@@ -596,4 +605,5 @@
 			</div>
 		</div>
 	</div>
- <!--END MODAL DETAIL-->
+	<!--END MODAL DETAIL-->
+
