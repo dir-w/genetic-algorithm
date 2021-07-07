@@ -118,7 +118,7 @@ $('#peminjamTable').DataTable({
  { data: 'tgl_surat_peminjaman' },
  { data: 'hari' },
  { data: 'tgl_kegiatan' },
- { data: 'nama_fasilitas' },
+ { data: 'nama_type' },
  { data: 'pj' },
  { data : 'Aksi'},
  ]
@@ -180,7 +180,7 @@ $(function(){
         $('#tglsp').val(data.tgl_surat_peminjaman);
         $('#hari').val(data.hari);
         $('#tglkeg').val(data.tgl_kegiatan);
-        $('#fasilitas').val(data.id_fasilitas);
+        $('#idtyper').val(data.id_type_ruangan);
         $('#penanggungj').val(data.pj);
         $('#ModalEditPeminjam').modal('show');
         
@@ -198,14 +198,14 @@ $(function(){
     var tgl_surat_peminjaman =$('#tglsp').val();
     var hari =$('#hari').val();
     var tgl_kegiatan =$('#tglkeg').val();
-    var id_fasilitas =$('#fasilitas').val();
+    var id_type_ruangan =$('#idtyper').val();
     var pj =$('#penanggungj').val();
     // alert(tgl_surat_peminjaman);
     $.ajax({
       method: 'POST',
       url: 'editPeminjam',
       dataType: 'JSON',
-      data: {kode_p:kode_p, no_ppku:no_ppku, no_peminjam:no_peminjam, kegiatan:kegiatan, tgl_surat_peminjaman:tgl_surat_peminjaman, hari:hari, tgl_kegiatan:tgl_kegiatan, id_fasilitas:id_fasilitas, pj:pj},
+      data: {kode_p:kode_p, no_ppku:no_ppku, no_peminjam:no_peminjam, kegiatan:kegiatan, tgl_surat_peminjaman:tgl_surat_peminjaman, hari:hari, tgl_kegiatan:tgl_kegiatan, id_type_ruangan:id_type_ruangan, pj:pj},
       success: function(data){
         $('#kode_p').val("");
         $('#no_ppku').val("");
@@ -214,6 +214,7 @@ $(function(){
         $('#tglsp').val("");
         $('#hari').val("");
         $('#tglkeg').val("");
+        $('#idtyper').val("");
         $('#penanggungj').val("");
         $('#ModalEditPeminjam').modal('hide');
       }

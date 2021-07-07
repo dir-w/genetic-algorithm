@@ -11,6 +11,7 @@ class Input extends CI_Controller
 		$this->load->model('Data_model');
 		$this->load->model('Proses_model');
 		$this->load->model('Nomor_model');
+		$this->load->model('Fasilitas_model');
 		$this->load->library('form_validation');
 	}
 
@@ -516,6 +517,96 @@ class Input extends CI_Controller
 	}
 	
 	// END CONTROLLER PROSES INPUT PEMAKAIAN
+
+	// start Controller Master Peminjam
+	public function peminjaman()
+	{
+		$data['title'] = 'Data Peminjam';
+
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['TypeR'] = $this->Fasilitas_model->getTypeRuang()->result_array();
+
+		$this->form_validation->set_rules('nppku', 'No Surat PPKU', 'required');
+		$this->form_validation->set_rules('nop', 'No Surat Peminjaman', 'required');
+		$this->form_validation->set_rules('keg', 'Nama Kegiatan', 'required');
+		$this->form_validation->set_rules('tsp', 'Tanggal Surat Peminjaman', 'required');
+		$this->form_validation->set_rules('har', 'Hari', 'required');
+		$this->form_validation->set_rules('tg', 'Tanggal Kegiatan', 'required');
+		$this->form_validation->set_rules('typer', 'Nama Ruangan', 'required');
+		$this->form_validation->set_rules('penj', 'Penanggung Jawab', 'required');
+		
+		if ($this->form_validation->run() ==  false)
+		{
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('peminjam/index', $data);
+			$this->load->view('templates/footer');
+		} else { 
+
+			$insertdataP = [
+				'no_ppku' => $this->input->post('nppku'),
+				'no_peminjam' => $this->input->post('nop'),
+				'kegiatan' => $this->input->post('keg'),
+				'tgl_surat_peminjaman' => $this->input->post('tsp'),
+				'hari' => $this->input->post('har'),
+				'tgl_kegiatan' => $this->input->post('tg'),
+				'id_type_ruangan' => $this->input->post('typer'),
+				'pj' => $this->input->post('penj')
+			];
+			// 
+			$this->Fasilitas_model->addpeminjam($insertdataP);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
+			redirect('input/peminjaman');
+		}
+	}
+
+	public function peminjamList()
+	{
+            // POST data dari view
+		$postData = $this->input->post();
+
+            // get data dari model
+		$data = $this->Fasilitas_model->getMasterPeminjam($postData);
+
+		echo json_encode($data);
+
+	}
+
+	public function tagetPeminjam($kode_p='')
+	{
+		$kode_p=$this->input->post('kode_p');
+		$data=$this->Fasilitas_model->getPeminjambyKode($kode_p);
+		echo json_encode($data);  
+	}
+
+	public function peminjamdelete()
+	{
+		$kode_p=$this->input->post('kode_p');
+		$data=$this->Fasilitas_model->dellPeminjam($kode_p);
+		echo json_encode($data); 
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data has been delete..</div>');
+	}
+
+	public function editPeminjam()
+	{
+		$kode_p = $this->input->post('kode_p');
+		$saveeditpem = [
+			'no_ppku' => $this->input->post('no_ppku'),
+			'no_peminjam' => $this->input->post('no_peminjam'),
+			'kegiatan' => $this->input->post('kegiatan'),
+			'tgl_surat_peminjaman' => $this->input->post('tgl_surat_peminjaman'),
+			'hari' => $this->input->post('hari'),
+			'tgl_kegiatan' => $this->input->post('tgl_kegiatan'),
+			'id_type_ruangan' => $this->input->post('id_type_ruangan'),
+			'pj' => $this->input->post('pj')
+		];
+		$data = $this->Fasilitas_model->saveeditpemilik($kode_p, $saveeditpem);
+		echo json_encode($data);
+		$this->session->set_flashdata('message', '<div class="alert alert-succes" role="alert">Data has been update..</div>');
+	}
+    // end Controller Master Peminjam
 
 
 

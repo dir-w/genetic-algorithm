@@ -156,10 +156,11 @@ class Fasilitas_model extends CI_Model
         $this->db->order_by($columnName, $columnSortOrder);
         $this->db->limit($rowperpage, $start);
         // $records = $this->db->get('peminjam')->result();
-        $this->db->select('peminjam.*', 'fasilitas.*');
+        $this->db->select('peminjam.*', 'type_ruang.*');
         // $this->db->select('peminjam.*');
         $this->db->from('peminjam');
-        $this->db->join('fasilitas', 'peminjam.id_fasilitas=fasilitas.kode_f');
+        $this->db->join('type_ruang', 'peminjam.id_type_ruangan=type_ruang.idt');
+        $this->db->order_by('kode_p', 'DESC');
         $records = $this->db->get()->result();
 
         $data = array();
@@ -179,7 +180,7 @@ class Fasilitas_model extends CI_Model
                 "tgl_kegiatan"=>$record->tgl_kegiatan,
                 
                 "pj"=>$record->pj,
-                "nama_fasilitas"=>$record->nama_fasilitas,
+                "nama_type"=>$record->nama_type,
 
 
 
@@ -218,7 +219,7 @@ class Fasilitas_model extends CI_Model
                     'tgl_surat_peminjaman' => $data->tgl_surat_peminjaman,
                     'hari' => $data->hari,
                     'tgl_kegiatan' => $data->tgl_kegiatan,
-                    'id_fasilitas' => $data->id_fasilitas,
+                    'id_type_ruangan' => $data->id_type_ruangan,
                     'kegiatan' => $data->kegiatan,
                     'pj' => $data->pj,
                 );
@@ -233,10 +234,10 @@ class Fasilitas_model extends CI_Model
         return $hasil;
     }
 
-    public function getFasilitas()
+    public function getTypeRuang()
     {
         $this->db->select('*');
-        $this->db->FROM('fasilitas');
+        $this->db->FROM('type_ruang');
         $query = $this->db->get();
         return $query;  
     }
