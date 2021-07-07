@@ -26,7 +26,7 @@
 								<th>Tgl Surat Peminjaman</th>
 								<th>Hari</th>
 								<th>Tgl Kegiatan</th>
-								<th>Fasilitas</th>
+								<th>Tipe Ruangan</th>
 								<th>Penanggung Jawab</th>
 								<th width="45px">Aksi</th>
 							</tr>
@@ -59,7 +59,7 @@
 				<h5 class="modal-title text-danger" id="newPeminjamModalLabel">ADD MASTER PEMINJAM</h5>
 
 			</div>
-			<form action="<?= base_url('peminjam/peminjaman'); ?>" method="post">
+			<form action="<?= base_url('input/peminjaman'); ?>" method="post">
 				<div class="modal-body">
 
 
@@ -118,12 +118,12 @@
 					</div>
 
 					<div class="row mb-3">
-						<label class="col-sm-4 col-form-label">Fasilitas</label>
+						<label class="col-sm-4 col-form-label">Tipe Ruangan</label>
 						<div class="col-sm-8">
-							<select class="form-control" name="fas" id="fas" required>
+							<select class="form-control" name="typer" id="typer" required>
 								<option value="">-- Selected --</option>
-								<?php foreach($fasi as $fa):?>
-									<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
+								<?php foreach($TypeR as $TR):?>
+									<option value="<?= $TR['idt']; ?>"><?= $TR['nama_type']; ?></option>
 								<?php endforeach;?>
 							</select>
 						</div>
@@ -247,13 +247,13 @@
 						</div>
 
 						<div class="row mb-3">
-							<label class="col-sm-4 col-form-label">Fasilitas</label>
+							<label class="col-sm-4 col-form-label">Tipe Ruangan</label>
 							<div class="col-sm-8">
 								<!-- <input type="text" class="form-control" id="fasilitas" name="fasilitas" placeholder="Fasilitas"> -->
-								<select class="form-control" name="fasilitas" id="fasilitas" required>
+								<select class="form-control" name="idtyper" id="idtyper" required>
 									<option value="">-- Selected --</option>
-									<?php foreach($fasi as $fa):?>
-										<option value="<?= $fa['kode_f']; ?>"><?= $fa['nama_fasilitas']; ?></option>
+									<?php foreach($TypeR as $TR):?>
+										<option value="<?= $TR['idt']; ?>"><?= $TR['nama_type']; ?></option>
 									<?php endforeach;?>
 								</select>
 							</div>
