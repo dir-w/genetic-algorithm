@@ -380,6 +380,7 @@ class Input extends CI_Controller
 		$data['semester'] = $this->Proses_model->getSEM()->result_array();
 		$data['jam'] = $this->Proses_model->getJ()->result_array();
 		$data['dosen'] = $this->Proses_model->getD()->result_array();
+		$data['statuk'] = $this->Proses_model->getSK()->result_array();
 		$this->form_validation->set_rules('ta', 'Tahun Akademik', 'required');
 		$this->form_validation->set_rules('smst', 'Semester', 'required');
 		$this->form_validation->set_rules('kodemk', 'Kode Matakuliah', 'required');
@@ -390,6 +391,7 @@ class Input extends CI_Controller
 		$this->form_validation->set_rules('set', 'Semester', 'required');
 		$this->form_validation->set_rules('nd', 'Dosen', 'required');
 		$this->form_validation->set_rules('tpem', 'Tanggal Pemakaian Ruangan', 'required');
+		$this->form_validation->set_rules('sk', 'Status Mata Kuliah', 'required');
 
 
 		if ($this->form_validation->run() ==  false)
@@ -412,6 +414,7 @@ class Input extends CI_Controller
 				'kode_dosen' => $this->input->post('nd'),
 				'kode_semester_tipe' => $this->input->post('set'),
 				'kode_semester' => $this->input->post('smst'),
+				'kode_status_kul' => $this->input->post('sk'),
 				'tgl_pr' => $this->input->post('tpem'),
 				'create_at' => time(),
 				'create_by' => $this->input->post('namauser')
@@ -505,6 +508,7 @@ class Input extends CI_Controller
 			'tgl_pr' => $this->input->post('tgl_pr'),
 			'kode_tahun_akademik' => $this->input->post('kode_tahun_akademik'),
 			'kode_semester' => $this->input->post('kode_semester'),
+			'kode_status_kul' => $this->input->post('kode_status_kul'),
 			'update_by' => $this->input->post('update_by'),
 			'update_at' => time()
 		];
