@@ -471,7 +471,7 @@ class Input extends CI_Controller
 		$data=$this->Proses_model->getNR($kode);
 		echo json_encode($data);
 
-	}
+	} 
 
 	public function pemakaiangetEdit($id_pemakaian='')
 	{
