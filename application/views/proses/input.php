@@ -216,6 +216,18 @@
  								</div>
  							</div>
 
+ 							<div class="row mb-2">
+ 								<label class="col-sm-4 col-form-label">Status kuliah</label>
+ 								<div class="col-sm-8">
+ 									<select class="form-control" name="sk" id="sk" required>
+ 										<option value="">-- Selected --</option>
+ 										<?php foreach($statuk as $sk):?>
+ 											<option value="<?= $sk['kode']; ?>"><?= $sk['keterangan']; ?></option>
+ 										<?php endforeach;?>
+ 									</select>
+ 								</div>
+ 							</div>
+
  						</div>
  					</div>
 
@@ -428,6 +440,18 @@
  									</div>
  								</div>
 
+ 								<div class="row mb-2">
+ 									<label class="col-sm-4 col-form-label">Status kuliah</label>
+ 									<div class="col-sm-8">
+ 										<select class="form-control" name="p_sk" id="p_sk" required>
+ 											<option value="">-- Selected --</option>
+ 											<?php foreach($statuk as $sk):?>
+ 												<option value="<?= $sk['kode']; ?>"><?= $sk['keterangan']; ?></option>
+ 											<?php endforeach;?>
+ 										</select>
+ 									</div>
+ 								</div>
+
  							</div>
  						</div>
 
@@ -488,6 +512,7 @@
 											<p class="card-text jarak"><small class="text-muted">Semester</small></p>
 											<p class="card-text jarak"><small class="text-muted">Hari</small></p>
 											<p class="card-text jarak"><small class="text-muted">Jam</small></p>
+											<p class="card-text jarak"><small class="text-muted">Status kuliah</small></p>
 										</div>
 									</div>
 									<div class="col-md-1">
@@ -495,6 +520,7 @@
 											<h5 class="card-title">:</h5>
 											<h5 class="card-title">:</h5>
 											<p class="card-text jarak">:</p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
@@ -527,6 +553,7 @@
 											<p class="card-text jarak"><small class="text-muted" id="dsem"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dhari"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="djam"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dsk"></small></p>
 										</div>
 									</div>
 								</div>

@@ -154,6 +154,7 @@ $.ajax({
     $('#kegiatan').val(data.kegiatan);
     $('#tha').val(data.kode_tahun_akademik);
     $('#smstr').val(data.kode_semester);
+    $('#p_sk').val(data.kode_status_kul);
     // console.log(data);
     $('#ModalEditPemakaian').modal('show');
   }
@@ -203,6 +204,7 @@ $(function(){
   });
 });
 
+
 // klik nama ruangan edit menampilkan data kapasitas
 $(function(){
   $('#n_ruang').on('click', function(){
@@ -246,13 +248,14 @@ $(function(){
     var tgl_pr =$('#tglpem').val();
     var kode_tahun_akademik =$('#tha').val();
     var kode_semester =$('#smstr').val();
+    var kode_status_kul =$('#p_sk').val();
     var update_by =$('#nama_user').val();
     // alert(tgl_pr);
     $.ajax({
       method : 'POST',
       url : 'editPR',
       dataType : 'JSON',
-      data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk, kode_peminjam:kode_peminjam, kode_ruangan:kode_ruangan, kode_jam:kode_jam, kode_hari:kode_hari, kode_dosen:kode_dosen, kode_semester_tipe:kode_semester_tipe, tgl_pr:tgl_pr, kode_tahun_akademik:kode_tahun_akademik, kode_semester:kode_semester, update_by:update_by},
+      data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk, kode_peminjam:kode_peminjam, kode_ruangan:kode_ruangan, kode_jam:kode_jam, kode_hari:kode_hari, kode_dosen:kode_dosen, kode_semester_tipe:kode_semester_tipe, tgl_pr:tgl_pr, kode_tahun_akademik:kode_tahun_akademik, kode_semester:kode_semester, kode_status_kul:kode_status_kul, update_by:update_by},
       // data : {id_pemakaian:id_pemakaian, kode_mk:kode_mk},
 
       success: function(data){
@@ -267,6 +270,7 @@ $(function(){
         $('#nama_user').val("");
         $('#tha').val("");
         $('#smstr').val("");
+        $('#p_sk').val("");
           // $('#n_ruang').val("");
           $('#ModalEditPemakaian').modal('hide');
           // window.location.assign('jam');
@@ -307,6 +311,7 @@ $(function(){
         $('#djam').html('Start : ' + data.start + '       End : ' + data.end);
         $('#dtglpr').html(data.tgl_pr);
         $('#dfakultas').html(data.nama_fakultas);
+        $('#dsk').html(data.ket_status_k);
         $('#ModalDetailPemakaian').modal('show');
 
 
