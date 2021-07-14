@@ -12,7 +12,6 @@ class Proses extends CI_Controller
 		$this->load->library('form_validation');
 	}
 
-	
 
 	// START CONTROLLER PROSES ALGORITMA GENETIK
 	// keajaiban bermula disini
