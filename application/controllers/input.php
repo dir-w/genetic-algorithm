@@ -424,7 +424,7 @@ class Input extends CI_Controller
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Your data has been Add..Please Check againt!</div>');
 			redirect('input/pemakaian');
 		}
-	}
+	} 
 
 	public function pinputList()
 	{

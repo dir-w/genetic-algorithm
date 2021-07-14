@@ -476,6 +476,7 @@
 											<h5 class="card-title">Kode Ruangan</h5>
 											<p class="card-text jarak">Nama Ruangan</p>
 											<p class="card-text jarak"><small class="text-muted">Nama Peminjam</small></p>
+											<p class="card-text jarak"><small class="text-muted">Fakultas</small></p>
 											<p class="card-text jarak"><small class="text-muted">Kegiatan</small></p>
 											<p class="card-text jarak"><small class="text-muted">Tanggal Pemakaian Ruangan</small></p>
 											
@@ -505,6 +506,7 @@
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
 											<p class="card-text jarak"><small class="text-muted">:</small></p>
+											<p class="card-text jarak"><small class="text-muted">:</small></p>
 										</div>
 									</div>
 									<div class="col-md-7">
@@ -513,6 +515,7 @@
 											<h5 class="card-title" id="dkoder"></h5>
 											<p class="card-text jarak" id="dnamar"></p>
 											<p class="card-text jarak"><small class="text-muted" id="dnamapeminjam"></small></p>
+											<p class="card-text jarak"><small class="text-muted" id="dfakultas"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dkegiatan"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dta"></small></p>
 											<p class="card-text jarak"><small class="text-muted" id="dtglpr"></small></p>

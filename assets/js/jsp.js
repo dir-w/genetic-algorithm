@@ -306,6 +306,7 @@ $(function(){
         $('#dta').html(data.tahun);
         $('#djam').html('Start : ' + data.start + '       End : ' + data.end);
         $('#dtglpr').html(data.tgl_pr);
+        $('#dfakultas').html(data.nama_fakultas);
         $('#ModalDetailPemakaian').modal('show');
 
 
